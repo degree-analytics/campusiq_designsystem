@@ -1,0 +1,119 @@
+import type { Meta, StoryObj } from '@storybook/react'
+import { AlertCircle, Terminal, CheckCircle2, Info as InfoIcon } from 'lucide-react'
+import { Alert, AlertDescription, AlertTitle } from './alert'
+
+const meta: Meta<typeof Alert> = {
+  title: 'Components/Feedback/Alert',
+  component: Alert,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'centered',
+  },
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: ['default', 'destructive'],
+      description: 'The visual style variant of the alert',
+    },
+  },
+}
+
+export default meta
+type Story = StoryObj<typeof Alert>
+
+export const Default: Story = {
+  render: () => (
+    <Alert className="w-[400px]">
+      <Terminal className="h-4 w-4" />
+      <AlertTitle>Heads up!</AlertTitle>
+      <AlertDescription>
+        You can add components to your app using the cli.
+      </AlertDescription>
+    </Alert>
+  ),
+}
+
+export const Destructive: Story = {
+  render: () => (
+    <Alert variant="destructive" className="w-[400px]">
+      <AlertCircle className="h-4 w-4" />
+      <AlertTitle>Error</AlertTitle>
+      <AlertDescription>
+        Your session has expired. Please log in again.
+      </AlertDescription>
+    </Alert>
+  ),
+}
+
+export const WithoutIcon: Story = {
+  render: () => (
+    <Alert className="w-[400px]">
+      <AlertTitle>Note</AlertTitle>
+      <AlertDescription>
+        This alert does not have an icon, demonstrating flexible content options.
+      </AlertDescription>
+    </Alert>
+  ),
+}
+
+export const Success: Story = {
+  render: () => (
+    <Alert className="w-[400px] border-green-500 text-green-700 [&>svg]:text-green-500">
+      <CheckCircle2 className="h-4 w-4" />
+      <AlertTitle>Success!</AlertTitle>
+      <AlertDescription>
+        Your changes have been saved successfully.
+      </AlertDescription>
+    </Alert>
+  ),
+}
+
+export const Informational: Story = {
+  name: 'Informational',
+  render: () => (
+    <Alert className="w-[400px] border-blue-500 text-blue-700 [&>svg]:text-blue-500">
+      <InfoIcon className="h-4 w-4" />
+      <AlertTitle>Did you know?</AlertTitle>
+      <AlertDescription>
+        You can customize alerts with additional Tailwind classes for different visual styles.
+      </AlertDescription>
+    </Alert>
+  ),
+}
+
+export const LongContent: Story = {
+  render: () => (
+    <Alert className="w-[400px]">
+      <Terminal className="h-4 w-4" />
+      <AlertTitle>Important Update</AlertTitle>
+      <AlertDescription>
+        <p>This is a longer alert with multiple paragraphs of content.</p>
+        <p className="mt-2">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </AlertDescription>
+    </Alert>
+  ),
+}
+
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4 w-[400px]">
+      <Alert>
+        <Terminal className="h-4 w-4" />
+        <AlertTitle>Default</AlertTitle>
+        <AlertDescription>
+          This is the default alert variant.
+        </AlertDescription>
+      </Alert>
+      <Alert variant="destructive">
+        <AlertCircle className="h-4 w-4" />
+        <AlertTitle>Destructive</AlertTitle>
+        <AlertDescription>
+          This is the destructive alert variant.
+        </AlertDescription>
+      </Alert>
+    </div>
+  ),
+}
