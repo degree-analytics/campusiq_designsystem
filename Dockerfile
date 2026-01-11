@@ -1,28 +1,47 @@
-# Build stage
-FROM node:20-alpine AS builder
+# CampusIQ Storybook with Story UI Live Deployment
+# Runs Storybook in DEV MODE with Story UI MCP server for dynamic story generation
+#
+# Architecture:
+# - Storybook dev server (internal port 6006) for hot-reloading
+# - Story UI MCP server (Railway PORT) serves API + proxies Storybook
+#
+# This enables AI-powered story generation in production!
+
+FROM node:20-slim
 
 WORKDIR /app
 
-# Copy package files
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install pnpm globally
+RUN npm install -g pnpm
+
+# Copy package files first for better caching
 COPY package.json pnpm-lock.yaml ./
 
-# Install pnpm and dependencies
-RUN npm install -g pnpm && pnpm install --frozen-lockfile
+# Install dependencies
+RUN pnpm install --frozen-lockfile
 
-# Copy source files
+# Copy all project files
 COPY . .
 
-# Build Storybook
-RUN pnpm build-storybook
+# Make start script executable
+RUN chmod +x ./start-live.sh
 
-# Production stage
-FROM node:20-alpine
+# Set memory limit for handling large story generation
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 
-WORKDIR /app
+# Railway sets PORT env var - this is the public port
+# Storybook runs internally on 6006
+EXPOSE ${PORT:-4001}
 
-# Copy built Storybook and server
-COPY --from=builder /app/storybook-static ./storybook-static
-COPY --from=builder /app/server.js ./server.js
+# Health check - verify MCP server is responding
+HEALTHCHECK --interval=30s --timeout=10s --start-period=120s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:${PORT:-4001}/story-ui/providers || exit 1
 
-# Start the server
-CMD ["node", "server.js"]
+# Start both servers
+CMD ["./start-live.sh"]
