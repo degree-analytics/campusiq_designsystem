@@ -12,19 +12,39 @@ const preview: Preview = {
       },
     },
     backgrounds: {
-      default: 'light',
-      values: [
-        { name: 'light', value: 'hsl(0 0% 100%)' },
-        { name: 'dark', value: 'hsl(222.2 84% 4.9%)' },
-      ],
+      disable: true, // Disable backgrounds addon since we manage theme via globalTypes
+    },
+  },
+  globalTypes: {
+    theme: {
+      name: 'Theme',
+      description: 'Global theme for components',
+      defaultValue: 'light',
+      toolbar: {
+        icon: 'paintbrush',
+        items: [
+          { value: 'light', title: 'Light', icon: 'sun' },
+          { value: 'dark', title: 'Dark', icon: 'moon' },
+        ],
+        showName: true,
+        dynamicTitle: true,
+      },
     },
   },
   decorators: [
     (Story, context) => {
-      // Apply dark class based on background selection
-      const isDark = context.globals.backgrounds?.value === 'hsl(222.2 84% 4.9%)';
+      const theme = context.globals.theme || 'light';
+      const isDark = theme === 'dark';
+
       return (
-        <div className={isDark ? 'dark' : ''}>
+        <div
+          className={isDark ? 'dark' : ''}
+          style={{
+            backgroundColor: isDark ? '#18181b' : '#ffffff',
+            minHeight: '100vh',
+            padding: '1rem',
+          }}
+        >
           <Story />
         </div>
       );
