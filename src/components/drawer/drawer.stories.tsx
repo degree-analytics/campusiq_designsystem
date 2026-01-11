@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import * as React from 'react'
 import { Button } from '@/components/button/button'
 import { Input } from '@/components/input/input'
 import { Label } from '@/components/label/label'
@@ -267,4 +268,127 @@ export const WithForm: Story = {
       </DrawerContent>
     </Drawer>
   ),
+}
+
+export const ControlledState: Story = {
+  render: function ControlledDrawer() {
+    const [open, setOpen] = React.useState(false)
+
+    return (
+      <div className="flex flex-col items-center gap-4">
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={() => setOpen(true)}>
+            Open Drawer
+          </Button>
+          <Button variant="outline" onClick={() => setOpen(false)}>
+            Close Drawer
+          </Button>
+        </div>
+        <p className="text-sm text-muted-foreground">
+          Drawer is currently: <strong>{open ? 'Open' : 'Closed'}</strong>
+        </p>
+        <Drawer open={open} onOpenChange={setOpen}>
+          <DrawerContent>
+            <DrawerHeader>
+              <DrawerTitle>Controlled Drawer</DrawerTitle>
+              <DrawerDescription>
+                This drawer is controlled by external state. Use the buttons
+                or swipe gestures to toggle.
+              </DrawerDescription>
+            </DrawerHeader>
+            <div className="p-4">
+              <p className="text-sm text-muted-foreground">
+                You can programmatically control this drawer from external
+                components, making it useful for complex mobile workflows.
+              </p>
+            </div>
+            <DrawerFooter>
+              <Button variant="outline" onClick={() => setOpen(false)}>
+                Cancel
+              </Button>
+              <Button onClick={() => setOpen(false)}>
+                Confirm
+              </Button>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
+      </div>
+    )
+  },
+}
+
+export const SnapPoints: Story = {
+  render: function SnapPointsDrawer() {
+    const [open, setOpen] = React.useState(false)
+    const [snap, setSnap] = React.useState<number | string | null>(0.5)
+
+    return (
+      <Drawer
+        open={open}
+        onOpenChange={setOpen}
+        snapPoints={[0.25, 0.5, 1]}
+        activeSnapPoint={snap}
+        setActiveSnapPoint={setSnap}
+      >
+        <DrawerTrigger asChild>
+          <Button variant="outline">Open with Snap Points</Button>
+        </DrawerTrigger>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>Snap Points</DrawerTitle>
+            <DrawerDescription>
+              This drawer snaps to different heights. Try dragging it.
+            </DrawerDescription>
+          </DrawerHeader>
+          <div className="p-4">
+            <div className="flex gap-2 mb-4">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setSnap(0.25)}
+              >
+                25%
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setSnap(0.5)}
+              >
+                50%
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setSnap(1)}
+              >
+                100%
+              </Button>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Current snap point: {typeof snap === 'number' ? `${snap * 100}%` : snap}
+            </p>
+            <div className="mt-4 space-y-4">
+              <div className="rounded-lg border p-3">
+                <p className="text-sm font-medium">Recent Activity</p>
+                <p className="text-xs text-muted-foreground">Your latest updates will appear here</p>
+              </div>
+              <div className="rounded-lg border p-3">
+                <p className="text-sm font-medium">Quick Actions</p>
+                <p className="text-xs text-muted-foreground">Common tasks you can perform</p>
+              </div>
+              <div className="rounded-lg border p-3">
+                <p className="text-sm font-medium">Settings</p>
+                <p className="text-xs text-muted-foreground">Customize your experience</p>
+              </div>
+            </div>
+          </div>
+          <DrawerFooter>
+            <DrawerClose asChild>
+              <Button>Done</Button>
+            </DrawerClose>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    )
+  },
 }

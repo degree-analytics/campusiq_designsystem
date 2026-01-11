@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import * as React from 'react'
 import { Skeleton } from './skeleton'
 
 const meta: Meta<typeof Skeleton> = {
@@ -275,4 +276,121 @@ export const AllShapes: Story = {
       </div>
     </div>
   ),
+}
+
+export const LoadingTransition: Story = {
+  render: function LoadingTransitionDemo() {
+    const [isLoading, setIsLoading] = React.useState(true)
+
+    React.useEffect(() => {
+      const timer = setTimeout(() => {
+        setIsLoading(false)
+      }, 2000)
+      return () => clearTimeout(timer)
+    }, [])
+
+    return (
+      <div className="w-[300px] space-y-4">
+        <button
+          onClick={() => setIsLoading(true)}
+          className="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground hover:bg-primary/90"
+        >
+          Reload Content
+        </button>
+
+        <div className="rounded-lg border p-4 space-y-4">
+          {isLoading ? (
+            <>
+              <div className="flex items-center space-x-4">
+                <Skeleton className="h-12 w-12 rounded-full" />
+                <div className="space-y-2">
+                  <Skeleton className="h-4 w-[150px]" />
+                  <Skeleton className="h-3 w-[100px]" />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-2/3" />
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="flex items-center space-x-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground font-semibold">
+                  JD
+                </div>
+                <div>
+                  <p className="font-medium">John Doe</p>
+                  <p className="text-sm text-muted-foreground">Software Engineer</p>
+                </div>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Full-stack developer with 10+ years of experience building
+                scalable web applications and leading engineering teams.
+              </p>
+            </>
+          )}
+        </div>
+      </div>
+    )
+  },
+}
+
+export const InteractiveDemo: Story = {
+  render: function InteractiveSkeletonDemo() {
+    const [isLoading, setIsLoading] = React.useState(true)
+    const [loadingTime, setLoadingTime] = React.useState(2)
+
+    const simulateLoad = () => {
+      setIsLoading(true)
+      setTimeout(() => {
+        setIsLoading(false)
+      }, loadingTime * 1000)
+    }
+
+    return (
+      <div className="w-[400px] space-y-4">
+        <div className="flex items-center gap-4">
+          <div className="flex-1">
+            <label className="text-sm font-medium">Loading Time: {loadingTime}s</label>
+            <input
+              type="range"
+              min="1"
+              max="5"
+              value={loadingTime}
+              onChange={(e) => setLoadingTime(Number(e.target.value))}
+              className="w-full"
+            />
+          </div>
+          <button
+            onClick={simulateLoad}
+            className="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground hover:bg-primary/90"
+          >
+            {isLoading ? 'Loading...' : 'Simulate Load'}
+          </button>
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="rounded-lg border p-3 space-y-3">
+              {isLoading ? (
+                <>
+                  <Skeleton className="h-24 w-full rounded" />
+                  <Skeleton className="h-4 w-3/4" />
+                  <Skeleton className="h-3 w-1/2" />
+                </>
+              ) : (
+                <>
+                  <div className="h-24 w-full rounded bg-gradient-to-br from-blue-500 to-purple-500" />
+                  <p className="font-medium">Card Title {i}</p>
+                  <p className="text-sm text-muted-foreground">Card description</p>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  },
 }

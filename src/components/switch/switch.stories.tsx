@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import * as React from 'react'
 import { Switch } from './switch'
 import { Label } from '@/components/label/label'
 
@@ -236,6 +237,111 @@ export const AllStates: Story = {
     docs: {
       description: {
         story: 'All switch states for visual QA: off, on, disabled off, and disabled on.',
+      },
+    },
+  },
+}
+
+/**
+ * Interactive switch with controlled state demonstrating proper usage with React state management.
+ */
+export const Interactive: Story = {
+  render: function InteractiveSwitch() {
+    const [enabled, setEnabled] = React.useState(false)
+
+    return (
+      <div className="space-y-4">
+        <div className="flex items-center space-x-2">
+          <Switch
+            id="interactive-switch"
+            checked={enabled}
+            onCheckedChange={setEnabled}
+          />
+          <Label htmlFor="interactive-switch">
+            Enable dark mode
+          </Label>
+        </div>
+        <p className="text-sm text-muted-foreground">
+          Dark mode is {enabled ? 'enabled' : 'disabled'}
+        </p>
+      </div>
+    )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Interactive switch with controlled state. Toggle to see the state update in real-time.',
+      },
+    },
+  },
+}
+
+/**
+ * Interactive settings panel with multiple controlled switches.
+ */
+export const InteractiveSettingsPanel: Story = {
+  render: function InteractiveSettingsPanel() {
+    const [settings, setSettings] = React.useState({
+      marketing: false,
+      security: true,
+      updates: true,
+    })
+
+    const updateSetting = (key: keyof typeof settings) => {
+      setSettings((prev) => ({ ...prev, [key]: !prev[key] }))
+    }
+
+    return (
+      <div className="w-[320px] space-y-4">
+        <div className="flex items-center justify-between rounded-lg border p-4">
+          <div className="space-y-0.5">
+            <Label htmlFor="interactive-marketing">Marketing emails</Label>
+            <p className="text-muted-foreground text-sm">
+              Receive emails about new products.
+            </p>
+          </div>
+          <Switch
+            id="interactive-marketing"
+            checked={settings.marketing}
+            onCheckedChange={() => updateSetting('marketing')}
+          />
+        </div>
+        <div className="flex items-center justify-between rounded-lg border p-4">
+          <div className="space-y-0.5">
+            <Label htmlFor="interactive-security">Security emails</Label>
+            <p className="text-muted-foreground text-sm">
+              Receive security alerts.
+            </p>
+          </div>
+          <Switch
+            id="interactive-security"
+            checked={settings.security}
+            onCheckedChange={() => updateSetting('security')}
+          />
+        </div>
+        <div className="flex items-center justify-between rounded-lg border p-4">
+          <div className="space-y-0.5">
+            <Label htmlFor="interactive-updates">Product updates</Label>
+            <p className="text-muted-foreground text-sm">
+              Receive product update emails.
+            </p>
+          </div>
+          <Switch
+            id="interactive-updates"
+            checked={settings.updates}
+            onCheckedChange={() => updateSetting('updates')}
+          />
+        </div>
+        <p className="text-sm text-muted-foreground">
+          Enabled: {Object.entries(settings).filter(([, v]) => v).map(([k]) => k).join(', ') || 'none'}
+        </p>
+      </div>
+    )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Interactive settings panel with multiple controlled switches demonstrating real-world usage.',
       },
     },
   },

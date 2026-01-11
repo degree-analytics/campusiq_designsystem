@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import * as React from 'react'
 import { Checkbox } from './checkbox'
 import { Label } from '@/components/label/label'
 
@@ -232,6 +233,90 @@ export const AllStates: Story = {
     docs: {
       description: {
         story: 'All checkbox states for visual QA: unchecked, checked, disabled, disabled checked, and invalid.',
+      },
+    },
+  },
+}
+
+/**
+ * Interactive checkbox with controlled state demonstrating proper usage with React state management.
+ */
+export const Interactive: Story = {
+  render: function InteractiveCheckbox() {
+    const [checked, setChecked] = React.useState(false)
+
+    return (
+      <div className="space-y-4">
+        <div className="flex items-center space-x-2">
+          <Checkbox
+            id="interactive"
+            checked={checked}
+            onCheckedChange={(value) => setChecked(value === true)}
+          />
+          <Label htmlFor="interactive">
+            Enable notifications
+          </Label>
+        </div>
+        <p className="text-sm text-muted-foreground">
+          Checkbox is {checked ? 'checked' : 'unchecked'}
+        </p>
+      </div>
+    )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Interactive checkbox with controlled state. Click to toggle and see the state update.',
+      },
+    },
+  },
+}
+
+/**
+ * Interactive checkbox list demonstrating multi-select with controlled state.
+ */
+export const InteractiveList: Story = {
+  render: function InteractiveCheckboxList() {
+    const [selectedItems, setSelectedItems] = React.useState<string[]>(['email'])
+
+    const items = [
+      { id: 'email', label: 'Email notifications' },
+      { id: 'push', label: 'Push notifications' },
+      { id: 'sms', label: 'SMS notifications' },
+    ]
+
+    const toggleItem = (itemId: string) => {
+      setSelectedItems((prev) =>
+        prev.includes(itemId)
+          ? prev.filter((id) => id !== itemId)
+          : [...prev, itemId]
+      )
+    }
+
+    return (
+      <div className="space-y-4">
+        <div className="grid gap-3">
+          {items.map((item) => (
+            <div key={item.id} className="flex items-center space-x-2">
+              <Checkbox
+                id={item.id}
+                checked={selectedItems.includes(item.id)}
+                onCheckedChange={() => toggleItem(item.id)}
+              />
+              <Label htmlFor={item.id}>{item.label}</Label>
+            </div>
+          ))}
+        </div>
+        <p className="text-sm text-muted-foreground">
+          Selected: {selectedItems.length > 0 ? selectedItems.join(', ') : 'none'}
+        </p>
+      </div>
+    )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Interactive checkbox list with multiple selection. Toggle checkboxes to update the selection.',
       },
     },
   },

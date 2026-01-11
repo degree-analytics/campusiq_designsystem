@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import * as React from 'react'
 import { Button } from '@/components/button/button'
 import {
   AlertDialog,
@@ -162,4 +163,111 @@ export const OpenByDefault: Story = {
       </AlertDialogContent>
     </AlertDialog>
   ),
+}
+
+export const ControlledState: Story = {
+  render: function ControlledAlertDialog() {
+    const [open, setOpen] = React.useState(false)
+    const [action, setAction] = React.useState<string | null>(null)
+
+    return (
+      <div className="flex flex-col items-center gap-4">
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={() => setOpen(true)}>
+            Open Alert Dialog
+          </Button>
+          <Button variant="outline" onClick={() => setOpen(false)}>
+            Close Alert Dialog
+          </Button>
+        </div>
+        <p className="text-sm text-muted-foreground">
+          Dialog is currently: <strong>{open ? 'Open' : 'Closed'}</strong>
+        </p>
+        {action && (
+          <p className="text-sm text-muted-foreground">
+            Last action: <strong>{action}</strong>
+          </p>
+        )}
+        <AlertDialog open={open} onOpenChange={setOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Controlled Alert Dialog</AlertDialogTitle>
+              <AlertDialogDescription>
+                This alert dialog is controlled by external state. Clicking the
+                action buttons will update the state and close the dialog.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={() => setAction('Cancelled')}>
+                Cancel
+              </AlertDialogCancel>
+              <AlertDialogAction onClick={() => setAction('Confirmed')}>
+                Continue
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </div>
+    )
+  },
+}
+
+export const AsyncConfirmation: Story = {
+  render: function AsyncConfirmationDialog() {
+    const [open, setOpen] = React.useState(false)
+    const [loading, setLoading] = React.useState(false)
+    const [deleted, setDeleted] = React.useState(false)
+
+    const handleDelete = async () => {
+      setLoading(true)
+      // Simulate async operation
+      await new Promise((resolve) => setTimeout(resolve, 1500))
+      setLoading(false)
+      setDeleted(true)
+      setOpen(false)
+    }
+
+    return (
+      <div className="flex flex-col items-center gap-4">
+        {deleted ? (
+          <div className="rounded-lg border border-green-200 bg-green-50 p-4 text-green-800">
+            <p className="text-sm font-medium">Item deleted successfully!</p>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="mt-2"
+              onClick={() => setDeleted(false)}
+            >
+              Reset Demo
+            </Button>
+          </div>
+        ) : (
+          <AlertDialog open={open} onOpenChange={setOpen}>
+            <AlertDialogTrigger asChild>
+              <Button variant="destructive">Delete Item</Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Confirm Deletion</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. This will permanently delete the
+                  item from the database.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel disabled={loading}>Cancel</AlertDialogCancel>
+                <Button
+                  variant="destructive"
+                  onClick={handleDelete}
+                  disabled={loading}
+                >
+                  {loading ? 'Deleting...' : 'Delete'}
+                </Button>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        )}
+      </div>
+    )
+  },
 }

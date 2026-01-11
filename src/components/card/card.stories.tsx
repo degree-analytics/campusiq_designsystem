@@ -269,3 +269,177 @@ export const StatsCard: Story = {
     </div>
   ),
 }
+
+export const ClickableCard: Story = {
+  render: () => (
+    <div className="flex gap-4">
+      <Card className="w-[300px] cursor-pointer transition-shadow hover:shadow-md focus-within:ring-2 focus-within:ring-ring">
+        <a href="#" className="block focus:outline-none">
+          <CardHeader>
+            <CardTitle>Documentation</CardTitle>
+            <CardDescription>Learn how to get started</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground">
+              Explore our comprehensive documentation to learn about features and best practices.
+            </p>
+          </CardContent>
+        </a>
+      </Card>
+      <Card className="w-[300px] cursor-pointer transition-shadow hover:shadow-md focus-within:ring-2 focus-within:ring-ring">
+        <a href="#" className="block focus:outline-none">
+          <CardHeader>
+            <CardTitle>API Reference</CardTitle>
+            <CardDescription>Technical specifications</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground">
+              Complete API reference with examples and usage patterns.
+            </p>
+          </CardContent>
+        </a>
+      </Card>
+    </div>
+  ),
+}
+
+export const WithBorderSections: Story = {
+  render: () => (
+    <Card className="w-[400px]">
+      <CardHeader className="border-b">
+        <CardTitle>Account Settings</CardTitle>
+        <CardDescription>Manage your account preferences</CardDescription>
+      </CardHeader>
+      <CardContent className="pt-6">
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="font-medium">Email Notifications</p>
+              <p className="text-sm text-muted-foreground">Receive emails about account activity</p>
+            </div>
+            <input type="checkbox" className="h-4 w-4" defaultChecked />
+          </div>
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="font-medium">Two-Factor Authentication</p>
+              <p className="text-sm text-muted-foreground">Add an extra layer of security</p>
+            </div>
+            <input type="checkbox" className="h-4 w-4" />
+          </div>
+        </div>
+      </CardContent>
+      <CardFooter className="border-t">
+        <div className="flex w-full justify-end gap-2">
+          <button className="rounded-md border px-4 py-2 text-sm">Cancel</button>
+          <button className="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground">
+            Save Changes
+          </button>
+        </div>
+      </CardFooter>
+    </Card>
+  ),
+}
+
+export const CompositionPatterns: Story = {
+  render: () => (
+    <div className="grid gap-6 md:grid-cols-2">
+      {/* Header + Content */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Header + Content</CardTitle>
+          <CardDescription>Most common pattern for info cards</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-muted-foreground">
+            Content area for your main information.
+          </p>
+        </CardContent>
+      </Card>
+
+      {/* Header + Content + Footer */}
+      <Card>
+        <CardHeader>
+          <CardTitle>With Footer</CardTitle>
+          <CardDescription>Use for actions or metadata</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-muted-foreground">
+            Content with actions below.
+          </p>
+        </CardContent>
+        <CardFooter>
+          <button className="text-sm text-primary hover:underline">Learn more</button>
+        </CardFooter>
+      </Card>
+
+      {/* Header with Action */}
+      <Card>
+        <CardHeader>
+          <CardTitle>With Action</CardTitle>
+          <CardDescription>Header-level actions</CardDescription>
+          <CardAction>
+            <button className="text-sm text-primary hover:underline">Edit</button>
+          </CardAction>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-muted-foreground">
+            The action button aligns to the right of the header.
+          </p>
+        </CardContent>
+      </Card>
+
+      {/* Content Only */}
+      <Card>
+        <CardContent>
+          <p className="text-center text-muted-foreground">
+            Content-only cards are useful for simple displays or embedded content.
+          </p>
+        </CardContent>
+      </Card>
+    </div>
+  ),
+}
+
+export const CardSizes: Story = {
+  render: () => (
+    <div className="space-y-6">
+      <div>
+        <h4 className="mb-2 text-sm font-medium text-muted-foreground">Compact</h4>
+        <Card className="w-[250px] p-4">
+          <CardTitle className="text-base">Small Card</CardTitle>
+          <p className="mt-1 text-xs text-muted-foreground">Compact sizing for tight spaces</p>
+        </Card>
+      </div>
+      <div>
+        <h4 className="mb-2 text-sm font-medium text-muted-foreground">Default</h4>
+        <Card className="w-[350px]">
+          <CardHeader>
+            <CardTitle>Medium Card</CardTitle>
+            <CardDescription>Standard sizing for most use cases</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm">Standard card content area.</p>
+          </CardContent>
+        </Card>
+      </div>
+      <div>
+        <h4 className="mb-2 text-sm font-medium text-muted-foreground">Large</h4>
+        <Card className="w-[500px]">
+          <CardHeader>
+            <CardTitle>Large Card</CardTitle>
+            <CardDescription>Expanded sizing for detailed content</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground">
+              Large cards provide more space for complex content, forms, or detailed information displays.
+            </p>
+          </CardContent>
+          <CardFooter className="justify-end gap-2">
+            <button className="rounded-md border px-4 py-2 text-sm">Cancel</button>
+            <button className="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground">Save</button>
+          </CardFooter>
+        </Card>
+      </div>
+    </div>
+  ),
+}

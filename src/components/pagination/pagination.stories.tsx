@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import * as React from 'react'
 import {
   Pagination,
   PaginationContent,
@@ -436,6 +437,104 @@ export const AllStates: Story = {
     docs: {
       description: {
         story: 'Demonstration of all pagination states: default, active, hover (on interaction), focus, and disabled.',
+      },
+    },
+  },
+}
+
+function InteractivePagination() {
+  const [currentPage, setCurrentPage] = React.useState(1)
+  const totalPages = 10
+
+  const getVisiblePages = () => {
+    const pages: (number | 'ellipsis')[] = []
+
+    if (totalPages <= 7) {
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push(i)
+      }
+    } else {
+      pages.push(1)
+
+      if (currentPage > 3) {
+        pages.push('ellipsis')
+      }
+
+      const start = Math.max(2, currentPage - 1)
+      const end = Math.min(totalPages - 1, currentPage + 1)
+
+      for (let i = start; i <= end; i++) {
+        pages.push(i)
+      }
+
+      if (currentPage < totalPages - 2) {
+        pages.push('ellipsis')
+      }
+
+      pages.push(totalPages)
+    }
+
+    return pages
+  }
+
+  return (
+    <div className="space-y-4">
+      <div className="text-center text-sm text-muted-foreground">
+        Page {currentPage} of {totalPages}
+      </div>
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious
+              href="#"
+              onClick={(e) => {
+                e.preventDefault()
+                if (currentPage > 1) setCurrentPage(currentPage - 1)
+              }}
+              className={currentPage === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+            />
+          </PaginationItem>
+          {getVisiblePages().map((page, index) => (
+            <PaginationItem key={`${page}-${index}`}>
+              {page === 'ellipsis' ? (
+                <PaginationEllipsis />
+              ) : (
+                <PaginationLink
+                  href="#"
+                  isActive={page === currentPage}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setCurrentPage(page)
+                  }}
+                  className="cursor-pointer"
+                >
+                  {page}
+                </PaginationLink>
+              )}
+            </PaginationItem>
+          ))}
+          <PaginationItem>
+            <PaginationNext
+              href="#"
+              onClick={(e) => {
+                e.preventDefault()
+                if (currentPage < totalPages) setCurrentPage(currentPage + 1)
+              }}
+              className={currentPage === totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+            />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    </div>
+  )
+}
+
+export const Interactive: Story = {
+  render: () => <InteractivePagination />,
+  parameters: {
+    docs: {
+      description: {
+        story: 'A fully interactive pagination example with state management. Click pages or use Previous/Next to navigate. The pagination dynamically shows ellipsis for large page counts.',
       },
     },
   },

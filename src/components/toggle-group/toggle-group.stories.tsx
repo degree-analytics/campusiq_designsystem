@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import * as React from 'react'
 import { ToggleGroup, ToggleGroupItem } from './toggle-group'
 
 const meta: Meta = {
@@ -435,6 +436,250 @@ export const ViewModeSelector: Story = {
     docs: {
       description: {
         story: 'Common pattern for view mode selection in data interfaces.',
+      },
+    },
+  },
+}
+
+/**
+ * Interactive single-select toggle group with controlled state.
+ */
+export const InteractiveSingle: Story = {
+  render: function InteractiveSingleToggleGroup() {
+    const [value, setValue] = React.useState('center')
+
+    return (
+      <div className="space-y-4">
+        <ToggleGroup type="single" value={value} onValueChange={(v) => v && setValue(v)}>
+          <ToggleGroupItem value="left" aria-label="Align left">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="21" y1="6" x2="3" y2="6" />
+              <line x1="15" y1="12" x2="3" y2="12" />
+              <line x1="17" y1="18" x2="3" y2="18" />
+            </svg>
+          </ToggleGroupItem>
+          <ToggleGroupItem value="center" aria-label="Align center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="21" y1="6" x2="3" y2="6" />
+              <line x1="18" y1="12" x2="6" y2="12" />
+              <line x1="21" y1="18" x2="3" y2="18" />
+            </svg>
+          </ToggleGroupItem>
+          <ToggleGroupItem value="right" aria-label="Align right">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="21" y1="6" x2="3" y2="6" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+              <line x1="21" y1="18" x2="7" y2="18" />
+            </svg>
+          </ToggleGroupItem>
+        </ToggleGroup>
+        <p className="text-sm text-muted-foreground">
+          Alignment: {value}
+        </p>
+      </div>
+    )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Interactive single-select toggle group with controlled state. Only one option can be selected.',
+      },
+    },
+  },
+}
+
+/**
+ * Interactive multi-select toggle group with controlled state.
+ */
+export const InteractiveMultiple: Story = {
+  render: function InteractiveMultipleToggleGroup() {
+    const [values, setValues] = React.useState<string[]>(['bold'])
+
+    return (
+      <div className="space-y-4">
+        <ToggleGroup type="multiple" value={values} onValueChange={setValues}>
+          <ToggleGroupItem value="bold" aria-label="Toggle bold">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z" />
+              <path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z" />
+            </svg>
+          </ToggleGroupItem>
+          <ToggleGroupItem value="italic" aria-label="Toggle italic">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="19" y1="4" x2="10" y2="4" />
+              <line x1="14" y1="20" x2="5" y2="20" />
+              <line x1="15" y1="4" x2="9" y2="20" />
+            </svg>
+          </ToggleGroupItem>
+          <ToggleGroupItem value="underline" aria-label="Toggle underline">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M6 4v6a6 6 0 0 0 12 0V4" />
+              <line x1="4" y1="20" x2="20" y2="20" />
+            </svg>
+          </ToggleGroupItem>
+        </ToggleGroup>
+        <p className="text-sm text-muted-foreground">
+          Active: {values.length > 0 ? values.join(', ') : 'none'}
+        </p>
+      </div>
+    )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Interactive multi-select toggle group with controlled state. Multiple options can be selected.',
+      },
+    },
+  },
+}
+
+/**
+ * Interactive view mode selector demonstrating real-world usage.
+ */
+export const InteractiveViewMode: Story = {
+  render: function InteractiveViewMode() {
+    const [view, setView] = React.useState('table')
+
+    const viewLabels: Record<string, string> = {
+      table: 'Table View',
+      cards: 'Card View',
+      kanban: 'Kanban View',
+    }
+
+    return (
+      <div className="space-y-4">
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-muted-foreground">View:</span>
+          <ToggleGroup
+            type="single"
+            variant="outline"
+            value={view}
+            onValueChange={(v) => v && setView(v)}
+          >
+            <ToggleGroupItem value="table" aria-label="Table view">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                <line x1="3" y1="9" x2="21" y2="9" />
+                <line x1="3" y1="15" x2="21" y2="15" />
+                <line x1="9" y1="3" x2="9" y2="21" />
+              </svg>
+            </ToggleGroupItem>
+            <ToggleGroupItem value="cards" aria-label="Cards view">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect x="3" y="3" width="7" height="7" />
+                <rect x="14" y="3" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" />
+                <rect x="3" y="14" width="7" height="7" />
+              </svg>
+            </ToggleGroupItem>
+            <ToggleGroupItem value="kanban" aria-label="Kanban view">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect x="4" y="4" width="6" height="16" rx="1" />
+                <rect x="14" y="4" width="6" height="10" rx="1" />
+              </svg>
+            </ToggleGroupItem>
+          </ToggleGroup>
+        </div>
+        <p className="text-sm text-muted-foreground">
+          Current view: {viewLabels[view]}
+        </p>
+      </div>
+    )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Interactive view mode selector showing real-world usage with controlled state.',
       },
     },
   },

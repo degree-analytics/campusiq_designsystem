@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import * as React from 'react'
 import { Slider } from './slider'
 import { Label } from '@/components/label/label'
 
@@ -261,6 +262,138 @@ export const PriceRange: Story = {
     docs: {
       description: {
         story: 'Range slider for filtering by price or other numeric ranges.',
+      },
+    },
+  },
+}
+
+/**
+ * Interactive slider with controlled state that updates in real-time.
+ */
+export const Interactive: Story = {
+  render: function InteractiveSlider() {
+    const [value, setValue] = React.useState([50])
+
+    return (
+      <div className="grid w-full max-w-sm gap-4">
+        <div className="flex items-center justify-between">
+          <Label htmlFor="interactive-slider">Volume</Label>
+          <span className="w-12 text-right text-sm font-medium">{value[0]}%</span>
+        </div>
+        <Slider
+          id="interactive-slider"
+          value={value}
+          onValueChange={setValue}
+          max={100}
+          step={1}
+        />
+      </div>
+    )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Interactive slider with controlled state. Drag to see the value update in real-time.',
+      },
+    },
+  },
+}
+
+/**
+ * Interactive range slider with controlled state for min/max selection.
+ */
+export const InteractiveRange: Story = {
+  render: function InteractiveRangeSlider() {
+    const [range, setRange] = React.useState([200, 800])
+
+    return (
+      <div className="grid w-full max-w-sm gap-4">
+        <div className="flex items-center justify-between">
+          <Label>Price Range</Label>
+          <span className="text-sm font-medium">
+            ${range[0]} - ${range[1]}
+          </span>
+        </div>
+        <Slider
+          value={range}
+          onValueChange={setRange}
+          min={0}
+          max={1000}
+          step={50}
+        />
+        <div className="flex justify-between text-xs text-muted-foreground">
+          <span>$0</span>
+          <span>$1000</span>
+        </div>
+      </div>
+    )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Interactive range slider with two thumbs for min/max selection. Both values update in real-time.',
+      },
+    },
+  },
+}
+
+/**
+ * Interactive slider panel with multiple controlled sliders.
+ */
+export const InteractivePanel: Story = {
+  render: function InteractiveSliderPanel() {
+    const [brightness, setBrightness] = React.useState([75])
+    const [contrast, setContrast] = React.useState([50])
+    const [saturation, setSaturation] = React.useState([100])
+
+    return (
+      <div className="grid w-full max-w-sm gap-6">
+        <div className="grid gap-2">
+          <div className="flex items-center justify-between">
+            <Label htmlFor="interactive-brightness">Brightness</Label>
+            <span className="w-12 text-right text-sm font-medium">{brightness[0]}%</span>
+          </div>
+          <Slider
+            id="interactive-brightness"
+            value={brightness}
+            onValueChange={setBrightness}
+            max={100}
+            step={1}
+          />
+        </div>
+        <div className="grid gap-2">
+          <div className="flex items-center justify-between">
+            <Label htmlFor="interactive-contrast">Contrast</Label>
+            <span className="w-12 text-right text-sm font-medium">{contrast[0]}%</span>
+          </div>
+          <Slider
+            id="interactive-contrast"
+            value={contrast}
+            onValueChange={setContrast}
+            max={100}
+            step={1}
+          />
+        </div>
+        <div className="grid gap-2">
+          <div className="flex items-center justify-between">
+            <Label htmlFor="interactive-saturation">Saturation</Label>
+            <span className="w-12 text-right text-sm font-medium">{saturation[0]}%</span>
+          </div>
+          <Slider
+            id="interactive-saturation"
+            value={saturation}
+            onValueChange={setSaturation}
+            max={100}
+            step={1}
+          />
+        </div>
+      </div>
+    )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Interactive slider panel demonstrating real-world usage with multiple controlled sliders.',
       },
     },
   },

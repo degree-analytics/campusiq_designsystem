@@ -86,6 +86,18 @@ export const Outline: Story = {
   render: () => <Badge variant="outline">Outline</Badge>,
 }
 
+export const Success: Story = {
+  render: () => <Badge variant="success">Success</Badge>,
+}
+
+export const Warning: Story = {
+  render: () => <Badge variant="warning">Warning</Badge>,
+}
+
+export const Informational: Story = {
+  render: () => <Badge variant="informational">Informational</Badge>,
+}
+
 export const WithIcons: Story = {
   render: () => (
     <div className="flex flex-wrap gap-2">
@@ -165,11 +177,54 @@ export const WithIcons: Story = {
 export const StatusBadges: Story = {
   render: () => (
     <div className="flex flex-wrap gap-2">
-      <Badge className="bg-green-500 hover:bg-green-600">Active</Badge>
-      <Badge className="bg-yellow-500 hover:bg-yellow-600">Pending</Badge>
-      <Badge className="bg-blue-500 hover:bg-blue-600">In Progress</Badge>
+      <Badge variant="success">Active</Badge>
+      <Badge variant="warning">Pending</Badge>
+      <Badge variant="informational">In Progress</Badge>
       <Badge variant="destructive">Inactive</Badge>
       <Badge variant="outline">Draft</Badge>
+    </div>
+  ),
+}
+
+export const SemanticVariants: Story = {
+  render: () => (
+    <div className="space-y-6">
+      <div>
+        <h4 className="text-sm font-medium mb-2">Success States</h4>
+        <div className="flex flex-wrap gap-2">
+          <Badge variant="success">Completed</Badge>
+          <Badge variant="success">Verified</Badge>
+          <Badge variant="success">Approved</Badge>
+          <Badge variant="success">Published</Badge>
+        </div>
+      </div>
+      <div>
+        <h4 className="text-sm font-medium mb-2">Warning States</h4>
+        <div className="flex flex-wrap gap-2">
+          <Badge variant="warning">Pending Review</Badge>
+          <Badge variant="warning">Expiring Soon</Badge>
+          <Badge variant="warning">Needs Attention</Badge>
+          <Badge variant="warning">Low Stock</Badge>
+        </div>
+      </div>
+      <div>
+        <h4 className="text-sm font-medium mb-2">Error / Destructive States</h4>
+        <div className="flex flex-wrap gap-2">
+          <Badge variant="destructive">Failed</Badge>
+          <Badge variant="destructive">Expired</Badge>
+          <Badge variant="destructive">Rejected</Badge>
+          <Badge variant="destructive">Overdue</Badge>
+        </div>
+      </div>
+      <div>
+        <h4 className="text-sm font-medium mb-2">Informational States</h4>
+        <div className="flex flex-wrap gap-2">
+          <Badge variant="informational">New</Badge>
+          <Badge variant="informational">Updated</Badge>
+          <Badge variant="informational">Beta</Badge>
+          <Badge variant="informational">v2.0</Badge>
+        </div>
+      </div>
     </div>
   ),
 }

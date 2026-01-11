@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import * as React from 'react'
 import {
   Select,
   SelectContent,
@@ -396,6 +397,121 @@ export const AllStates: Story = {
     docs: {
       description: {
         story: 'All select states for visual QA: default, with value, small size, disabled, and invalid.',
+      },
+    },
+  },
+}
+
+/**
+ * Interactive select with controlled state.
+ */
+export const Interactive: Story = {
+  render: function InteractiveSelect() {
+    const [value, setValue] = React.useState('')
+
+    const fruits: Record<string, string> = {
+      apple: 'Apple',
+      banana: 'Banana',
+      blueberry: 'Blueberry',
+      grapes: 'Grapes',
+      pineapple: 'Pineapple',
+    }
+
+    return (
+      <div className="space-y-4">
+        <div className="grid w-full max-w-sm gap-1.5">
+          <Label htmlFor="interactive-select">Favorite Fruit</Label>
+          <Select value={value} onValueChange={setValue}>
+            <SelectTrigger id="interactive-select" className="w-[200px]">
+              <SelectValue placeholder="Select a fruit" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="apple">Apple</SelectItem>
+              <SelectItem value="banana">Banana</SelectItem>
+              <SelectItem value="blueberry">Blueberry</SelectItem>
+              <SelectItem value="grapes">Grapes</SelectItem>
+              <SelectItem value="pineapple">Pineapple</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <p className="text-sm text-muted-foreground">
+          Selected: {value ? fruits[value] : 'none'}
+        </p>
+      </div>
+    )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Interactive select with controlled state. Select an option to see the state update.',
+      },
+    },
+  },
+}
+
+/**
+ * Interactive timezone selector demonstrating real-world usage with groups.
+ */
+export const InteractiveTimezone: Story = {
+  render: function InteractiveTimezoneSelect() {
+    const [timezone, setTimezone] = React.useState('')
+
+    const timezoneLabels: Record<string, string> = {
+      est: 'Eastern Standard Time (EST)',
+      cst: 'Central Standard Time (CST)',
+      mst: 'Mountain Standard Time (MST)',
+      pst: 'Pacific Standard Time (PST)',
+      gmt: 'Greenwich Mean Time (GMT)',
+      cet: 'Central European Time (CET)',
+      eet: 'Eastern European Time (EET)',
+      ist: 'India Standard Time (IST)',
+      'cst-asia': 'China Standard Time (CST)',
+      jst: 'Japan Standard Time (JST)',
+    }
+
+    return (
+      <div className="space-y-4">
+        <div className="grid w-full max-w-sm gap-1.5">
+          <Label htmlFor="timezone-select">Timezone</Label>
+          <Select value={timezone} onValueChange={setTimezone}>
+            <SelectTrigger id="timezone-select" className="w-[280px]">
+              <SelectValue placeholder="Select your timezone" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>North America</SelectLabel>
+                <SelectItem value="est">Eastern Standard Time (EST)</SelectItem>
+                <SelectItem value="cst">Central Standard Time (CST)</SelectItem>
+                <SelectItem value="mst">Mountain Standard Time (MST)</SelectItem>
+                <SelectItem value="pst">Pacific Standard Time (PST)</SelectItem>
+              </SelectGroup>
+              <SelectSeparator />
+              <SelectGroup>
+                <SelectLabel>Europe</SelectLabel>
+                <SelectItem value="gmt">Greenwich Mean Time (GMT)</SelectItem>
+                <SelectItem value="cet">Central European Time (CET)</SelectItem>
+                <SelectItem value="eet">Eastern European Time (EET)</SelectItem>
+              </SelectGroup>
+              <SelectSeparator />
+              <SelectGroup>
+                <SelectLabel>Asia</SelectLabel>
+                <SelectItem value="ist">India Standard Time (IST)</SelectItem>
+                <SelectItem value="cst-asia">China Standard Time (CST)</SelectItem>
+                <SelectItem value="jst">Japan Standard Time (JST)</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+        <p className="text-sm text-muted-foreground">
+          Selected timezone: {timezone ? timezoneLabels[timezone] : 'none'}
+        </p>
+      </div>
+    )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Interactive timezone selector showing real-world usage with groups and controlled state.',
       },
     },
   },

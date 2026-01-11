@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import * as React from 'react'
 import { Toggle } from './toggle'
 
 const meta: Meta = {
@@ -374,6 +375,172 @@ export const TextFormattingToolbar: Story = {
     docs: {
       description: {
         story: 'Common text formatting toolbar pattern using individual toggles.',
+      },
+    },
+  },
+}
+
+/**
+ * Interactive toggle with controlled state demonstrating proper usage.
+ */
+export const Interactive: Story = {
+  render: function InteractiveToggle() {
+    const [pressed, setPressed] = React.useState(false)
+
+    return (
+      <div className="space-y-4">
+        <Toggle
+          pressed={pressed}
+          onPressedChange={setPressed}
+          aria-label="Toggle bold"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z" />
+            <path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z" />
+          </svg>
+          Bold
+        </Toggle>
+        <p className="text-sm text-muted-foreground">
+          Bold is {pressed ? 'on' : 'off'}
+        </p>
+      </div>
+    )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Interactive toggle with controlled state. Click to see the pressed state update.',
+      },
+    },
+  },
+}
+
+/**
+ * Interactive text formatting toolbar with controlled state for multiple toggles.
+ */
+export const InteractiveToolbar: Story = {
+  render: function InteractiveToolbar() {
+    const [formatting, setFormatting] = React.useState({
+      bold: true,
+      italic: false,
+      underline: false,
+      strikethrough: false,
+    })
+
+    const toggleFormat = (key: keyof typeof formatting) => {
+      setFormatting((prev) => ({ ...prev, [key]: !prev[key] }))
+    }
+
+    const activeFormats = Object.entries(formatting)
+      .filter(([, v]) => v)
+      .map(([k]) => k)
+
+    return (
+      <div className="space-y-4">
+        <div className="flex items-center gap-1 rounded-lg border p-1">
+          <Toggle
+            pressed={formatting.bold}
+            onPressedChange={() => toggleFormat('bold')}
+            aria-label="Toggle bold"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z" />
+              <path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z" />
+            </svg>
+          </Toggle>
+          <Toggle
+            pressed={formatting.italic}
+            onPressedChange={() => toggleFormat('italic')}
+            aria-label="Toggle italic"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="19" y1="4" x2="10" y2="4" />
+              <line x1="14" y1="20" x2="5" y2="20" />
+              <line x1="15" y1="4" x2="9" y2="20" />
+            </svg>
+          </Toggle>
+          <Toggle
+            pressed={formatting.underline}
+            onPressedChange={() => toggleFormat('underline')}
+            aria-label="Toggle underline"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M6 4v6a6 6 0 0 0 12 0V4" />
+              <line x1="4" y1="20" x2="20" y2="20" />
+            </svg>
+          </Toggle>
+          <Toggle
+            pressed={formatting.strikethrough}
+            onPressedChange={() => toggleFormat('strikethrough')}
+            aria-label="Toggle strikethrough"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M16 4H9a3 3 0 0 0-2.83 4" />
+              <path d="M14 12a4 4 0 0 1 0 8H6" />
+              <line x1="4" y1="12" x2="20" y2="12" />
+            </svg>
+          </Toggle>
+        </div>
+        <p className="text-sm text-muted-foreground">
+          Active: {activeFormats.length > 0 ? activeFormats.join(', ') : 'none'}
+        </p>
+      </div>
+    )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Interactive text formatting toolbar with multiple controlled toggles showing real-time state.',
       },
     },
   },

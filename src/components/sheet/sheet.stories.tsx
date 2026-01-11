@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import * as React from 'react'
 import { Button } from '@/components/button/button'
 import { Input } from '@/components/input/input'
 import { Label } from '@/components/label/label'
@@ -299,4 +300,121 @@ export const WithForm: Story = {
       </SheetContent>
     </Sheet>
   ),
+}
+
+export const ControlledState: Story = {
+  render: function ControlledSheet() {
+    const [open, setOpen] = React.useState(false)
+
+    return (
+      <div className="flex flex-col items-center gap-4">
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={() => setOpen(true)}>
+            Open Sheet
+          </Button>
+          <Button variant="outline" onClick={() => setOpen(false)}>
+            Close Sheet
+          </Button>
+        </div>
+        <p className="text-sm text-muted-foreground">
+          Sheet is currently: <strong>{open ? 'Open' : 'Closed'}</strong>
+        </p>
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>Controlled Sheet</SheetTitle>
+              <SheetDescription>
+                This sheet is controlled by external state. Use the buttons
+                or the close button to toggle.
+              </SheetDescription>
+            </SheetHeader>
+            <div className="py-4">
+              <p className="text-sm text-muted-foreground">
+                You can programmatically control this sheet from external
+                components, making it useful for complex workflows.
+              </p>
+            </div>
+            <SheetFooter>
+              <Button variant="outline" onClick={() => setOpen(false)}>
+                Cancel
+              </Button>
+              <Button onClick={() => setOpen(false)}>
+                Confirm
+              </Button>
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
+      </div>
+    )
+  },
+}
+
+export const NestedActions: Story = {
+  render: function NestedActionsSheet() {
+    const [open, setOpen] = React.useState(false)
+    const [selectedItem, setSelectedItem] = React.useState<string | null>(null)
+
+    const items = [
+      { id: '1', name: 'Project Alpha', status: 'Active' },
+      { id: '2', name: 'Project Beta', status: 'Pending' },
+      { id: '3', name: 'Project Gamma', status: 'Complete' },
+    ]
+
+    return (
+      <Sheet open={open} onOpenChange={setOpen}>
+        <SheetTrigger asChild>
+          <Button>View Projects</Button>
+        </SheetTrigger>
+        <SheetContent>
+          <SheetHeader>
+            <SheetTitle>Projects</SheetTitle>
+            <SheetDescription>
+              Select a project to view details.
+            </SheetDescription>
+          </SheetHeader>
+          <div className="py-4 space-y-2">
+            {items.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => setSelectedItem(item.id)}
+                className={`w-full flex items-center justify-between rounded-lg border p-3 text-left hover:bg-accent ${
+                  selectedItem === item.id ? 'border-primary bg-accent' : ''
+                }`}
+              >
+                <span className="font-medium">{item.name}</span>
+                <span className="text-sm text-muted-foreground">{item.status}</span>
+              </button>
+            ))}
+          </div>
+          {selectedItem && (
+            <div className="rounded-lg border bg-muted/50 p-4">
+              <p className="text-sm font-medium">Selected Project</p>
+              <p className="text-sm text-muted-foreground">
+                {items.find((i) => i.id === selectedItem)?.name}
+              </p>
+            </div>
+          )}
+          <SheetFooter className="mt-4">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setSelectedItem(null)
+                setOpen(false)
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              disabled={!selectedItem}
+              onClick={() => {
+                setOpen(false)
+              }}
+            >
+              Open Project
+            </Button>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
+    )
+  },
 }

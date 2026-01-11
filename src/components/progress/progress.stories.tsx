@@ -343,3 +343,81 @@ export const FileUpload: Story = {
     )
   },
 }
+
+export const Interactive: Story = {
+  render: function InteractiveProgress() {
+    const [value, setValue] = React.useState(50)
+
+    return (
+      <div className="w-[400px] space-y-4">
+        <div className="space-y-2">
+          <div className="flex justify-between text-sm">
+            <span>Interactive Progress</span>
+            <span>{value}%</span>
+          </div>
+          <Progress value={value} />
+        </div>
+        <div className="flex items-center gap-4">
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={value}
+            onChange={(e) => setValue(Number(e.target.value))}
+            className="flex-1"
+          />
+          <div className="flex gap-2">
+            <button
+              onClick={() => setValue(0)}
+              className="rounded-md border px-3 py-1 text-sm hover:bg-accent"
+            >
+              Reset
+            </button>
+            <button
+              onClick={() => setValue(100)}
+              className="rounded-md border px-3 py-1 text-sm hover:bg-accent"
+            >
+              Complete
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  },
+}
+
+export const MultiStep: Story = {
+  render: function MultiStepProgress() {
+    const [step, setStep] = React.useState(1)
+    const totalSteps = 4
+    const progress = (step / totalSteps) * 100
+
+    return (
+      <div className="w-[400px] space-y-4">
+        <div className="space-y-2">
+          <div className="flex justify-between text-sm">
+            <span>Step {step} of {totalSteps}</span>
+            <span>{Math.round(progress)}%</span>
+          </div>
+          <Progress value={progress} />
+        </div>
+        <div className="flex justify-between">
+          <button
+            onClick={() => setStep(Math.max(1, step - 1))}
+            disabled={step === 1}
+            className="rounded-md border px-4 py-2 text-sm hover:bg-accent disabled:opacity-50"
+          >
+            Previous
+          </button>
+          <button
+            onClick={() => setStep(Math.min(totalSteps, step + 1))}
+            disabled={step === totalSteps}
+            className="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
+          >
+            {step === totalSteps ? 'Complete' : 'Next'}
+          </button>
+        </div>
+      </div>
+    )
+  },
+}

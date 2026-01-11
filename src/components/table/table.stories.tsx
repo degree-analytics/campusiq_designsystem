@@ -1,3 +1,4 @@
+import * as React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import {
   Table,
@@ -9,6 +10,7 @@ import {
   TableCell,
   TableCaption,
 } from './table'
+import { ChevronUp, ChevronDown, ChevronsUpDown } from 'lucide-react'
 
 const meta: Meta<typeof Table> = {
   title: 'Components/Data Display/Table',
@@ -312,4 +314,155 @@ export const SelectableRows: Story = {
       </Table>
     )
   },
+}
+
+export const SortableTable: Story = {
+  render: function Render() {
+    const [sortKey, setSortKey] = React.useState<string | null>(null)
+    const [sortOrder, setSortOrder] = React.useState<'asc' | 'desc'>('asc')
+
+    const data = [
+      { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin', joined: '2024-01-15' },
+      { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'Editor', joined: '2024-02-20' },
+      { id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'Viewer', joined: '2024-03-10' },
+      { id: 4, name: 'Alice Brown', email: 'alice@example.com', role: 'Editor', joined: '2024-01-05' },
+      { id: 5, name: 'Charlie Wilson', email: 'charlie@example.com', role: 'Admin', joined: '2024-04-01' },
+    ]
+
+    const sortedData = React.useMemo(() => {
+      if (!sortKey) return data
+      return [...data].sort((a, b) => {
+        const aValue = a[sortKey as keyof typeof a]
+        const bValue = b[sortKey as keyof typeof b]
+        const comparison = String(aValue).localeCompare(String(bValue))
+        return sortOrder === 'asc' ? comparison : -comparison
+      })
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [sortKey, sortOrder])
+
+    const handleSort = (key: string) => {
+      if (sortKey === key) {
+        setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')
+      } else {
+        setSortKey(key)
+        setSortOrder('asc')
+      }
+    }
+
+    const SortIcon = ({ columnKey }: { columnKey: string }) => {
+      if (sortKey !== columnKey) {
+        return <ChevronsUpDown className="ml-1 h-4 w-4 text-muted-foreground/50" />
+      }
+      return sortOrder === 'asc' ? (
+        <ChevronUp className="ml-1 h-4 w-4" />
+      ) : (
+        <ChevronDown className="ml-1 h-4 w-4" />
+      )
+    }
+
+    return (
+      <Table>
+        <TableCaption>Click column headers to sort</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead>
+              <button
+                className="flex items-center hover:text-foreground"
+                onClick={() => handleSort('name')}
+              >
+                Name
+                <SortIcon columnKey="name" />
+              </button>
+            </TableHead>
+            <TableHead>
+              <button
+                className="flex items-center hover:text-foreground"
+                onClick={() => handleSort('email')}
+              >
+                Email
+                <SortIcon columnKey="email" />
+              </button>
+            </TableHead>
+            <TableHead>
+              <button
+                className="flex items-center hover:text-foreground"
+                onClick={() => handleSort('role')}
+              >
+                Role
+                <SortIcon columnKey="role" />
+              </button>
+            </TableHead>
+            <TableHead className="text-right">
+              <button
+                className="flex items-center justify-end hover:text-foreground ml-auto"
+                onClick={() => handleSort('joined')}
+              >
+                Joined
+                <SortIcon columnKey="joined" />
+              </button>
+            </TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {sortedData.map((row) => (
+            <TableRow key={row.id}>
+              <TableCell className="font-medium">{row.name}</TableCell>
+              <TableCell>{row.email}</TableCell>
+              <TableCell>{row.role}</TableCell>
+              <TableCell className="text-right">{row.joined}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    )
+  },
+}
+
+export const ResponsiveTable: Story = {
+  render: () => (
+    <div className="w-full overflow-auto">
+      <Table className="min-w-[600px]">
+        <TableCaption>Scroll horizontally on smaller screens</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px]">ID</TableHead>
+            <TableHead>Product</TableHead>
+            <TableHead>Category</TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead className="text-right">Price</TableHead>
+            <TableHead className="text-right">Stock</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {[
+            { id: 'PROD001', name: 'Laptop Pro', category: 'Electronics', status: 'In Stock', price: '$1,299', stock: 45 },
+            { id: 'PROD002', name: 'Wireless Mouse', category: 'Accessories', status: 'Low Stock', price: '$29', stock: 12 },
+            { id: 'PROD003', name: 'USB-C Hub', category: 'Accessories', status: 'In Stock', price: '$79', stock: 89 },
+            { id: 'PROD004', name: 'Monitor 27"', category: 'Electronics', status: 'Out of Stock', price: '$399', stock: 0 },
+          ].map((product) => (
+            <TableRow key={product.id}>
+              <TableCell className="font-mono text-sm">{product.id}</TableCell>
+              <TableCell className="font-medium">{product.name}</TableCell>
+              <TableCell>{product.category}</TableCell>
+              <TableCell>
+                <span
+                  className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${
+                    product.status === 'In Stock'
+                      ? 'bg-green-100 text-green-800'
+                      : product.status === 'Low Stock'
+                        ? 'bg-yellow-100 text-yellow-800'
+                        : 'bg-red-100 text-red-800'
+                  }`}
+                >
+                  {product.status}
+                </span>
+              </TableCell>
+              <TableCell className="text-right">{product.price}</TableCell>
+              <TableCell className="text-right">{product.stock}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
+  ),
 }

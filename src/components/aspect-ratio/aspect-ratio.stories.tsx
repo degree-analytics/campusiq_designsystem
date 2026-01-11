@@ -132,3 +132,95 @@ export const VideoEmbed: Story = {
     </div>
   ),
 }
+
+export const AllRatios: Story = {
+  render: () => (
+    <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+      <div>
+        <p className="mb-2 text-center text-sm font-medium">1:1 (Square)</p>
+        <AspectRatio ratio={1} className="bg-muted rounded-md">
+          <div className="flex h-full w-full items-center justify-center text-sm text-muted-foreground">
+            1:1
+          </div>
+        </AspectRatio>
+      </div>
+      <div>
+        <p className="mb-2 text-center text-sm font-medium">4:3</p>
+        <AspectRatio ratio={4 / 3} className="bg-muted rounded-md">
+          <div className="flex h-full w-full items-center justify-center text-sm text-muted-foreground">
+            4:3
+          </div>
+        </AspectRatio>
+      </div>
+      <div>
+        <p className="mb-2 text-center text-sm font-medium">16:9</p>
+        <AspectRatio ratio={16 / 9} className="bg-muted rounded-md">
+          <div className="flex h-full w-full items-center justify-center text-sm text-muted-foreground">
+            16:9
+          </div>
+        </AspectRatio>
+      </div>
+      <div>
+        <p className="mb-2 text-center text-sm font-medium">21:9</p>
+        <AspectRatio ratio={21 / 9} className="bg-muted rounded-md">
+          <div className="flex h-full w-full items-center justify-center text-sm text-muted-foreground">
+            21:9
+          </div>
+        </AspectRatio>
+      </div>
+      <div>
+        <p className="mb-2 text-center text-sm font-medium">3:4 (Portrait)</p>
+        <AspectRatio ratio={3 / 4} className="bg-muted rounded-md">
+          <div className="flex h-full w-full items-center justify-center text-sm text-muted-foreground">
+            3:4
+          </div>
+        </AspectRatio>
+      </div>
+      <div>
+        <p className="mb-2 text-center text-sm font-medium">9:16</p>
+        <AspectRatio ratio={9 / 16} className="bg-muted rounded-md">
+          <div className="flex h-full w-full items-center justify-center text-sm text-muted-foreground">
+            9:16
+          </div>
+        </AspectRatio>
+      </div>
+      <div>
+        <p className="mb-2 text-center text-sm font-medium">2:3</p>
+        <AspectRatio ratio={2 / 3} className="bg-muted rounded-md">
+          <div className="flex h-full w-full items-center justify-center text-sm text-muted-foreground">
+            2:3
+          </div>
+        </AspectRatio>
+      </div>
+      <div>
+        <p className="mb-2 text-center text-sm font-medium">3:2</p>
+        <AspectRatio ratio={3 / 2} className="bg-muted rounded-md">
+          <div className="flex h-full w-full items-center justify-center text-sm text-muted-foreground">
+            3:2
+          </div>
+        </AspectRatio>
+      </div>
+    </div>
+  ),
+}
+
+export const ResponsiveGrid: Story = {
+  render: () => (
+    <div className="w-full max-w-4xl">
+      <p className="mb-4 text-sm text-muted-foreground">
+        Aspect ratios maintain their proportions at any container width
+      </p>
+      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+        {[1, 2, 3, 4, 5, 6].map((i) => (
+          <AspectRatio key={i} ratio={16 / 9} className="bg-muted rounded-md overflow-hidden">
+            <img
+              src={`https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=400&h=225&fit=crop&seed=${i}`}
+              alt={`Grid item ${i}`}
+              className="h-full w-full object-cover"
+            />
+          </AspectRatio>
+        ))}
+      </div>
+    </div>
+  ),
+}

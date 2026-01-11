@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import * as React from 'react'
 import { RadioGroup, RadioGroupItem } from './radio-group'
 import { Label } from '@/components/label/label'
 
@@ -249,6 +250,109 @@ export const Invalid: Story = {
     docs: {
       description: {
         story: 'Invalid state is indicated with aria-invalid for form validation.',
+      },
+    },
+  },
+}
+
+/**
+ * Interactive radio group with controlled state.
+ */
+export const Interactive: Story = {
+  render: function InteractiveRadioGroup() {
+    const [value, setValue] = React.useState('comfortable')
+
+    return (
+      <div className="space-y-4">
+        <RadioGroup value={value} onValueChange={setValue}>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="default" id="int-r1" />
+            <Label htmlFor="int-r1">Default</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="comfortable" id="int-r2" />
+            <Label htmlFor="int-r2">Comfortable</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="compact" id="int-r3" />
+            <Label htmlFor="int-r3">Compact</Label>
+          </div>
+        </RadioGroup>
+        <p className="text-sm text-muted-foreground">
+          Selected: {value}
+        </p>
+      </div>
+    )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Interactive radio group with controlled state. Click options to see the selection update.',
+      },
+    },
+  },
+}
+
+/**
+ * Interactive notification preferences demonstrating real-world usage.
+ */
+export const InteractiveNotificationPreferences: Story = {
+  render: function InteractiveNotificationPreferences() {
+    const [preference, setPreference] = React.useState('all')
+
+    const preferenceDescriptions: Record<string, string> = {
+      all: 'You will receive notifications for all new messages.',
+      mentions: 'You will only receive notifications for direct messages and @mentions.',
+      none: 'You will not receive any notifications.',
+    }
+
+    return (
+      <div className="w-[320px] space-y-4">
+        <div className="space-y-1">
+          <h4 className="text-sm font-medium">Notification Preferences</h4>
+          <p className="text-sm text-muted-foreground">
+            Choose how you want to be notified.
+          </p>
+        </div>
+        <RadioGroup value={preference} onValueChange={setPreference}>
+          <div className="flex items-start space-x-2">
+            <RadioGroupItem value="all" id="pref-all" className="mt-1" />
+            <div className="grid gap-1">
+              <Label htmlFor="pref-all">All new messages</Label>
+              <p className="text-muted-foreground text-sm">
+                Get notified for every new message.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-start space-x-2">
+            <RadioGroupItem value="mentions" id="pref-mentions" className="mt-1" />
+            <div className="grid gap-1">
+              <Label htmlFor="pref-mentions">Direct messages and mentions</Label>
+              <p className="text-muted-foreground text-sm">
+                Only get notified for DMs and @mentions.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-start space-x-2">
+            <RadioGroupItem value="none" id="pref-none" className="mt-1" />
+            <div className="grid gap-1">
+              <Label htmlFor="pref-none">Nothing</Label>
+              <p className="text-muted-foreground text-sm">
+                Turn off all notifications.
+              </p>
+            </div>
+          </div>
+        </RadioGroup>
+        <div className="rounded-md bg-muted p-3">
+          <p className="text-sm">{preferenceDescriptions[preference]}</p>
+        </div>
+      </div>
+    )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Interactive notification preferences showing real-world usage with controlled state and dynamic feedback.',
       },
     },
   },

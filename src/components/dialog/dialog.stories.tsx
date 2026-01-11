@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import * as React from 'react'
 import { Button } from '@/components/button/button'
 import { Input } from '@/components/input/input'
 import { Label } from '@/components/label/label'
@@ -218,4 +219,115 @@ export const OpenByDefault: Story = {
       </DialogContent>
     </Dialog>
   ),
+}
+
+export const ControlledState: Story = {
+  render: function ControlledDialog() {
+    const [open, setOpen] = React.useState(false)
+
+    return (
+      <div className="flex flex-col items-center gap-4">
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={() => setOpen(true)}>
+            Open Dialog
+          </Button>
+          <Button variant="outline" onClick={() => setOpen(false)}>
+            Close Dialog
+          </Button>
+        </div>
+        <p className="text-sm text-muted-foreground">
+          Dialog is currently: <strong>{open ? 'Open' : 'Closed'}</strong>
+        </p>
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Controlled Dialog</DialogTitle>
+              <DialogDescription>
+                This dialog is controlled by external state. Use the buttons above
+                or the close button to toggle.
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <Button variant="outline" onClick={() => setOpen(false)}>
+                Cancel
+              </Button>
+              <Button onClick={() => setOpen(false)}>
+                Confirm
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      </div>
+    )
+  },
+}
+
+export const WithFormValidation: Story = {
+  render: function FormValidationDialog() {
+    const [open, setOpen] = React.useState(false)
+    const [name, setName] = React.useState('')
+    const [email, setEmail] = React.useState('')
+    const [error, setError] = React.useState('')
+
+    const handleSubmit = () => {
+      if (!name.trim()) {
+        setError('Name is required')
+        return
+      }
+      if (!email.trim() || !email.includes('@')) {
+        setError('Valid email is required')
+        return
+      }
+      setError('')
+      setOpen(false)
+      setName('')
+      setEmail('')
+    }
+
+    return (
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogTrigger asChild>
+          <Button>Open Form Dialog</Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Create Account</DialogTitle>
+            <DialogDescription>
+              Fill in your details to create a new account.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid gap-2">
+              <Label htmlFor="form-name">Name</Label>
+              <Input
+                id="form-name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter your name"
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="form-email">Email</Label>
+              <Input
+                id="form-email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="name@example.com"
+              />
+            </div>
+            {error && (
+              <p className="text-sm text-destructive">{error}</p>
+            )}
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setOpen(false)}>
+              Cancel
+            </Button>
+            <Button onClick={handleSubmit}>Create Account</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    )
+  },
 }
