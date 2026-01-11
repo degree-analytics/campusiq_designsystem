@@ -38,9 +38,8 @@ const preview: Preview = {
 
       return (
         <div
-          className={isDark ? 'dark' : ''}
+          className={`${isDark ? 'dark' : ''} bg-background text-foreground`}
           style={{
-            backgroundColor: isDark ? '#18181b' : '#ffffff',
             minHeight: '100vh',
             padding: '1rem',
           }}
