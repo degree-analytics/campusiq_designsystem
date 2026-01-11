@@ -8,16 +8,73 @@ const meta: Meta<typeof Switch> = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Switch
+
+The Switch component provides a toggle control for binary on/off settings. It offers immediate visual feedback and is commonly used for settings that take effect instantly.
+
+Within CampusIQ, switches are used for enabling/disabling notifications, toggling features, activating/deactivating alerts, and any setting with immediate effect.
+
+### When to Use
+
+- When toggling a single setting on or off
+- When the change takes effect immediately without form submission
+- When the on/off states are clearly understood
+- When used in settings panels or configuration interfaces
+
+### When NOT to Use
+
+- When the setting requires form submission to apply (use Checkbox)
+- When selecting from multiple options (use RadioGroup or Select)
+- When multiple items can be selected (use Checkbox group)
+- When the binary choice isn't intuitive as on/off
+
+### States
+
+- **Off**: Default unchecked state, thumb on left
+- **On**: Checked state, thumb on right with accent color
+- **Disabled Off**: Non-interactive unchecked state
+- **Disabled On**: Non-interactive checked state
+- **Focused**: Keyboard focus with visible ring
+
+### Layout Patterns
+
+- **Inline with label**: Switch next to label for simple settings
+- **With description**: Switch with label and helper text for context
+- **Settings list**: Multiple switches in a structured list layout
+
+### Content Guidelines
+
+- Labels should clearly describe what the switch controls
+- Use active voice for labels (e.g., "Enable notifications" not "Notifications enabled")
+- Keep labels concise but descriptive
+- Consider adding description text for complex settings
+
+### Accessibility
+
+- **Keyboard**: Space or Enter to toggle, Tab to navigate
+- **Screen readers**: Announce label and on/off state
+- **Labeling**: Always associate with a Label using htmlFor/id
+- **Focus indicator**: Visible focus ring for keyboard navigation
+- **State announcement**: State change is announced to assistive technology
+        `,
+      },
+    },
   },
   argTypes: {
     checked: {
       control: 'boolean',
+      description: 'Controlled checked state',
     },
     disabled: {
       control: 'boolean',
+      description: 'Disables the switch and prevents interaction',
     },
     defaultChecked: {
       control: 'boolean',
+      description: 'Initial checked state for uncontrolled usage',
     },
   },
 }
@@ -61,6 +118,13 @@ export const WithLabel: Story = {
       <Label htmlFor="airplane-mode">Airplane Mode</Label>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Switches should always be paired with a Label for accessibility.',
+      },
+    },
+  },
 }
 
 export const WithLabelOn: Story = {
@@ -95,6 +159,13 @@ export const WithDescription: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Add description text to provide additional context for the setting.',
+      },
+    },
+  },
 }
 
 export const SettingsList: Story = {
@@ -131,4 +202,11 @@ export const SettingsList: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Common pattern for settings pages with multiple toggle options.',
+      },
+    },
+  },
 }

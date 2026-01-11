@@ -17,16 +17,62 @@ import {
   MenubarSubContent,
 } from './menubar'
 
-const meta: Meta = {
+const meta: Meta<typeof Menubar> = {
   title: 'Components/Navigation/Menubar',
+  component: Menubar,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Menubar
+
+A horizontal menu bar that provides access to a set of menus, mimicking native desktop application menu bars. Menubars are commonly found at the top of application windows and provide organized access to application commands.
+
+### When to Use
+
+- To create a desktop application-like experience in web applications
+- For applications with many features organized into logical categories
+- When users expect a traditional menu bar interface (e.g., document editors)
+- To provide quick access to commands with keyboard shortcuts
+- For complex applications that need hierarchical command organization
+
+### When NOT to Use
+
+- For simple websites with basic navigation (use Navigation Menu)
+- On mobile-first applications where horizontal menus do not work well
+- When you only have a few actions to display (use a Dropdown Menu)
+- For e-commerce or content websites (use traditional navigation patterns)
+- When the application is primarily touch-based
+
+### Accessibility
+
+- Full keyboard navigation with Arrow keys, Enter, and Escape
+- Menu triggers are focusable and support Tab navigation
+- Alt key can be used to access menu items (native behavior)
+- Keyboard shortcuts are displayed and functional
+- Screen readers announce menu structure and current state
+- Disabled items are properly announced as unavailable
+- Focus is managed correctly when opening and closing menus
+        `,
+      },
+    },
+  },
+  argTypes: {
+    children: {
+      description: 'MenubarMenu items containing triggers and content',
+      control: false,
+    },
+    className: {
+      description: 'Additional CSS classes for the menubar container',
+      control: 'text',
+    },
   },
 }
 
 export default meta
-type Story = StoryObj
+type Story = StoryObj<typeof Menubar>
 
 export const Default: Story = {
   render: () => (
@@ -176,6 +222,13 @@ export const FileEditMenu: Story = {
       </MenubarMenu>
     </Menubar>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A classic File and Edit menu pattern commonly seen in document editing applications.',
+      },
+    },
+  },
 }
 
 function MenubarWithCheckboxes() {
@@ -220,6 +273,13 @@ function MenubarWithCheckboxes() {
 
 export const WithCheckboxes: Story = {
   render: () => <MenubarWithCheckboxes />,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Menubar items can include checkbox items for toggling view options and preferences.',
+      },
+    },
+  },
 }
 
 function MenubarWithRadioItems() {
@@ -258,6 +318,13 @@ function MenubarWithRadioItems() {
 
 export const WithRadioItems: Story = {
   render: () => <MenubarWithRadioItems />,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Radio items allow single selection from a group, ideal for settings like zoom level.',
+      },
+    },
+  },
 }
 
 export const ApplicationMenu: Story = {
@@ -336,4 +403,11 @@ export const ApplicationMenu: Story = {
       </MenubarMenu>
     </Menubar>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A CampusIQ-specific application menu showing how to build a complete menu structure for the learning management system.',
+      },
+    },
+  },
 }

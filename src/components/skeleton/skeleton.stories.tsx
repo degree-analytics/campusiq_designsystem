@@ -7,6 +7,33 @@ const meta: Meta<typeof Skeleton> = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Skeleton
+
+A placeholder preview of content before the data gets loaded, reducing layout shift and perceived loading time. Skeletons provide a low-fidelity representation of the UI that is loading.
+
+### When to Use
+- To indicate loading state for content-heavy sections
+- To prevent layout shift when content dimensions are known
+- For initial page loads where content structure is predictable
+- When loading times may be perceptible but content layout is defined
+
+### When NOT to Use
+- For very fast loading content (under 200ms)
+- When content structure varies significantly between loads
+- For interactive elements that should show a loading spinner instead
+- When a full-page loading indicator would be more appropriate
+
+### Accessibility
+- Skeletons are decorative and should be hidden from screen readers (\`aria-hidden="true"\`)
+- Pair with visually hidden loading announcements for screen reader users
+- The pulsing animation should respect \`prefers-reduced-motion\` preferences
+- Content dimensions should match the skeleton to prevent disorienting layout shifts
+        `,
+      },
+    },
   },
 }
 

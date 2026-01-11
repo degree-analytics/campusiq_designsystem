@@ -4,11 +4,39 @@ import { Button } from '@/components/button/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip'
 
 const meta: Meta<typeof Tooltip> = {
-  title: 'Components/Overlay/Tooltip',
+  title: 'Components/Feedback/Tooltip',
   component: Tooltip,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Tooltip
+
+A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it. Tooltips are used to provide additional context or clarification.
+
+### When to Use
+- To provide additional information about icons or abbreviated text
+- For keyboard shortcuts associated with actions
+- To explain the purpose of interface elements
+- When space constraints prevent inline explanations
+
+### When NOT to Use
+- For essential information required to complete a task
+- For interactive content (use Popover instead)
+- On touch-only devices without hover capability
+- When content is self-explanatory
+
+### Accessibility
+- Tooltip content is announced by screen readers when the trigger receives focus
+- Supports keyboard activation via Tab/focus navigation
+- Delay duration should allow time to read content
+- Disabled elements need wrapper elements to receive focus for tooltip activation
+- Implements WAI-ARIA tooltip pattern
+        `,
+      },
+    },
   },
   decorators: [
     (Story) => (

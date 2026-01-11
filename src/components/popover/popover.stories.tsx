@@ -10,6 +10,49 @@ const meta: Meta<typeof Popover> = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Popover
+
+Displays rich content in a portal, triggered by a button. Built on Radix UI Popover primitive.
+
+### When to Use
+- Displaying additional options or settings
+- Filter and sort controls
+- Color pickers and date pickers
+- User profile quick menus
+- Form inputs that need more space
+- Any interactive content that should appear on demand
+
+### When NOT to Use
+- For simple text hints (use Tooltip instead)
+- For non-interactive preview content (use HoverCard)
+- For confirmations or alerts (use AlertDialog)
+- When content should persist (use Sheet or Dialog)
+
+### Accessibility
+- Focuses first focusable element when opened
+- Traps focus within the popover
+- Closes on Escape key press
+- Proper ARIA attributes for trigger and content
+- Returns focus to trigger on close
+- Supports keyboard navigation
+
+### Positioning
+- Automatically positions to avoid viewport edges
+- Supports alignment: start, center, end
+- Configurable offset from trigger
+- Collision detection with viewport boundaries
+        `,
+      },
+    },
+  },
+  argTypes: {
+    defaultOpen: {
+      control: 'boolean',
+      description: 'The default open state when uncontrolled',
+    },
   },
 }
 

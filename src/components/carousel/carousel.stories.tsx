@@ -8,16 +8,62 @@ import {
 } from './carousel'
 import { Card, CardContent } from '@/components/card/card'
 
-const meta: Meta = {
+const meta: Meta<typeof Carousel> = {
   title: 'Components/Data Display/Carousel',
+  component: Carousel,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Carousel
+
+A slideshow component for cycling through elements. Built on Embla Carousel for smooth, touch-enabled navigation.
+
+### When to Use
+- Image galleries and photo sliders
+- Product showcases with multiple images
+- Testimonial sliders
+- Featured content highlights
+- Step-by-step tutorials or onboarding flows
+- News or article previews
+
+### When NOT to Use
+- For critical content that users must see (content may be missed)
+- When all items should be visible at once (use Grid instead)
+- For very few items (2 or less)
+- On pages with heavy performance requirements
+
+### Accessibility
+- Provides keyboard navigation with arrow keys
+- Previous/Next buttons are properly labeled
+- Consider auto-play carefully (can be disorienting)
+- Ensure sufficient color contrast for navigation controls
+- Include visible pagination indicators when possible
+- Respect reduced motion preferences
+
+### Features
+- Touch and swipe support on mobile devices
+- Multiple items per view with responsive breakpoints
+- Horizontal and vertical orientations
+- Loop and non-loop modes
+- Configurable alignment and spacing
+        `,
+      },
+    },
+  },
+  argTypes: {
+    orientation: {
+      control: 'radio',
+      options: ['horizontal', 'vertical'],
+      description: 'The orientation of the carousel',
+    },
   },
 }
 
 export default meta
-type Story = StoryObj
+type Story = StoryObj<typeof Carousel>
 
 export const Default: Story = {
   render: () => (

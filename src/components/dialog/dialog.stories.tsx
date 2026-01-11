@@ -14,11 +14,40 @@ import {
 } from './dialog'
 
 const meta: Meta<typeof Dialog> = {
-  title: 'Components/Overlay/Dialog',
+  title: 'Components/Feedback/Dialog',
   component: Dialog,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Dialog
+
+A window overlaid on the primary content, rendering content in a layer above the page. Dialogs are used for tasks that require user interaction without leaving the current context.
+
+### When to Use
+- For forms and data entry that require focused attention
+- To display detailed information or previews
+- For multi-step workflows within a single context
+- When content needs to be displayed without navigating away
+
+### When NOT to Use
+- For simple confirmations (use Alert Dialog instead)
+- For transient notifications (use Toast instead)
+- For content that should remain accessible while browsing (use Sheet or Drawer)
+- When the dialog content is the primary focus of the page
+
+### Accessibility
+- Focus is automatically moved to the dialog when opened
+- Focus is trapped within the dialog while open
+- Pressing Escape closes the dialog
+- Screen readers announce the dialog title
+- Close button includes accessible label for screen readers
+- Implements WAI-ARIA dialog pattern
+        `,
+      },
+    },
   },
 }
 

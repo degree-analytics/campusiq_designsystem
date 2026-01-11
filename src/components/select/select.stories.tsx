@@ -17,6 +17,64 @@ const meta: Meta<typeof Select> = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Select
+
+The Select component provides a dropdown menu for selecting a single option from a list. It offers a compact way to present multiple choices without cluttering the interface.
+
+Within CampusIQ, selects are used for choosing building floors, time ranges, data categories, user roles, and any scenario requiring selection from a predefined list of options.
+
+### When to Use
+
+- When users need to select one option from a list of 4+ items
+- When screen space is limited and a dropdown is more appropriate
+- When the options are predefined and don't require user input
+- When organizing options into logical groups adds clarity
+
+### When NOT to Use
+
+- When there are only 2-3 options (use RadioGroup for visibility)
+- When users should be able to select multiple options (use Checkbox group)
+- When users need to enter custom values (use Combobox or Input)
+- When displaying a hierarchical navigation (use Menu components)
+
+### Composition
+
+The Select is composed of multiple parts:
+- **Select**: Root component managing state
+- **SelectTrigger**: The clickable button that opens the dropdown
+- **SelectValue**: Displays the selected value or placeholder
+- **SelectContent**: The dropdown container
+- **SelectItem**: Individual selectable options
+- **SelectGroup**: Groups related items together
+- **SelectLabel**: Labels for groups within the dropdown
+- **SelectSeparator**: Visual divider between groups
+
+### States
+
+- **Default**: Closed, showing placeholder or selected value
+- **Open**: Dropdown visible with options
+- **Focused**: Keyboard focus on trigger or items
+- **Disabled**: Non-interactive, visually muted
+- **Invalid**: Error state with red border
+
+### Sizes
+
+- **default**: Standard size for forms (h-9)
+- **sm**: Compact size for dense layouts (h-8)
+
+### Accessibility
+
+- **Keyboard navigation**: Arrow keys to navigate, Enter to select, Escape to close
+- **Screen readers**: Announces label, selected value, and option count
+- **Focus management**: Focus trapped within dropdown when open
+- **Labeling**: Always associate with a Label for context
+- **Typeahead**: Type characters to jump to matching options
+        `,
+      },
+    },
   },
 }
 
@@ -70,6 +128,13 @@ export const WithDefaultValue: Story = {
       </SelectContent>
     </Select>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use defaultValue to set an initial selection.',
+      },
+    },
+  },
 }
 
 export const Disabled: Story = {
@@ -100,6 +165,13 @@ export const SmallSize: Story = {
       </SelectContent>
     </Select>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use the sm size for compact layouts and dense interfaces.',
+      },
+    },
+  },
 }
 
 export const WithLabel: Story = {
@@ -120,6 +192,13 @@ export const WithLabel: Story = {
       </Select>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Always pair Select with a Label for accessibility.',
+      },
+    },
+  },
 }
 
 export const WithGroups: Story = {
@@ -153,6 +232,13 @@ export const WithGroups: Story = {
       </SelectContent>
     </Select>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use SelectGroup and SelectLabel to organize related options.',
+      },
+    },
+  },
 }
 
 export const WithDisabledItems: Story = {
@@ -174,6 +260,13 @@ export const WithDisabledItems: Story = {
       </SelectContent>
     </Select>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Individual items can be disabled while keeping the select functional.',
+      },
+    },
+  },
 }
 
 export const Invalid: Story = {
@@ -189,6 +282,13 @@ export const Invalid: Story = {
       </SelectContent>
     </Select>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Invalid state is indicated with aria-invalid for form validation.',
+      },
+    },
+  },
 }
 
 export const Scrollable: Story = {
@@ -218,4 +318,11 @@ export const Scrollable: Story = {
       </SelectContent>
     </Select>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Long lists automatically become scrollable within the dropdown.',
+      },
+    },
+  },
 }

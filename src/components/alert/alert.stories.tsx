@@ -8,6 +8,33 @@ const meta: Meta<typeof Alert> = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Alert
+
+Displays a callout for user attention with contextual feedback messages. Alerts are used to communicate important information, warnings, errors, or success states to users.
+
+### When to Use
+- To display important information that requires user attention
+- To communicate success, warning, error, or informational states
+- For non-blocking notifications that remain visible on the page
+- To provide context or guidance related to a specific section of content
+
+### When NOT to Use
+- For transient notifications that should auto-dismiss (use Toast instead)
+- For critical actions requiring user confirmation (use Alert Dialog instead)
+- For inline validation messages within forms (use form field validation)
+- When the message is not important enough to warrant visual prominence
+
+### Accessibility
+- Uses \`role="alert"\` for screen reader announcements
+- Icon-only alerts should include visually hidden text for context
+- Color is not the only indicator of meaning; icons and text provide additional context
+- Supports keyboard navigation when interactive elements are included
+        `,
+      },
+    },
   },
   argTypes: {
     variant: {

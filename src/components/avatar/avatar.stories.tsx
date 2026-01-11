@@ -1,16 +1,52 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Avatar, AvatarImage, AvatarFallback } from './avatar'
 
-const meta: Meta = {
+const meta: Meta<typeof Avatar> = {
   title: 'Components/Data Display/Avatar',
+  component: Avatar,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Avatar
+
+An image element with a fallback for representing the user. Built on Radix UI Avatar primitive.
+
+### When to Use
+- User profile pictures and thumbnails
+- Author attribution in comments or posts
+- Team member displays
+- Contact lists and user directories
+- Navigation bars showing logged-in user
+- Chat and messaging interfaces
+
+### When NOT to Use
+- For decorative images (use img directly)
+- When the image is the primary content (use Image or AspectRatio)
+- For icons or logos (use Icon component)
+
+### Accessibility
+- Always provide meaningful alt text for images
+- Fallback text should be initials or meaningful abbreviation
+- Ensure sufficient color contrast for fallback backgrounds
+- Consider adding aria-label for additional context
+- Group avatars should have a group label
+
+### Best Practices
+- Use consistent sizes across similar contexts
+- Provide fallbacks for when images fail to load
+- Consider lazy loading for avatar groups
+- Use appropriate image formats and sizes
+        `,
+      },
+    },
   },
 }
 
 export default meta
-type Story = StoryObj
+type Story = StoryObj<typeof Avatar>
 
 export const Default: Story = {
   render: () => (

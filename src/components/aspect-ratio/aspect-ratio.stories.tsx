@@ -1,16 +1,57 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { AspectRatio } from './aspect-ratio'
 
-const meta: Meta = {
+const meta: Meta<typeof AspectRatio> = {
   title: 'Components/Layout/AspectRatio',
+  component: AspectRatio,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Aspect Ratio
+
+Displays content within a desired ratio. Built on Radix UI Aspect Ratio primitive.
+
+### When to Use
+- Displaying images that need to maintain consistent proportions
+- Video embeds and media players
+- Card thumbnails in grid layouts
+- Hero images and banners
+- Any content that requires a fixed aspect ratio regardless of container width
+
+### When NOT to Use
+- When content should flow naturally without constraints
+- For text-heavy content that needs flexible height
+- When the aspect ratio would cause significant content cropping
+
+### Accessibility
+- Purely presentational component
+- Ensure contained images have proper alt text
+- Videos should include captions and transcripts
+- Consider providing alternative text descriptions for visual content
+
+### Common Ratios
+- 16:9 - Standard widescreen video
+- 4:3 - Traditional TV/photo format
+- 1:1 - Square format (social media)
+- 21:9 - Ultra-wide cinematic
+- 3:4 - Portrait orientation
+        `,
+      },
+    },
+  },
+  argTypes: {
+    ratio: {
+      control: 'number',
+      description: 'The desired aspect ratio (width/height)',
+    },
   },
 }
 
 export default meta
-type Story = StoryObj
+type Story = StoryObj<typeof AspectRatio>
 
 export const Default: Story = {
   render: () => (

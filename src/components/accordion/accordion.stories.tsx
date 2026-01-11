@@ -6,16 +6,62 @@ import {
   AccordionContent,
 } from './accordion'
 
-const meta: Meta = {
+const meta: Meta<typeof Accordion> = {
   title: 'Components/Layout/Accordion',
+  component: Accordion,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Accordion
+
+A vertically stacked set of interactive headings that each reveal an associated section of content. Built on Radix UI Accordion primitive.
+
+### When to Use
+- Displaying FAQ sections with question/answer pairs
+- Organizing content into collapsible sections to reduce visual clutter
+- Settings panels where users can expand sections as needed
+- Navigation menus with expandable categories
+- Content that benefits from progressive disclosure
+
+### When NOT to Use
+- When content should always be visible (use Cards or sections instead)
+- For navigation that requires quick access (use Tabs instead)
+- When there are only 1-2 items (direct display is better)
+- For content that users need to compare side-by-side
+
+### Accessibility
+- Implements WAI-ARIA Accordion pattern
+- Full keyboard navigation with Arrow keys, Home, End
+- Space/Enter to toggle sections
+- Proper ARIA expanded states
+- Focus management between triggers
+- Screen reader announcements for state changes
+        `,
+      },
+    },
+  },
+  argTypes: {
+    type: {
+      control: 'radio',
+      options: ['single', 'multiple'],
+      description: 'Whether one or multiple items can be open at the same time',
+    },
+    collapsible: {
+      control: 'boolean',
+      description: 'When type is "single", allows closing all items',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'When true, prevents user interaction',
+    },
   },
 }
 
 export default meta
-type Story = StoryObj
+type Story = StoryObj<typeof Accordion>
 
 export const Default: Story = {
   render: () => (

@@ -20,16 +20,60 @@ import {
   type ChartConfig,
 } from './chart'
 
-const meta: Meta = {
+const meta: Meta<typeof ChartContainer> = {
   title: 'Components/Data Display/Chart',
+  component: ChartContainer,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Chart
+
+A wrapper component for Recharts that provides consistent theming, tooltips, and legends. Built on Recharts for powerful data visualization.
+
+### When to Use
+- Displaying trends over time (line charts)
+- Comparing quantities across categories (bar charts)
+- Showing proportions of a whole (pie/donut charts)
+- Dashboard analytics and reporting
+- Data exploration and analysis interfaces
+
+### When NOT to Use
+- For simple numeric displays (use stats cards instead)
+- When data is better represented in tables
+- For very small datasets (1-2 data points)
+- When real-time updates are critical (consider specialized libraries)
+
+### Accessibility
+- Provide text alternatives for chart data
+- Use color-blind friendly palettes
+- Include data tables as alternatives when possible
+- Ensure tooltips are keyboard accessible
+- Use proper ARIA labels for chart containers
+- Consider providing downloadable data
+
+### Chart Types
+- **Bar Chart**: Compare values across categories
+- **Line Chart**: Show trends over time
+- **Pie Chart**: Display proportions of a whole
+- **Donut Chart**: Pie chart with center space for labels
+
+### Best Practices
+- Use consistent color schemes across charts
+- Keep legends clear and readable
+- Avoid 3D effects that distort perception
+- Label axes clearly with units
+- Start Y-axis at zero for bar charts
+        `,
+      },
+    },
   },
 }
 
 export default meta
-type Story = StoryObj
+type Story = StoryObj<typeof ChartContainer>
 
 const barChartData = [
   { month: 'Jan', revenue: 4000, expenses: 2400 },

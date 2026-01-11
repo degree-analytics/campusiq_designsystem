@@ -9,16 +9,55 @@ import {
   CardContent,
 } from './card'
 
-const meta: Meta = {
+const meta: Meta<typeof Card> = {
   title: 'Components/Data Display/Card',
+  component: Card,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Card
+
+A container for grouping related content and actions. Cards provide a flexible and extensible content container with multiple variants.
+
+### When to Use
+- Displaying related information in a contained unit
+- Product listings and previews
+- User profiles and contact cards
+- Dashboard widgets and statistics
+- Article previews and blog posts
+- Settings or configuration panels
+
+### When NOT to Use
+- For simple text content (use prose or paragraph styles)
+- When content needs to flow inline
+- For modal or dialog content (use Dialog component)
+- When cards would create too much visual noise
+
+### Accessibility
+- Use semantic heading levels within CardTitle
+- Ensure sufficient color contrast for all card variants
+- Interactive cards should have proper focus states
+- Card actions should be keyboard accessible
+- Consider using landmarks for complex card layouts
+
+### Composition
+- **CardHeader**: Contains title, description, and optional actions
+- **CardTitle**: The main heading of the card
+- **CardDescription**: Supporting text below the title
+- **CardAction**: Optional action button in header
+- **CardContent**: Main content area
+- **CardFooter**: Actions or supplementary information
+        `,
+      },
+    },
   },
 }
 
 export default meta
-type Story = StoryObj
+type Story = StoryObj<typeof Card>
 
 export const Default: Story = {
   render: () => (

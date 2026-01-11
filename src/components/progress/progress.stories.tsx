@@ -8,6 +8,33 @@ const meta: Meta<typeof Progress> = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Progress
+
+Displays an indicator showing the completion progress of a task, typically displayed as a progress bar. Progress indicators help users understand how much of a task or process has been completed.
+
+### When to Use
+- To show progress of a determinate operation (file upload, form completion)
+- For multi-step workflows where users need to know their position
+- During loading states where the duration is known or can be estimated
+- To indicate download or installation progress
+
+### When NOT to Use
+- For indeterminate loading states where progress cannot be measured (use Spinner)
+- When the process is instantaneous or near-instantaneous
+- For real-time streaming data without a defined endpoint
+- When progress would be misleading or inaccurate
+
+### Accessibility
+- Uses \`role="progressbar"\` with \`aria-valuenow\`, \`aria-valuemin\`, and \`aria-valuemax\`
+- Screen readers announce progress updates when value changes significantly
+- Pair with visible text labels for context (e.g., "Uploading... 65%")
+- Color is not the sole indicator; the bar width provides visual feedback
+        `,
+      },
+    },
   },
   argTypes: {
     value: {

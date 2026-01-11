@@ -19,6 +19,50 @@ const meta: Meta<typeof Drawer> = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Drawer
+
+A panel that slides in from the edge of the screen. Built on Vaul for smooth, gesture-driven interactions.
+
+### When to Use
+- Mobile-friendly navigation menus
+- Quick actions that do not require a full page
+- Shopping cart overlays
+- Filter panels for search results
+- Form inputs that appear on demand
+- Secondary content that supports the main view
+
+### When NOT to Use
+- For critical information that must be seen (use inline content)
+- Complex multi-step workflows (use full pages or wizards)
+- When a modal dialog is more appropriate
+- Desktop-first interfaces where Sheet is preferred
+
+### Accessibility
+- Focuses the first focusable element when opened
+- Traps focus within the drawer when open
+- Closes on Escape key press
+- Provides proper ARIA dialog role
+- Supports touch gestures for closing
+- Respects reduced motion preferences
+
+### Directions
+- **bottom** (default): Slides up from bottom, ideal for mobile
+- **top**: Slides down from top
+- **left**: Slides in from left side
+- **right**: Slides in from right side
+        `,
+      },
+    },
+  },
+  argTypes: {
+    direction: {
+      control: 'select',
+      options: ['top', 'bottom', 'left', 'right'],
+      description: 'The direction the drawer slides in from',
+    },
   },
 }
 

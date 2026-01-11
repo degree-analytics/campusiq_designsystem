@@ -9,6 +9,35 @@ const meta: Meta<typeof Toaster> = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Toast (Sonner)
+
+A succinct message that is displayed temporarily to provide feedback about an action or system status. Toasts appear in a consistent location and automatically dismiss after a timeout.
+
+### When to Use
+- For non-critical feedback that does not require user action
+- To confirm successful completion of an action (save, submit, delete)
+- For status updates that users should be aware of
+- To show progress of background operations
+- For undo opportunities after destructive actions
+
+### When NOT to Use
+- For critical errors requiring immediate attention (use Alert Dialog)
+- For persistent information (use Alert instead)
+- When user acknowledgment is required
+- For form validation errors (use inline validation)
+
+### Accessibility
+- Toasts are announced by screen readers via ARIA live regions
+- Actions within toasts are keyboard accessible
+- Auto-dismiss timing allows sufficient reading time
+- Toasts do not block user interaction with the page
+- Color alone is not used to convey meaning; icons supplement visual state
+        `,
+      },
+    },
   },
   decorators: [
     (Story) => (

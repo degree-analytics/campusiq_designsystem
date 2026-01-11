@@ -13,11 +13,39 @@ import {
 } from './alert-dialog'
 
 const meta: Meta<typeof AlertDialog> = {
-  title: 'Components/Overlay/AlertDialog',
+  title: 'Components/Feedback/AlertDialog',
   component: AlertDialog,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Alert Dialog
+
+A modal dialog that interrupts the user with important content and expects a response. Alert dialogs are used for critical confirmations that require explicit user action.
+
+### When to Use
+- For destructive actions that cannot be undone (delete, remove permanently)
+- When user confirmation is required before proceeding with an action
+- For critical decisions that may have significant consequences
+- To interrupt workflows that require immediate attention
+
+### When NOT to Use
+- For non-critical information (use Alert or Toast instead)
+- For simple confirmations that do not have significant consequences
+- When the user can easily undo the action
+- For forms or complex data entry (use Dialog instead)
+
+### Accessibility
+- Focus is trapped within the dialog when open
+- Pressing Escape closes the dialog (if allowed by configuration)
+- Screen readers announce the dialog title and description
+- Action buttons are clearly labeled with their intent
+- Implements WAI-ARIA dialog pattern with proper roles
+        `,
+      },
+    },
   },
 }
 

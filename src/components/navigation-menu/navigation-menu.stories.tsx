@@ -10,16 +10,66 @@ import {
   navigationMenuTriggerStyle,
 } from './navigation-menu'
 
-const meta: Meta = {
+const meta: Meta<typeof NavigationMenu> = {
   title: 'Components/Navigation/NavigationMenu',
+  component: NavigationMenu,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Navigation Menu
+
+A collection of links for navigating websites, typically displayed horizontally at the top of a page. Navigation menus can include dropdown panels with rich content like mega menus.
+
+### When to Use
+
+- For primary website navigation at the top of pages
+- When you need mega menus with rich content (images, descriptions, grouped links)
+- For marketing websites with multiple sections and subsections
+- When navigation items need descriptive content beyond just labels
+- For responsive navigation that works on both desktop and mobile
+
+### When NOT to Use
+
+- For application menus with actions (use Menubar instead)
+- When you need right-click context menus (use Context Menu)
+- For simple lists of links without dropdowns (use regular links)
+- For sidebar navigation (use Sidebar component)
+- When you have only 2-3 navigation items (consider simpler patterns)
+
+### Accessibility
+
+- Built on Radix UI Navigation Menu primitive for robust accessibility
+- Full keyboard navigation with Arrow keys, Enter, Tab, and Escape
+- Menu triggers are properly labeled and support screen readers
+- Content panels have appropriate ARIA attributes
+- Focus is managed correctly when navigating between items
+- Supports reduced motion preferences
+- Links are properly announced with their descriptions
+        `,
+      },
+    },
+  },
+  argTypes: {
+    children: {
+      description: 'Navigation menu content including items and their panels',
+      control: false,
+    },
+    className: {
+      description: 'Additional CSS classes for the navigation menu container',
+      control: 'text',
+    },
+    viewport: {
+      description: 'Whether to use a viewport for content positioning',
+      control: 'boolean',
+    },
   },
 }
 
 export default meta
-type Story = StoryObj
+type Story = StoryObj<typeof NavigationMenu>
 
 const ListItem = ({
   className,
@@ -146,6 +196,13 @@ export const SimpleLinks: Story = {
       </NavigationMenuList>
     </NavigationMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A simple navigation menu with direct links, no dropdown panels. Uses the navigationMenuTriggerStyle for consistent styling.',
+      },
+    },
+  },
 }
 
 export const MegaMenu: Story = {
@@ -321,6 +378,13 @@ export const MegaMenu: Story = {
       </NavigationMenuList>
     </NavigationMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A mega menu with multiple columns and categorized links, ideal for complex site navigation.',
+      },
+    },
+  },
 }
 
 export const WithoutViewport: Story = {
@@ -351,4 +415,11 @@ export const WithoutViewport: Story = {
       </NavigationMenuList>
     </NavigationMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Navigation menu without viewport positioning. Content appears directly below the trigger without a shared viewport container.',
+      },
+    },
+  },
 }

@@ -33,16 +33,63 @@ import {
 } from './command'
 import { Button } from '@/components/ui/button'
 
-const meta: Meta = {
+const meta: Meta<typeof Command> = {
   title: 'Components/Navigation/Command',
+  component: Command,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Command
+
+A command palette component that provides fast, keyboard-first navigation for power users. Built on top of cmdk, it offers fuzzy search, keyboard navigation, and grouping of commands.
+
+### When to Use
+
+- To provide a quick way to access application commands and actions
+- For power users who prefer keyboard-driven navigation
+- As a global search interface that can be triggered anywhere in the app
+- When you need to search and filter through a large list of actions
+- To provide keyboard shortcuts for common actions
+- In applications with many features that need quick access
+
+### When NOT to Use
+
+- For simple navigation with few options (use a dropdown or menu instead)
+- When the user base is primarily non-technical and unfamiliar with command palettes
+- For form inputs or data entry (use standard form controls)
+- When you only need to search content, not trigger actions (use a search input)
+- On mobile devices where keyboard shortcuts are not available
+
+### Accessibility
+
+- Full keyboard navigation support (Arrow keys, Enter, Escape)
+- Search input is automatically focused when opened
+- Items are announced by screen readers with their labels
+- Groups are properly labeled for screen reader users
+- Keyboard shortcuts are displayed visually and can be triggered
+- Empty states provide clear feedback when no results are found
+- Focus is trapped within the dialog when open
+        `,
+      },
+    },
+  },
+  argTypes: {
+    children: {
+      description: 'The command menu content including input, list, groups, and items',
+      control: false,
+    },
+    className: {
+      description: 'Additional CSS classes to apply to the command container',
+      control: 'text',
+    },
   },
 }
 
 export default meta
-type Story = StoryObj
+type Story = StoryObj<typeof Command>
 
 export const Default: Story = {
   render: () => (
@@ -118,6 +165,13 @@ export const WithShortcuts: Story = {
       </CommandList>
     </Command>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Command items can display keyboard shortcuts using the CommandShortcut component.',
+      },
+    },
+  },
 }
 
 export const GroupedItems: Story = {
@@ -189,6 +243,13 @@ export const GroupedItems: Story = {
       </CommandList>
     </Command>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Commands can be organized into logical groups with headings. Use CommandSeparator to visually separate groups.',
+      },
+    },
+  },
 }
 
 function CommandDialogDemo() {
@@ -243,4 +304,11 @@ function CommandDialogDemo() {
 
 export const Dialog: Story = {
   render: () => <CommandDialogDemo />,
+  parameters: {
+    docs: {
+      description: {
+        story: 'CommandDialog wraps the command palette in a modal dialog, perfect for global command palettes triggered by keyboard shortcuts.',
+      },
+    },
+  },
 }

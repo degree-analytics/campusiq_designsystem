@@ -31,16 +31,58 @@ import {
   ContextMenuRadioGroup,
 } from './context-menu'
 
-const meta: Meta = {
+const meta: Meta<typeof ContextMenu> = {
   title: 'Components/Navigation/ContextMenu',
+  component: ContextMenu,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Context Menu
+
+Displays a menu of actions relevant to a target element, triggered by right-clicking (or long-pressing on touch devices). Context menus provide contextual actions that are specific to the element being interacted with.
+
+### When to Use
+
+- To provide actions specific to an element that users can discover on right-click
+- For secondary actions that do not need to be always visible
+- When you want to replicate native OS context menu behavior
+- For actions on items in lists, tables, cards, or other interactive elements
+- To provide clipboard operations (cut, copy, paste) contextually
+
+### When NOT to Use
+
+- For primary actions that users need to discover easily (use visible buttons)
+- On mobile-only interfaces where right-click is not available
+- When actions apply globally rather than to a specific element
+- For navigation between pages (use navigation menus instead)
+- When you have only one or two actions (consider inline buttons)
+
+### Accessibility
+
+- Opens on right-click or by pressing Shift+F10 on focused elements
+- Full keyboard navigation with Arrow keys, Enter, and Escape
+- Menu items are properly labeled for screen readers
+- Disabled items are announced as unavailable
+- Submenus are navigable with arrow keys
+- Focus is properly managed when opening and closing
+- Checkable items announce their checked state
+        `,
+      },
+    },
+  },
+  argTypes: {
+    children: {
+      description: 'The trigger element and menu content',
+      control: false,
+    },
   },
 }
 
 export default meta
-type Story = StoryObj
+type Story = StoryObj<typeof ContextMenu>
 
 export const Default: Story = {
   render: () => (
@@ -116,6 +158,13 @@ function ContextMenuWithCheckboxes() {
 
 export const WithCheckboxes: Story = {
   render: () => <ContextMenuWithCheckboxes />,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Context menus can include checkbox items for toggling options. The checked state is managed externally.',
+      },
+    },
+  },
 }
 
 function ContextMenuWithRadioItems() {
@@ -153,6 +202,13 @@ function ContextMenuWithRadioItems() {
 
 export const WithRadioItems: Story = {
   render: () => <ContextMenuWithRadioItems />,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use radio items when only one option can be selected from a group.',
+      },
+    },
+  },
 }
 
 export const WithSubmenus: Story = {
@@ -201,6 +257,13 @@ export const WithSubmenus: Story = {
       </ContextMenuContent>
     </ContextMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Submenus allow organizing related actions into nested menus. Navigate with arrow keys or hover.',
+      },
+    },
+  },
 }
 
 export const Complete: Story = {
@@ -278,5 +341,12 @@ export const Complete: Story = {
         </ContextMenuContent>
       </ContextMenu>
     )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A complete example showing all context menu features: groups, labels, checkboxes, radio items, submenus, and destructive actions.',
+      },
+    },
   },
 }

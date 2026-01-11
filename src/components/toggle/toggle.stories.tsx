@@ -6,6 +6,65 @@ const meta: Meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Toggle
+
+The Toggle component provides a two-state button that can be either on or off. Unlike Switch, it is styled as a button and is commonly used in toolbars for formatting options.
+
+Within CampusIQ, toggles are used for text formatting controls, view mode options, filter toggles in toolbars, and any button-style binary state control.
+
+### When to Use
+
+- When toggling formatting options (bold, italic, underline)
+- When switching between view modes in a toolbar
+- When the toggle should look like a button
+- When grouping multiple toggles together (see ToggleGroup)
+
+### When NOT to Use
+
+- When toggling settings that take effect immediately (use Switch)
+- When the toggle is part of a form with submission (use Checkbox)
+- When selecting from multiple options (use RadioGroup or Select)
+- When the state should persist across sessions without user action
+
+### Variants
+
+- **default**: Subtle background on pressed state
+- **outline**: Bordered style with background on pressed state
+
+### Sizes
+
+- **sm**: Small toggle for compact toolbars (h-8)
+- **default**: Standard size (h-9)
+- **lg**: Large toggle for prominent actions (h-10)
+
+### States
+
+- **Unpressed**: Default state, no selection
+- **Pressed**: Active state with visual indicator
+- **Hover**: Subtle background on hover
+- **Focused**: Visible focus ring
+- **Disabled**: Non-interactive, visually muted
+
+### Content Guidelines
+
+- Use icons for common actions (bold, italic, align)
+- Add text labels when icon meaning isn't clear
+- Keep toggle groups logically organized
+- Use aria-label for icon-only toggles
+
+### Accessibility
+
+- **Keyboard**: Space or Enter to toggle, Tab to navigate
+- **Screen readers**: Announce label and pressed state
+- **aria-label**: Required for icon-only toggles
+- **Focus indicator**: Visible focus ring
+- **State announcement**: Pressed state is announced
+        `,
+      },
+    },
   },
 }
 
@@ -54,6 +113,13 @@ export const WithText: Story = {
       Italic
     </Toggle>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Toggles can include both an icon and text label.',
+      },
+    },
+  },
 }
 
 export const Outline: Story = {
@@ -75,6 +141,13 @@ export const Outline: Story = {
       </svg>
     </Toggle>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Outline variant for bordered toggle styling.',
+      },
+    },
+  },
 }
 
 export const Sizes: Story = {
@@ -130,6 +203,13 @@ export const Sizes: Story = {
       </Toggle>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Available toggle sizes for different contexts.',
+      },
+    },
+  },
 }
 
 export const Pressed: Story = {
@@ -170,6 +250,13 @@ export const Pressed: Story = {
       </Toggle>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Toggles showing pressed and unpressed states.',
+      },
+    },
+  },
 }
 
 export const Disabled: Story = {
@@ -283,4 +370,11 @@ export const TextFormattingToolbar: Story = {
       </Toggle>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Common text formatting toolbar pattern using individual toggles.',
+      },
+    },
+  },
 }

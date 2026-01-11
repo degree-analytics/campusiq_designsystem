@@ -6,6 +6,70 @@ const meta: Meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## ToggleGroup
+
+The ToggleGroup component provides a set of toggle buttons that can work in single-select or multi-select modes. It is commonly used in toolbars for mutually exclusive or combinable options.
+
+Within CampusIQ, toggle groups are used for view mode selectors, text alignment controls, data visualization options, and toolbar controls where grouping related options improves usability.
+
+### When to Use
+
+- When grouping related toggle options together
+- When selecting alignment, view modes, or formatting options
+- When only one option from a group should be active (single mode)
+- When multiple options can be active simultaneously (multiple mode)
+
+### When NOT to Use
+
+- When options are unrelated (use separate Toggles)
+- When selecting from a dropdown list (use Select)
+- When the choice persists beyond the current session (use RadioGroup with form)
+- When the toggle should look like a standard form control
+
+### Selection Modes
+
+- **single**: Only one item can be selected at a time (like RadioGroup)
+- **multiple**: Multiple items can be selected simultaneously (like Checkboxes)
+
+### Variants
+
+- **default**: Subtle background on pressed state
+- **outline**: Bordered style with shared borders between items
+
+### Sizes
+
+- **sm**: Small for compact toolbars (h-8)
+- **default**: Standard size (h-9)
+- **lg**: Large for prominent actions (h-10)
+
+### States
+
+- **Unselected**: Default state for all items
+- **Selected**: Active item(s) with visual indicator
+- **Hover**: Subtle background on hover
+- **Focused**: Visible focus ring
+- **Disabled**: Non-interactive item(s)
+
+### Content Guidelines
+
+- Use icons for common actions (align, view mode)
+- Add text when icon meaning isn't immediately clear
+- Keep groups to 2-5 items for usability
+- Use aria-label for icon-only items
+
+### Accessibility
+
+- **Keyboard**: Arrow keys navigate, Space/Enter selects, Tab moves focus
+- **Screen readers**: Announce group role, selected state, and position
+- **aria-label**: Required for icon-only items
+- **Focus management**: Focus moves through group with arrow keys
+- **Group semantics**: Uses radiogroup/checkbox group semantics appropriately
+        `,
+      },
+    },
   },
 }
 
@@ -68,6 +132,13 @@ export const Default: Story = {
       </ToggleGroupItem>
     </ToggleGroup>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Single selection mode - only one item can be active at a time.',
+      },
+    },
+  },
 }
 
 export const Multiple: Story = {
@@ -124,6 +195,13 @@ export const Multiple: Story = {
       </ToggleGroupItem>
     </ToggleGroup>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Multiple selection mode - multiple items can be active simultaneously.',
+      },
+    },
+  },
 }
 
 export const Outline: Story = {
@@ -182,6 +260,13 @@ export const Outline: Story = {
       </ToggleGroupItem>
     </ToggleGroup>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Outline variant with bordered styling.',
+      },
+    },
+  },
 }
 
 export const Sizes: Story = {
@@ -204,6 +289,13 @@ export const Sizes: Story = {
       </ToggleGroup>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Available toggle group sizes for different contexts.',
+      },
+    },
+  },
 }
 
 export const WithText: Story = {
@@ -251,6 +343,13 @@ export const WithText: Story = {
       </ToggleGroupItem>
     </ToggleGroup>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Toggle group items can include both icons and text labels.',
+      },
+    },
+  },
 }
 
 export const Disabled: Story = {
@@ -263,6 +362,13 @@ export const Disabled: Story = {
       <ToggleGroupItem value="c">C</ToggleGroupItem>
     </ToggleGroup>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Individual items can be disabled while keeping others interactive.',
+      },
+    },
+  },
 }
 
 export const ViewModeSelector: Story = {
@@ -325,4 +431,11 @@ export const ViewModeSelector: Story = {
       </ToggleGroup>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Common pattern for view mode selection in data interfaces.',
+      },
+    },
+  },
 }

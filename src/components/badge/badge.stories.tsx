@@ -1,16 +1,60 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Badge } from './badge'
 
-const meta: Meta = {
+const meta: Meta<typeof Badge> = {
   title: 'Components/Data Display/Badge',
+  component: Badge,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Badge
+
+Displays a badge or a component that looks like a badge. Used to highlight status, categories, or counts.
+
+### When to Use
+- Indicating status (active, pending, error, success)
+- Showing counts or notifications
+- Labeling categories or tags
+- Highlighting new or featured content
+- Version numbers or release tags
+- User roles or permissions
+
+### When NOT to Use
+- For primary actions (use Button instead)
+- For large amounts of text (use Card or Alert)
+- When the information is not supplementary
+- For interactive elements that require user action
+
+### Accessibility
+- Use appropriate color contrast ratios
+- Do not rely solely on color to convey meaning
+- Include descriptive text for screen readers
+- Consider using aria-label for icon-only badges
+- Ensure badges are not the only way to access information
+
+### Variants
+- **default**: Primary emphasis, solid background
+- **secondary**: Lower emphasis, muted colors
+- **destructive**: Error or danger states
+- **outline**: Minimal emphasis, border only
+        `,
+      },
+    },
+  },
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: ['default', 'secondary', 'destructive', 'outline'],
+      description: 'The visual style of the badge',
+    },
   },
 }
 
 export default meta
-type Story = StoryObj
+type Story = StoryObj<typeof Badge>
 
 export const Default: Story = {
   render: () => <Badge>Badge</Badge>,

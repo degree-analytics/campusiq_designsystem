@@ -8,13 +8,68 @@ const meta: Meta<typeof RadioGroup> = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## RadioGroup
+
+The RadioGroup component provides a set of mutually exclusive options where only one can be selected at a time. It presents all options visibly, making it ideal when comparison between choices is important.
+
+Within CampusIQ, radio groups are used for notification preferences, view mode selections, data display options, and any scenario requiring a single choice from a small set of visible options.
+
+### When to Use
+
+- When users must select exactly one option from a set
+- When there are 2-5 options that benefit from being visible
+- When users need to compare options before selecting
+- When the default choice should be clearly indicated
+
+### When NOT to Use
+
+- When users can select multiple options (use Checkbox group)
+- When there are more than 5-7 options (use Select for space efficiency)
+- When toggling a single binary setting (use Switch)
+- When options are dynamically generated or very long (use Select)
+
+### Layout Options
+
+- **Vertical (default)**: Standard stacked layout for forms
+- **Horizontal**: Side-by-side layout for compact spaces using flex
+
+### States
+
+- **Unselected**: Default state, no option chosen
+- **Selected**: One option is active with filled indicator
+- **Focused**: Keyboard focus with visible ring
+- **Disabled**: Non-interactive, visually muted (can apply to group or individual items)
+- **Invalid**: Error state with red styling
+
+### Content Guidelines
+
+- Always include a group label or legend for context
+- Keep option labels concise and scannable
+- Consider adding descriptions for complex options
+- Place the most common or recommended option first
+
+### Accessibility
+
+- **Keyboard navigation**: Arrow keys move selection, Tab moves to next control
+- **Screen readers**: Announce group label, option label, and selection state
+- **Grouping**: Use fieldset/legend semantics for screen reader context
+- **Invalid state**: Uses aria-invalid for error communication
+- **Focus indicator**: Visible focus ring on active option
+        `,
+      },
+    },
   },
   argTypes: {
     disabled: {
       control: 'boolean',
+      description: 'Disables the entire radio group',
     },
     defaultValue: {
       control: 'text',
+      description: 'Initial selected value for uncontrolled usage',
     },
   },
 }
@@ -54,6 +109,13 @@ export const WithDefaultValue: Story = {
       </div>
     </RadioGroup>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use defaultValue to pre-select an option.',
+      },
+    },
+  },
 }
 
 export const Disabled: Story = {
@@ -94,6 +156,13 @@ export const SingleItemDisabled: Story = {
       </div>
     </RadioGroup>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Individual radio items can be disabled while keeping others interactive.',
+      },
+    },
+  },
 }
 
 export const Horizontal: Story = {
@@ -113,6 +182,13 @@ export const Horizontal: Story = {
       </div>
     </RadioGroup>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use flex layout for horizontal arrangement in compact spaces.',
+      },
+    },
+  },
 }
 
 export const WithDescriptions: Story = {
@@ -147,6 +223,13 @@ export const WithDescriptions: Story = {
       </div>
     </RadioGroup>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Add descriptions to help users understand complex options.',
+      },
+    },
+  },
 }
 
 export const Invalid: Story = {
@@ -162,4 +245,11 @@ export const Invalid: Story = {
       </div>
     </RadioGroup>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Invalid state is indicated with aria-invalid for form validation.',
+      },
+    },
+  },
 }

@@ -2,16 +2,66 @@ import type { Meta, StoryObj } from '@storybook/react'
 import * as React from 'react'
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from './collapsible'
 
-const meta: Meta = {
+const meta: Meta<typeof Collapsible> = {
   title: 'Components/Layout/Collapsible',
+  component: Collapsible,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Collapsible
+
+An interactive component which expands/collapses a panel. Built on Radix UI Collapsible primitive.
+
+### When to Use
+- Showing/hiding additional content on demand
+- FAQ sections with expandable answers
+- Settings panels with advanced options
+- Navigation menus with nested items
+- Progressive disclosure of complex information
+
+### When NOT to Use
+- For multiple related collapsible items (use Accordion instead)
+- When content should always be visible
+- For navigation that requires persistent visibility
+- When collapsed state would hide critical information
+
+### Accessibility
+- Implements WAI-ARIA disclosure pattern
+- Full keyboard navigation with Space/Enter
+- Proper ARIA expanded states
+- Focus management for trigger elements
+- Screen reader announcements for state changes
+
+### Difference from Accordion
+- Collapsible is a single expand/collapse panel
+- Accordion manages multiple related panels
+- Use Collapsible for standalone expandable content
+- Use Accordion when panels are semantically related
+        `,
+      },
+    },
+  },
+  argTypes: {
+    open: {
+      control: 'boolean',
+      description: 'The controlled open state of the collapsible',
+    },
+    defaultOpen: {
+      control: 'boolean',
+      description: 'The default open state when uncontrolled',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'When true, prevents user interaction',
+    },
   },
 }
 
 export default meta
-type Story = StoryObj
+type Story = StoryObj<typeof Collapsible>
 
 export const Default: Story = {
   render: function DefaultStory() {

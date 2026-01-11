@@ -43,16 +43,59 @@ import {
 } from './dropdown-menu'
 import { Button } from '@/components/ui/button'
 
-const meta: Meta = {
+const meta: Meta<typeof DropdownMenu> = {
   title: 'Components/Navigation/DropdownMenu',
+  component: DropdownMenu,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Dropdown Menu
+
+Displays a list of actions or options that a user can choose from, triggered by clicking a button or other trigger element. Dropdown menus are ideal for displaying a list of choices without taking up permanent screen space.
+
+### When to Use
+
+- To display a list of actions related to a specific element or context
+- For user account menus with profile, settings, and logout options
+- When space is limited and actions need to be grouped together
+- For "More actions" buttons that reveal additional options
+- To provide settings or configuration options in a compact form
+- For selection between multiple options that do not require immediate visibility
+
+### When NOT to Use
+
+- For primary navigation between pages (use a Navigation Menu)
+- When all options need to be visible at all times (use radio buttons or checkboxes)
+- For selecting from a very large list (use a Command palette or searchable Select)
+- When the user needs to select multiple options simultaneously (use a multi-select)
+- For context-specific actions on right-click (use a Context Menu instead)
+
+### Accessibility
+
+- Trigger element is keyboard focusable and activates on Enter/Space
+- Full keyboard navigation with Arrow keys, Enter, and Escape
+- Menu is properly labeled with role="menu" and items with role="menuitem"
+- Disabled items are announced as unavailable
+- Submenus are navigable with arrow keys
+- Focus returns to trigger when menu closes
+- Checkable items announce their checked state
+        `,
+      },
+    },
+  },
+  argTypes: {
+    children: {
+      description: 'The trigger element and menu content',
+      control: false,
+    },
   },
 }
 
 export default meta
-type Story = StoryObj
+type Story = StoryObj<typeof DropdownMenu>
 
 export const Default: Story = {
   render: () => (
@@ -138,6 +181,13 @@ export const WithIcons: Story = {
       </DropdownMenuContent>
     </DropdownMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Menu items can include icons for better visual recognition. Destructive actions should use the destructive variant.',
+      },
+    },
+  },
 }
 
 function DropdownWithCheckboxes() {
@@ -184,6 +234,13 @@ function DropdownWithCheckboxes() {
 
 export const WithCheckboxes: Story = {
   render: () => <DropdownWithCheckboxes />,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Checkbox items allow users to toggle multiple options independently. Icons can change based on the checked state.',
+      },
+    },
+  },
 }
 
 function DropdownWithRadioItems() {
@@ -212,6 +269,13 @@ function DropdownWithRadioItems() {
 
 export const WithRadioItems: Story = {
   render: () => <DropdownWithRadioItems />,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Radio items are used when only one option can be selected from a group at a time.',
+      },
+    },
+  },
 }
 
 export const WithSubmenus: Story = {
@@ -291,6 +355,13 @@ export const WithSubmenus: Story = {
       </DropdownMenuContent>
     </DropdownMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Submenus allow organizing related actions into nested menus. Use sparingly to avoid complex navigation.',
+      },
+    },
+  },
 }
 
 export const NestedSubmenus: Story = {
@@ -323,4 +394,11 @@ export const NestedSubmenus: Story = {
       </DropdownMenuContent>
     </DropdownMenu>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Deeply nested submenus are supported but should be used sparingly. Consider flattening the hierarchy for better usability.',
+      },
+    },
+  },
 }

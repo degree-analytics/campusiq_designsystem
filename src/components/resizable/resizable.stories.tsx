@@ -5,16 +5,62 @@ import {
   ResizableHandle,
 } from './resizable'
 
-const meta: Meta = {
+const meta: Meta<typeof ResizablePanelGroup> = {
   title: 'Components/Layout/Resizable',
+  component: ResizablePanelGroup,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Resizable
+
+Accessible resizable panel groups and layouts with keyboard support. Built on react-resizable-panels.
+
+### When to Use
+- IDE-style layouts with adjustable panels
+- Split-view interfaces (email clients, code editors)
+- Dashboards with customizable widget sizes
+- Side-by-side content comparison
+- Flexible workspace layouts
+
+### When NOT to Use
+- For simple two-column layouts (use CSS Grid)
+- When panels do not need to be resizable
+- On very small screens where resizing is impractical
+- For responsive layouts that should adapt automatically
+
+### Accessibility
+- Full keyboard support for resizing
+- Arrow keys adjust panel sizes
+- Home/End keys for min/max sizes
+- Proper ARIA attributes for resize handles
+- Focus indicators on handles
+- Screen reader announcements for size changes
+
+### Features
+- Horizontal and vertical orientations
+- Nested panel groups
+- Minimum and maximum size constraints
+- Collapsible panels
+- Persistent size preferences (via onLayout callback)
+- Smooth drag animations
+        `,
+      },
+    },
+  },
+  argTypes: {
+    direction: {
+      control: 'radio',
+      options: ['horizontal', 'vertical'],
+      description: 'The direction of the panel group',
+    },
   },
 }
 
 export default meta
-type Story = StoryObj
+type Story = StoryObj<typeof ResizablePanelGroup>
 
 export const Default: Story = {
   render: () => (

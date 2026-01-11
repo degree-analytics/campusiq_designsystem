@@ -9,6 +9,52 @@ const meta: Meta<typeof HoverCard> = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Hover Card
+
+For sighted users to preview content available behind a link. Built on Radix UI Hover Card primitive.
+
+### When to Use
+- Previewing user profiles on hover
+- Showing additional context for links
+- Displaying product previews
+- Providing quick information without navigation
+- Enriching inline mentions or references
+
+### When NOT to Use
+- For critical information (not accessible to keyboard/touch users)
+- When content should be persistently visible
+- On touch-only devices (use Popover instead)
+- For interactive content that requires clicks
+- When the preview content is very long
+
+### Accessibility
+- Content is hidden from keyboard and screen reader users
+- Use only for supplementary, non-essential information
+- Always ensure the trigger leads to accessible content
+- Consider providing alternative access patterns
+- Not a replacement for accessible tooltips
+
+### Important Notes
+- Hover cards are mouse-only interactions
+- Content should be supplementary, not essential
+- Keep content concise and scannable
+- Consider mobile alternatives (touch does not trigger hover)
+        `,
+      },
+    },
+  },
+  argTypes: {
+    openDelay: {
+      control: 'number',
+      description: 'Delay in milliseconds before opening',
+    },
+    closeDelay: {
+      control: 'number',
+      description: 'Delay in milliseconds before closing',
+    },
   },
 }
 
