@@ -29,7 +29,7 @@ WORKDIR /app
 COPY --from=builder /app/storybook-static ./storybook-static
 
 # Expose port (Railway will set PORT env var)
-EXPOSE 3000
+EXPOSE ${PORT:-3000}
 
-# Start serve
-CMD ["serve", "storybook-static", "-l", "3000"]
+# Start serve - use shell form to expand PORT env var
+CMD serve storybook-static -l ${PORT:-3000}
