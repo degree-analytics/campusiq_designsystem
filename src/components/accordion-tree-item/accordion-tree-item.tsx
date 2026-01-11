@@ -6,7 +6,7 @@ import { ChevronRight, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const accordionTreeItemVariants = cva(
-  "group flex w-full flex-col rounded-md text-sm transition-all",
+  "group flex w-full flex-col text-sm transition-all border-b border-border",
   {
     variants: {
       state: {
@@ -24,23 +24,28 @@ const accordionTreeItemVariants = cva(
 
 const triggerVariants = cva(
   [
-    "flex w-full items-center gap-2 rounded-md px-2 py-2 text-left text-sm font-medium",
-    "text-foreground transition-colors outline-none",
-    "hover:bg-accent",
-    "focus-visible:ring-[3px] focus-visible:ring-ring/40",
-    "disabled:pointer-events-none disabled:opacity-60",
+    "flex w-full items-center gap-1.5 rounded-md py-2.5 text-left text-sm font-medium",
+    "text-foreground transition-colors outline-none cursor-pointer",
+    "hover:bg-accent/10",
+    "focus-visible:ring-[3px] focus-visible:ring-ring/40 focus-visible:bg-accent/10",
+    "disabled:pointer-events-none disabled:opacity-60 disabled:cursor-not-allowed",
   ].join(" "),
   {
     variants: {
       state: {
         Default: "",
-        Hover: "bg-accent",
-        Focus: "ring-[3px] ring-ring/40",
-        Disabled: "opacity-60 pointer-events-none",
+        Hover: "bg-accent/10",
+        Focus: "ring-[3px] ring-ring/40 bg-accent/10",
+        Disabled: "opacity-60 pointer-events-none cursor-not-allowed",
+      },
+      active: {
+        true: "px-2",
+        false: "px-1",
       },
     },
     defaultVariants: {
       state: "Default",
+      active: false,
     },
   }
 )
@@ -98,7 +103,7 @@ function AccordionTreeItem({
     >
       <CollapsiblePrimitive.Trigger
         data-slot="accordion-tree-item-trigger"
-        className={cn(triggerVariants({ state }))}
+        className={cn(triggerVariants({ state, active }))}
         disabled={isDisabled}
       >
         <ChevronIcon
@@ -117,12 +122,12 @@ function AccordionTreeItem({
         data-slot="accordion-tree-item-content"
         className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
       >
-        <div className="pl-8 pr-2 pb-2">
+        <div className="flex flex-col gap-1.5 pl-6 pr-2 pb-4 pt-1">
           {contentText && (
-            <p className="text-sm text-muted-foreground">{contentText}</p>
+            <p className="text-sm text-foreground">{contentText}</p>
           )}
           {hasSlot && children && (
-            <div className="mt-2">{children}</div>
+            <div className="mt-1">{children}</div>
           )}
         </div>
       </CollapsiblePrimitive.Content>

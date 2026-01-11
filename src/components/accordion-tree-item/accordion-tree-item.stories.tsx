@@ -189,7 +189,7 @@ function InteractiveDemo() {
   }
 
   return (
-    <div className="w-[280px] space-y-1 rounded-lg border p-2">
+    <div className="w-[342px] space-y-0 rounded-lg border p-2">
       <AccordionTreeItem
         icon={<Building className="size-4" />}
         triggerText="Campus Buildings"
@@ -241,7 +241,7 @@ function NestedTreeDemo() {
   }
 
   return (
-    <div className="w-[320px] rounded-lg border p-2">
+    <div className="w-[342px] rounded-lg border p-2">
       <AccordionTreeItem
         icon={<Folder className="size-4" />}
         triggerText="Project Files"
@@ -296,16 +296,32 @@ export const NestedTree: Story = {
   },
 }
 
-export const AllStates: Story = {
-  render: () => (
-    <div className="w-[280px] space-y-4">
+function AllStatesDemo() {
+  const [activeStates, setActiveStates] = useState<Record<string, boolean>>({
+    default: false,
+    expanded: true,
+    hover: false,
+    focus: false,
+    disabled: false,
+  })
+
+  const toggleState = (key: string) => {
+    setActiveStates((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }))
+  }
+
+  return (
+    <div className="w-[342px] space-y-4">
       <div>
         <p className="mb-2 text-xs font-medium text-muted-foreground">Default - Collapsed</p>
         <AccordionTreeItem
           icon={<Building className="size-4" />}
           triggerText="Campus Buildings"
           contentText="View and manage all campus buildings."
-          active={false}
+          active={activeStates.default}
+          onActiveChange={() => toggleState('default')}
           state="Default"
         />
       </div>
@@ -315,7 +331,8 @@ export const AllStates: Story = {
           icon={<Building className="size-4" />}
           triggerText="Campus Buildings"
           contentText="View and manage all campus buildings."
-          active={true}
+          active={activeStates.expanded}
+          onActiveChange={() => toggleState('expanded')}
           state="Default"
         />
       </div>
@@ -325,7 +342,8 @@ export const AllStates: Story = {
           icon={<Folder className="size-4" />}
           triggerText="Documents"
           contentText="Access shared documents and files."
-          active={false}
+          active={activeStates.hover}
+          onActiveChange={() => toggleState('hover')}
           state="Hover"
         />
       </div>
@@ -335,7 +353,8 @@ export const AllStates: Story = {
           icon={<Users className="size-4" />}
           triggerText="Team Members"
           contentText="Manage team members and roles."
-          active={false}
+          active={activeStates.focus}
+          onActiveChange={() => toggleState('focus')}
           state="Focus"
         />
       </div>
@@ -345,16 +364,20 @@ export const AllStates: Story = {
           icon={<Settings className="size-4" />}
           triggerText="Admin Settings"
           contentText="Restricted administrative settings."
-          active={false}
+          active={activeStates.disabled}
           state="Disabled"
         />
       </div>
     </div>
-  ),
+  )
+}
+
+export const AllStates: Story = {
+  render: () => <AllStatesDemo />,
   parameters: {
     docs: {
       description: {
-        story: 'Visual reference showing all available states of the component.',
+        story: 'Interactive reference showing all available states of the component. Click to toggle expand/collapse.',
       },
     },
   },
