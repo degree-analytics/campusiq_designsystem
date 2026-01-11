@@ -28,8 +28,8 @@ WORKDIR /app
 # Copy built Storybook from builder
 COPY --from=builder /app/storybook-static ./storybook-static
 
-# Expose port (Railway will set PORT env var)
-EXPOSE ${PORT:-3000}
+# Expose port
+EXPOSE 3000
 
-# Start serve - use shell form to expand PORT env var
-CMD serve storybook-static -l ${PORT:-3000}
+# Start serve with proper listen format for newer serve versions
+CMD ["sh", "-c", "serve storybook-static -l tcp://0.0.0.0:${PORT:-3000}"]
