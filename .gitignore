@@ -25,3 +25,9 @@ dist-ssr
 
 *storybook.log
 storybook-static
+
+.env
+src/stories/generated
+src/stories/StoryUI/
+.story-ui-history/
+*.png

@@ -1,7 +1,13 @@
 import type { StorybookConfig } from '@storybook/react-vite';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../src/stories/**/*.@(mdx|stories.@(js|jsx|ts|tsx))'
+  ],
   addons: [
     '@storybook/addon-docs',
     '@storybook/addon-a11y',
@@ -20,7 +26,7 @@ const config: StorybookConfig = {
       plugins: [tailwindcss()],
       resolve: {
         alias: {
-          '@': '/src',
+          '@': path.resolve(__dirname, '../src'),
         },
       },
     });
