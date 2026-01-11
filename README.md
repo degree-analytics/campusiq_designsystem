@@ -259,17 +259,6 @@ pnpm build-storybook
 railway up
 ```
 
-## Recent Updates
-
-### January 2026
-- Added semantic color variants (success, warning, informational) to Alert, Badge, Button, Progress
-- Added 4 new components: AccordionTreeItem, Combobox, DatePicker, DataTable
-- Made all component stories interactive with proper state management
-- Added dark mode toggle to Storybook toolbar
-- Aligned all overlay components with `bg-overlay` design token
-- Added comprehensive Figma design system audit
-- Fixed AccordionTreeItem functionality and styling
-
 ## License
 
 MIT
