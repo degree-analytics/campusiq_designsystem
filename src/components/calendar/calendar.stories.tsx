@@ -8,6 +8,70 @@ const meta: Meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Calendar
+
+The Calendar component provides a date picker interface for selecting single dates, date ranges, or multiple dates. Built on react-day-picker, it offers comprehensive date selection capabilities.
+
+Within CampusIQ, calendars are used for scheduling, date filtering, report date ranges, event selection, and any scenario requiring date input.
+
+### When to Use
+
+- When users need to select a specific date
+- When selecting a date range (start and end dates)
+- When selecting multiple individual dates
+- When visual date navigation is beneficial
+
+### When NOT to Use
+
+- For entering dates with exact known values (use formatted Input)
+- When time selection is also needed (use DateTimePicker)
+- For simple relative date choices (use Select with options)
+- When the date context is clear without a calendar
+
+### Selection Modes
+
+- **single**: Select one date (default)
+- **range**: Select a start and end date
+- **multiple**: Select multiple individual dates
+
+### Configuration
+
+- **numberOfMonths**: Show multiple months side by side
+- **showWeekNumber**: Display week numbers
+- **showOutsideDays**: Show days from adjacent months
+- **captionLayout**: Navigation style (buttons or dropdown)
+- **fromYear/toYear**: Limit selectable year range
+- **disabled**: Function or dates to disable
+
+### States
+
+- **Default**: No date selected
+- **Selected**: Date(s) highlighted
+- **Hover**: Day highlight on hover
+- **Focused**: Keyboard focus indicator
+- **Today**: Current date indicator
+- **Disabled**: Non-selectable dates
+
+### Content Guidelines
+
+- Provide clear context for what the date selection is for
+- Consider showing the selected date near the calendar
+- Use appropriate month navigation for the use case
+- Consider date format localization needs
+
+### Accessibility
+
+- **Keyboard navigation**: Arrow keys navigate days, Page Up/Down for months
+- **Screen readers**: Announce selected date, current month, and navigation
+- **Focus management**: Clear focus indicators on days
+- **Date announcement**: Full date announced on selection
+- **Disabled dates**: Clearly indicated and skipped in navigation
+        `,
+      },
+    },
   },
 }
 
@@ -26,6 +90,13 @@ export const Default: Story = {
         className="rounded-md border"
       />
     )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Basic single date selection calendar.',
+      },
+    },
   },
 }
 
@@ -46,6 +117,13 @@ export const WithRange: Story = {
       />
     )
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Date range selection with two months displayed.',
+      },
+    },
+  },
 }
 
 export const Multiple: Story = {
@@ -65,6 +143,13 @@ export const Multiple: Story = {
       />
     )
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Multiple individual dates can be selected.',
+      },
+    },
+  },
 }
 
 export const WithDisabledDates: Story = {
@@ -83,6 +168,13 @@ export const WithDisabledDates: Story = {
       />
     )
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Weekends and past dates are disabled and non-selectable.',
+      },
+    },
+  },
 }
 
 export const TwoMonths: Story = {
@@ -98,6 +190,13 @@ export const TwoMonths: Story = {
         className="rounded-md border"
       />
     )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Two months displayed for easier range selection.',
+      },
+    },
   },
 }
 
@@ -117,6 +216,13 @@ export const WithDropdowns: Story = {
       />
     )
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Dropdown navigation for quick month/year selection.',
+      },
+    },
+  },
 }
 
 export const WithWeekNumbers: Story = {
@@ -133,6 +239,13 @@ export const WithWeekNumbers: Story = {
       />
     )
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Week numbers displayed for business scheduling contexts.',
+      },
+    },
+  },
 }
 
 export const WithoutOutsideDays: Story = {
@@ -148,6 +261,13 @@ export const WithoutOutsideDays: Story = {
         className="rounded-md border"
       />
     )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Adjacent month days hidden for cleaner appearance.',
+      },
+    },
   },
 }
 
@@ -173,6 +293,13 @@ export const WithFooter: Story = {
         </div>
       </div>
     )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Calendar with footer showing selected date.',
+      },
+    },
   },
 }
 
@@ -205,5 +332,12 @@ export const DateRangePicker: Story = {
         />
       </div>
     )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Complete date range picker with display of selected range.',
+      },
+    },
   },
 }

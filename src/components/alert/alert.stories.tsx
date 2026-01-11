@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { AlertCircle, Terminal, CheckCircle2, Info as InfoIcon } from 'lucide-react'
+import { AlertCircle, Terminal, CheckCircle2, Info as InfoIcon, AlertTriangle } from 'lucide-react'
 import { Alert, AlertDescription, AlertTitle } from './alert'
 
 const meta: Meta<typeof Alert> = {
@@ -39,7 +39,7 @@ Displays a callout for user attention with contextual feedback messages. Alerts 
   argTypes: {
     variant: {
       control: 'select',
-      options: ['default', 'destructive'],
+      options: ['default', 'destructive', 'success', 'informational', 'warning'],
       description: 'The visual style variant of the alert',
     },
   },
@@ -85,7 +85,7 @@ export const WithoutIcon: Story = {
 
 export const Success: Story = {
   render: () => (
-    <Alert className="w-[400px] border-green-500 text-green-700 [&>svg]:text-green-500">
+    <Alert variant="success" className="w-[400px]">
       <CheckCircle2 className="h-4 w-4" />
       <AlertTitle>Success!</AlertTitle>
       <AlertDescription>
@@ -98,11 +98,23 @@ export const Success: Story = {
 export const Informational: Story = {
   name: 'Informational',
   render: () => (
-    <Alert className="w-[400px] border-blue-500 text-blue-700 [&>svg]:text-blue-500">
+    <Alert variant="informational" className="w-[400px]">
       <InfoIcon className="h-4 w-4" />
       <AlertTitle>Did you know?</AlertTitle>
       <AlertDescription>
         You can customize alerts with additional Tailwind classes for different visual styles.
+      </AlertDescription>
+    </Alert>
+  ),
+}
+
+export const Warning: Story = {
+  render: () => (
+    <Alert variant="warning" className="w-[400px]">
+      <AlertTriangle className="h-4 w-4" />
+      <AlertTitle>Warning</AlertTitle>
+      <AlertDescription>
+        Your account is approaching its storage limit.
       </AlertDescription>
     </Alert>
   ),
@@ -139,6 +151,27 @@ export const AllVariants: Story = {
         <AlertTitle>Destructive</AlertTitle>
         <AlertDescription>
           This is the destructive alert variant.
+        </AlertDescription>
+      </Alert>
+      <Alert variant="success">
+        <CheckCircle2 className="h-4 w-4" />
+        <AlertTitle>Success</AlertTitle>
+        <AlertDescription>
+          This is the success alert variant.
+        </AlertDescription>
+      </Alert>
+      <Alert variant="informational">
+        <InfoIcon className="h-4 w-4" />
+        <AlertTitle>Informational</AlertTitle>
+        <AlertDescription>
+          This is the informational alert variant.
+        </AlertDescription>
+      </Alert>
+      <Alert variant="warning">
+        <AlertTriangle className="h-4 w-4" />
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          This is the warning alert variant.
         </AlertDescription>
       </Alert>
     </div>

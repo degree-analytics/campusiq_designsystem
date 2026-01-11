@@ -47,7 +47,7 @@ Displays a badge or a component that looks like a badge. Used to highlight statu
   argTypes: {
     variant: {
       control: 'select',
-      options: ['default', 'secondary', 'destructive', 'outline'],
+      options: ['default', 'secondary', 'destructive', 'success', 'warning', 'informational', 'outline'],
       description: 'The visual style of the badge',
     },
   },
@@ -66,6 +66,9 @@ export const AllVariants: Story = {
       <Badge variant="default">Default</Badge>
       <Badge variant="secondary">Secondary</Badge>
       <Badge variant="destructive">Destructive</Badge>
+      <Badge variant="success">Success</Badge>
+      <Badge variant="warning">Warning</Badge>
+      <Badge variant="informational">Informational</Badge>
       <Badge variant="outline">Outline</Badge>
     </div>
   ),

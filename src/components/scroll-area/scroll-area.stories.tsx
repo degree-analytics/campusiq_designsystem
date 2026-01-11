@@ -2,16 +2,54 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { ScrollArea, ScrollBar } from './scroll-area'
 import { Separator } from '@/components/separator/separator'
 
-const meta: Meta = {
+const meta: Meta<typeof ScrollArea> = {
   title: 'Components/Layout/ScrollArea',
+  component: ScrollArea,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Scroll Area
+
+Augments native scroll functionality for custom, cross-browser styling. Built on Radix UI Scroll Area primitive.
+
+### When to Use
+- Custom-styled scrollbars that match your design system
+- Consistent scroll behavior across browsers
+- Horizontal scrolling content (galleries, carousels)
+- Long lists or content that needs scrolling
+- Chat interfaces and message lists
+- Code blocks and log viewers
+
+### When NOT to Use
+- When native scrollbars are acceptable
+- For full-page scrolling (use body scroll)
+- When you need scroll snapping (limited support)
+- For very short content that does not need scrolling
+
+### Accessibility
+- Preserves native scroll behavior
+- Keyboard scrolling works as expected
+- Works with screen readers
+- Respects reduced motion preferences
+- Scrollbars remain accessible to all users
+
+### Features
+- Custom scrollbar styling
+- Horizontal and vertical scrolling
+- Auto-hide scrollbars (optional)
+- Smooth scrolling support
+- Touch-friendly on mobile devices
+        `,
+      },
+    },
   },
 }
 
 export default meta
-type Story = StoryObj
+type Story = StoryObj<typeof ScrollArea>
 
 const tags = Array.from({ length: 50 }).map(
   (_, i, a) => `v1.2.0-beta.${a.length - i}`

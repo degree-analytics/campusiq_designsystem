@@ -11,6 +11,74 @@ const meta: Meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## InputOTP
+
+The InputOTP component provides a specialized input for one-time passwords and verification codes. It offers individual character slots with automatic focus management and input validation.
+
+Within CampusIQ, InputOTP is used for two-factor authentication, email verification, phone number verification, and any secure code entry scenario.
+
+### When to Use
+
+- When users need to enter verification codes
+- When implementing two-factor authentication
+- When confirming email or phone number ownership
+- When secure one-time password entry is required
+
+### When NOT to Use
+
+- For regular password entry (use Input with type="password")
+- For credit card numbers (use specialized card input)
+- For general text or numeric input (use Input)
+- When the code format is variable length
+
+### Composition
+
+InputOTP is composed of:
+- **InputOTP**: Root component managing state and validation
+- **InputOTPGroup**: Groups slots together visually
+- **InputOTPSlot**: Individual character input slot
+- **InputOTPSeparator**: Visual separator between groups
+
+### Configuration
+
+- **maxLength**: Total number of characters allowed
+- **pattern**: Regex pattern for input validation (e.g., numbers only)
+- **disabled**: Prevents all input
+
+### Common Patterns
+
+- **6-digit code**: Standard verification code length
+- **4-digit PIN**: Short numeric codes
+- **Split groups**: 3-3 or 2-2-2 separations for readability
+
+### States
+
+- **Empty**: No characters entered, focus on first slot
+- **Partial**: Some characters entered, focus on next slot
+- **Complete**: All characters entered
+- **Disabled**: Non-interactive, visually muted
+- **Focused**: Current slot highlighted
+
+### Content Guidelines
+
+- Provide clear instructions about the code source
+- Show remaining time if code expires
+- Offer resend option for expired codes
+- Display clear error messages for invalid codes
+
+### Accessibility
+
+- **Keyboard navigation**: Tab/Shift+Tab between components, auto-advance on input
+- **Screen readers**: Announce code length, current position, and input characters
+- **Paste support**: Automatically fills slots when pasting full code
+- **Backspace handling**: Clears current slot and moves focus backward
+- **Focus management**: Visual focus indicator on active slot
+        `,
+      },
+    },
   },
 }
 
@@ -30,6 +98,13 @@ export const Default: Story = {
       </InputOTPGroup>
     </InputOTP>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Standard 6-digit verification code input.',
+      },
+    },
+  },
 }
 
 export const FourDigits: Story = {
@@ -43,6 +118,13 @@ export const FourDigits: Story = {
       </InputOTPGroup>
     </InputOTP>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: '4-digit PIN or short verification code.',
+      },
+    },
+  },
 }
 
 export const WithSeparator: Story = {
@@ -61,6 +143,13 @@ export const WithSeparator: Story = {
       </InputOTPGroup>
     </InputOTP>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Split layout with separator for improved readability.',
+      },
+    },
+  },
 }
 
 export const MultipleSeparators: Story = {
@@ -82,6 +171,13 @@ export const MultipleSeparators: Story = {
       </InputOTPGroup>
     </InputOTP>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: '2-2-2 split pattern for specific code formats.',
+      },
+    },
+  },
 }
 
 export const Disabled: Story = {
@@ -115,6 +211,13 @@ export const WithPattern: Story = {
       </InputOTP>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Pattern validation restricts input to numbers only.',
+      },
+    },
+  },
 }
 
 export const VerificationExample: Story = {
@@ -147,6 +250,13 @@ export const VerificationExample: Story = {
       </p>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Complete email verification flow with context and resend option.',
+      },
+    },
+  },
 }
 
 export const PhoneVerification: Story = {
@@ -189,6 +299,13 @@ export const PhoneVerification: Story = {
       </button>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Phone verification modal with 4-digit code.',
+      },
+    },
+  },
 }
 
 export const TwoFactorAuth: Story = {
@@ -226,4 +343,11 @@ export const TwoFactorAuth: Story = {
       </p>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Two-factor authentication dialog with authenticator app code.',
+      },
+    },
+  },
 }

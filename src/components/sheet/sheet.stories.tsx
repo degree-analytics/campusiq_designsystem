@@ -19,6 +19,49 @@ const meta: Meta<typeof Sheet> = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Sheet
+
+Extends the Dialog component to display content that complements the main content of the screen. Built on Radix UI Dialog primitive.
+
+### When to Use
+- Side panels for editing content
+- Navigation drawers on desktop
+- Settings or configuration panels
+- Detail views that slide in from the side
+- Quick actions without leaving context
+- Mobile-friendly off-canvas menus
+
+### When NOT to Use
+- For simple confirmations (use AlertDialog)
+- For brief messages (use Toast or Alert)
+- When content should be modal-blocking (consider Dialog)
+- For content that needs to persist across navigation
+
+### Accessibility
+- Manages focus when opened and closed
+- Traps focus within the sheet
+- Closes on Escape key press
+- Provides proper ARIA attributes
+- Includes close button for keyboard users
+- Screen reader announces sheet opening
+
+### Positions
+- **right** (default): Slides in from right edge
+- **left**: Slides in from left edge
+- **top**: Slides down from top
+- **bottom**: Slides up from bottom
+        `,
+      },
+    },
+  },
+  argTypes: {
+    defaultOpen: {
+      control: 'boolean',
+      description: 'The default open state when uncontrolled',
+    },
   },
 }
 

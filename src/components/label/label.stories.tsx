@@ -9,10 +9,63 @@ const meta: Meta<typeof Label> = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Label
+
+The Label component provides accessible text labels for form controls. It is essential for associating descriptive text with inputs, checkboxes, and other form elements.
+
+Within CampusIQ, labels are used throughout all form interfaces to provide clear, accessible identification for input fields, checkboxes, radio buttons, and other interactive controls.
+
+### When to Use
+
+- When any form control needs an accessible label
+- When describing the purpose of an input field
+- When indicating required fields or optional badges
+- When providing context for checkbox or radio options
+
+### When NOT to Use
+
+- For decorative text that doesn't label a control
+- For button text (use Button component)
+- For section headings (use heading elements)
+- For helper text (use FormDescription or plain text)
+
+### Label Association
+
+Labels must be properly associated with their controls:
+- Use \`htmlFor\` on Label matching the control's \`id\`
+- Or wrap the control inside the Label element
+
+### Styling Patterns
+
+- **Required fields**: Add \`<span className="text-destructive">*</span>\`
+- **Optional fields**: Add \`(optional)\` text in muted style
+- **Disabled state**: Apply \`opacity-50\` or use peer selector
+
+### Content Guidelines
+
+- Keep labels concise but descriptive
+- Use sentence case for labels
+- Avoid ending with colons (unless required by design system)
+- Place labels consistently (above inputs, beside checkboxes)
+
+### Accessibility
+
+- **Association**: Always use htmlFor/id pairing for controls
+- **Screen readers**: Labels are announced when focusing controls
+- **Visibility**: Labels should be visible, not hidden (avoid placeholder-only labels)
+- **Touch targets**: Clicking labels focuses associated controls
+- **Peer styling**: Use CSS peer selectors for disabled state styling
+        `,
+      },
+    },
   },
   argTypes: {
     children: {
       control: 'text',
+      description: 'The text content of the label',
     },
   },
 }
@@ -33,6 +86,13 @@ export const WithInput: Story = {
       <Input type="email" id="email" placeholder="Email" />
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Standard label-input pairing with htmlFor/id association.',
+      },
+    },
+  },
 }
 
 export const WithCheckbox: Story = {
@@ -42,6 +102,13 @@ export const WithCheckbox: Story = {
       <Label htmlFor="terms">Accept terms and conditions</Label>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Label positioned after checkbox with proper association.',
+      },
+    },
+  },
 }
 
 export const Required: Story = {
@@ -53,6 +120,13 @@ export const Required: Story = {
       <Input type="email" id="required-email" placeholder="Email" required />
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Required field indicator using destructive color asterisk.',
+      },
+    },
+  },
 }
 
 export const WithDescription: Story = {
@@ -65,6 +139,13 @@ export const WithDescription: Story = {
       </p>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Label with helper text below the input for additional context.',
+      },
+    },
+  },
 }
 
 export const Disabled: Story = {
@@ -76,6 +157,13 @@ export const Disabled: Story = {
       <Input id="disabled-input" placeholder="Disabled" disabled className="peer" />
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Label styling responds to disabled input state using CSS peer selectors.',
+      },
+    },
+  },
 }
 
 export const WithOptionalBadge: Story = {
@@ -88,6 +176,13 @@ export const WithOptionalBadge: Story = {
       <Input type="tel" id="optional-field" placeholder="+1 (555) 000-0000" />
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Optional field indicator using muted text styling.',
+      },
+    },
+  },
 }
 
 export const MultipleLabels: Story = {
@@ -107,4 +202,11 @@ export const MultipleLabels: Story = {
       </div>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Multiple labeled fields in a form layout.',
+      },
+    },
+  },
 }

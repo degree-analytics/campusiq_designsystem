@@ -30,6 +30,72 @@ const meta: Meta<typeof Form> = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Form
+
+The Form component provides a complete form management solution built on React Hook Form and Zod validation. It handles form state, validation, error messaging, and accessibility in a unified API.
+
+Within CampusIQ, forms are used for user authentication, profile management, settings configuration, data entry workflows, and any scenario requiring structured user input with validation.
+
+### When to Use
+
+- When collecting structured user input with validation
+- When building login, registration, or profile forms
+- When configuring settings or preferences
+- When validation errors need clear, accessible communication
+
+### When NOT to Use
+
+- For simple search inputs without validation (use Input directly)
+- For single-field interactions (consider simpler patterns)
+- When form state management isn't needed
+
+### Composition
+
+The Form system is composed of:
+- **Form**: Root provider wrapping the form element
+- **FormField**: Connects individual fields to form state
+- **FormItem**: Container for field, label, description, and message
+- **FormLabel**: Accessible label for the field
+- **FormControl**: Wrapper applying accessibility attributes
+- **FormDescription**: Helper text for the field
+- **FormMessage**: Validation error message display
+
+### Validation
+
+Forms integrate with Zod schemas for:
+- **Type-safe validation**: Schema-driven type inference
+- **Real-time feedback**: Validation on blur or change
+- **Clear messaging**: Custom error messages per field
+- **Complex rules**: Cross-field validation and dependencies
+
+### States
+
+- **Default**: Form ready for input
+- **Validating**: Real-time validation in progress
+- **Valid**: All fields pass validation
+- **Invalid**: One or more fields have errors
+- **Submitting**: Form submission in progress
+
+### Content Guidelines
+
+- Group related fields logically
+- Provide clear labels and descriptions
+- Show validation requirements upfront when helpful
+- Display errors clearly with actionable guidance
+
+### Accessibility
+
+- **Labeling**: FormLabel automatically associates with FormControl
+- **Error association**: FormMessage linked via aria-describedby
+- **Keyboard navigation**: Full Tab and Enter key support
+- **Screen readers**: Announce labels, descriptions, and errors
+- **Focus management**: Focus moves to first error on submission failure
+        `,
+      },
+    },
   },
 }
 
@@ -81,6 +147,13 @@ function SimpleFormExample() {
 
 export const Default: Story = {
   render: () => <SimpleFormExample />,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Basic form with a single validated field.',
+      },
+    },
+  },
 }
 
 const loginFormSchema = z.object({
@@ -163,6 +236,13 @@ function LoginFormExample() {
 
 export const LoginForm: Story = {
   render: () => <LoginFormExample />,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Common login form pattern with email, password, and remember me checkbox.',
+      },
+    },
+  },
 }
 
 const profileFormSchema = z.object({
@@ -294,6 +374,13 @@ function ProfileFormExample() {
 
 export const ProfileForm: Story = {
   render: () => <ProfileFormExample />,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Complex profile form demonstrating various field types and layouts.',
+      },
+    },
+  },
 }
 
 const errorFormSchema = z.object({
@@ -361,4 +448,11 @@ function FormWithErrorsExample() {
 
 export const WithErrors: Story = {
   render: () => <FormWithErrorsExample />,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Form displaying validation errors with clear error messaging.',
+      },
+    },
+  },
 }

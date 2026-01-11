@@ -12,16 +12,73 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
-const meta: Meta = {
+const meta: Meta<typeof Tabs> = {
   title: 'Components/Navigation/Tabs',
+  component: Tabs,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Tabs
+
+A set of layered sections of content, known as tab panels, displayed one at a time. Tabs organize content into separate views where only one can be visible at a time.
+
+### When to Use
+
+- To organize related content into logical sections without page navigation
+- When users need to switch between different views of related information
+- For settings pages with multiple categories
+- To reduce scrolling by grouping content into manageable chunks
+- When the content sections are equally important and should be easily accessible
+- For dashboards with different data views
+
+### When NOT to Use
+
+- When content needs to be compared side-by-side (show both simultaneously)
+- For sequential workflows or wizards (use a stepper component)
+- When there are more than 6-7 tabs (consider a different navigation pattern)
+- For navigation between different pages (use navigation menus)
+- When tabs would hide critical information that users need to see together
+
+### Accessibility
+
+- Built on Radix UI Tabs primitive for robust accessibility
+- Proper ARIA roles: tablist, tab, and tabpanel
+- Arrow key navigation between tabs
+- Tab key moves focus to the active panel content
+- Active tab indicated with aria-selected="true"
+- Panels properly labeled with aria-labelledby
+- Disabled tabs are properly announced
+- Focus indicators are visible on all interactive elements
+        `,
+      },
+    },
+  },
+  argTypes: {
+    defaultValue: {
+      description: 'The value of the tab that should be active by default',
+      control: 'text',
+    },
+    value: {
+      description: 'The controlled value of the currently active tab',
+      control: 'text',
+    },
+    onValueChange: {
+      description: 'Callback fired when the active tab changes',
+      action: 'onValueChange',
+    },
+    orientation: {
+      description: 'The orientation of the tabs',
+      control: 'select',
+      options: ['horizontal', 'vertical'],
+    },
   },
 }
 
 export default meta
-type Story = StoryObj
+type Story = StoryObj<typeof Tabs>
 
 export const Default: Story = {
   render: () => (
@@ -109,6 +166,13 @@ export const WithIcons: Story = {
       </TabsContent>
     </Tabs>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Tab triggers can include icons alongside text labels for better visual recognition.',
+      },
+    },
+  },
 }
 
 export const MultipleTabs: Story = {
@@ -166,6 +230,13 @@ export const MultipleTabs: Story = {
       </TabsContent>
     </Tabs>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Tabs can accommodate multiple sections. Keep the number reasonable (4-6) for usability.',
+      },
+    },
+  },
 }
 
 export const Disabled: Story = {
@@ -195,6 +266,13 @@ export const Disabled: Story = {
       </TabsContent>
     </Tabs>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Individual tabs can be disabled when their content is unavailable or requires specific permissions.',
+      },
+    },
+  },
 }
 
 export const CardStyle: Story = {
@@ -245,4 +323,11 @@ export const CardStyle: Story = {
       </TabsContent>
     </Tabs>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Tabs can be styled with full-width triggers and card-style content panels for a more contained layout.',
+      },
+    },
+  },
 }

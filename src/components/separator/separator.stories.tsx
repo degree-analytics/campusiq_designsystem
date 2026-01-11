@@ -1,16 +1,60 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Separator } from './separator'
 
-const meta: Meta = {
+const meta: Meta<typeof Separator> = {
   title: 'Components/Layout/Separator',
+  component: Separator,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Separator
+
+Visually or semantically separates content. Built on Radix UI Separator primitive.
+
+### When to Use
+- Dividing sections of content
+- Separating menu items or navigation links
+- Creating visual hierarchy between groups
+- Delineating header/footer from main content
+- Breaking up long forms into sections
+
+### When NOT to Use
+- As a purely decorative element (use CSS borders)
+- When spacing alone provides sufficient separation
+- Inside table rows (use native table borders)
+- When it would create visual clutter
+
+### Accessibility
+- Uses proper separator role for screen readers
+- Supports both decorative and semantic separation
+- Horizontal and vertical orientations
+- Proper ARIA attributes applied automatically
+
+### Orientations
+- **horizontal** (default): Full-width line between stacked content
+- **vertical**: Full-height line between side-by-side content
+        `,
+      },
+    },
+  },
+  argTypes: {
+    orientation: {
+      control: 'radio',
+      options: ['horizontal', 'vertical'],
+      description: 'The orientation of the separator',
+    },
+    decorative: {
+      control: 'boolean',
+      description: 'Whether the separator is purely decorative',
+    },
   },
 }
 
 export default meta
-type Story = StoryObj
+type Story = StoryObj<typeof Separator>
 
 export const Default: Story = {
   render: () => (

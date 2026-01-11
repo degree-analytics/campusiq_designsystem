@@ -38,6 +38,9 @@ Within CampusIQ, buttons enable users to execute operations such as saving confi
 | **Default** | Primary actions (Save, Submit, Confirm) |
 | **Secondary** | Secondary actions alongside primary buttons |
 | **Destructive** | Dangerous actions (Delete, Remove, Cancel subscription) |
+| **Success** | Positive confirmations (Approved, Complete, Saved successfully) |
+| **Warning** | Caution actions (Proceed with care, Approaching limit) |
+| **Informational** | Neutral information actions (Learn more, View details) |
 | **Outline** | Less prominent actions, often paired with default buttons |
 | **Ghost** | Tertiary actions, toolbar buttons, icon-only actions |
 | **Link** | Navigation that looks like a text link but has button behavior |
@@ -75,7 +78,7 @@ Within CampusIQ, buttons enable users to execute operations such as saving confi
   argTypes: {
     variant: {
       control: 'select',
-      options: ['default', 'secondary', 'destructive', 'outline', 'ghost', 'link'],
+      options: ['default', 'secondary', 'destructive', 'success', 'warning', 'informational', 'outline', 'ghost', 'link'],
       description: 'Visual style variant that communicates the button\'s importance and intent',
       table: {
         defaultValue: { summary: 'default' },
@@ -141,6 +144,27 @@ export const Link: Story = {
   args: {
     variant: 'link',
     children: 'Link',
+  },
+}
+
+export const Success: Story = {
+  args: {
+    variant: 'success',
+    children: 'Success',
+  },
+}
+
+export const Warning: Story = {
+  args: {
+    variant: 'warning',
+    children: 'Warning',
+  },
+}
+
+export const Informational: Story = {
+  args: {
+    variant: 'informational',
+    children: 'Informational',
   },
 }
 
@@ -226,6 +250,9 @@ export const AllVariants: Story = {
       <Button variant="default">Default</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="destructive">Destructive</Button>
+      <Button variant="success">Success</Button>
+      <Button variant="warning">Warning</Button>
+      <Button variant="informational">Informational</Button>
       <Button variant="outline">Outline</Button>
       <Button variant="ghost">Ghost</Button>
       <Button variant="link">Link</Button>

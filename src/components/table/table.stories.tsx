@@ -10,16 +10,57 @@ import {
   TableCaption,
 } from './table'
 
-const meta: Meta = {
+const meta: Meta<typeof Table> = {
   title: 'Components/Data Display/Table',
+  component: Table,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Table
+
+A responsive table component for displaying tabular data with consistent styling and accessibility features.
+
+### When to Use
+- Displaying structured data in rows and columns
+- Comparing multiple items across attributes
+- Financial data, invoices, and reports
+- User lists and admin dashboards
+- Data grids with sorting and filtering
+
+### When NOT to Use
+- For simple key-value pairs (use Description List)
+- When data has only one column (use List)
+- For complex interactive grids (consider DataGrid libraries)
+- When layout needs to be more flexible
+
+### Accessibility
+- Uses semantic HTML table elements
+- Proper header cell associations
+- Support for table captions
+- Keyboard navigable cells
+- Screen reader compatible structure
+- Consider row selection states for interactive tables
+
+### Composition
+- **Table**: The wrapper component
+- **TableHeader**: Contains header rows
+- **TableBody**: Contains data rows
+- **TableFooter**: Contains footer/summary rows
+- **TableRow**: Individual table row
+- **TableHead**: Header cell (th)
+- **TableCell**: Data cell (td)
+- **TableCaption**: Accessible table description
+        `,
+      },
+    },
   },
 }
 
 export default meta
-type Story = StoryObj
+type Story = StoryObj<typeof Table>
 
 const invoices = [
   { invoice: 'INV001', status: 'Paid', method: 'Credit Card', amount: '$250.00' },

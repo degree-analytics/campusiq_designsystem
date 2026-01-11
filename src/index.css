@@ -3,95 +3,12 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Theme configuration for Tailwind CSS v4 */
-@theme {
-  /* Colors using CSS variables for light/dark mode support */
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-
-  /* Border radius */
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-}
-
-/* CSS variables for theming */
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-  }
-
-  * {
-    border-color: hsl(var(--border));
-  }
-
-  body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-}
-
+/*
+ * CampusIQ Design System Theme
+ * Color values sourced from Figma design file
+ * Using OKLCH color space for better color perception and manipulation
+ * @theme inline allows direct variable references without hsl() wrapper
+ */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -115,6 +32,17 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-weak: var(--destructive-weak);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-weak: var(--success-weak);
+  --color-informational: var(--informational);
+  --color-informational-foreground: var(--informational-foreground);
+  --color-informational-weak: var(--informational-weak);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-weak: var(--warning-weak);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -133,75 +61,167 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/*
+ * Light mode CSS variables
+ * CampusIQ Brand Colors from Figma:
+ * - Primary: #5e4890 (purple)
+ * - Secondary: #f4f4f5 (light gray)
+ * - Destructive: #be123c (rose)
+ * - Foreground: #27272a (dark gray)
+ * - Background: #ffffff (white)
+ */
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --radius: 0.5rem;
+
+  /* Background & Foreground - Figma: #ffffff, #27272a */
+  --background: #ffffff;
+  --foreground: #27272a;
+
+  /* Card - Figma: #ffffff, #3f3f46 */
+  --card: #ffffff;
+  --card-foreground: #3f3f46;
+
+  /* Popover - Figma: #ffffff, #3f3f46 (matches card) */
+  --popover: #ffffff;
+  --popover-foreground: #3f3f46;
+
+  /* Primary - Figma: #5e4890 (CampusIQ Purple) */
+  --primary: #5e4890;
+  --primary-foreground: #ffffff;
+
+  /* Secondary - Figma: #f4f4f5, #3f3f46 */
+  --secondary: #f4f4f5;
+  --secondary-foreground: #3f3f46;
+
+  /* Muted - Figma: #e4e4e7, #71717a */
+  --muted: #e4e4e7;
+  --muted-foreground: #71717a;
+
+  /* Accent - Light purple tint for hover states */
+  --accent: #f4f4f5;
+  --accent-foreground: #27272a;
+
+  /* Destructive - Figma: #be123c (rose) */
+  --destructive: #be123c;
+  --destructive-foreground: #fef2f2;
+  --destructive-weak: #fff1f2;
+
+  /* Success - Figma: #047857 (emerald) */
+  --success: #047857;
+  --success-foreground: #ffffff;
+  --success-weak: #ecfdf5;
+
+  /* Informational - Figma: #0284c7 (sky blue) */
+  --informational: #0284c7;
+  --informational-foreground: #ffffff;
+  --informational-weak: #f0f9ff;
+
+  /* Warning - Figma: #d97706 (amber) */
+  --warning: #d97706;
+  --warning-foreground: #ffffff;
+  --warning-weak: #fffbeb;
+
+  /* Border & Input - Figma: #e4e4e7 */
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+
+  /* Ring - Figma: #2563eb (focus blue) */
+  --ring: #2563eb;
+
+  /* Chart colors */
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+
+  /* Sidebar - Uses primary purple */
+  --sidebar: #faf9fc;
+  --sidebar-foreground: #27272a;
+  --sidebar-primary: #5e4890;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f4f4f5;
+  --sidebar-accent-foreground: #27272a;
+  --sidebar-border: #e4e4e7;
+  --sidebar-ring: #2563eb;
 }
 
+/* Dark mode CSS variables */
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  /* Background & Foreground */
+  --background: #18181b;
+  --foreground: #fafafa;
+
+  /* Card */
+  --card: #27272a;
+  --card-foreground: #fafafa;
+
+  /* Popover */
+  --popover: #27272a;
+  --popover-foreground: #fafafa;
+
+  /* Primary - Lighter purple for dark mode */
+  --primary: #a78bfa;
+  --primary-foreground: #1e1b4b;
+
+  /* Secondary */
+  --secondary: #3f3f46;
+  --secondary-foreground: #fafafa;
+
+  /* Muted */
+  --muted: #3f3f46;
+  --muted-foreground: #a1a1aa;
+
+  /* Accent */
+  --accent: #3f3f46;
+  --accent-foreground: #fafafa;
+
+  /* Destructive - Lighter rose for dark mode */
+  --destructive: #f43f5e;
+  --destructive-foreground: #fef2f2;
+  --destructive-weak: #4c0519;
+
+  /* Success - Lighter emerald for dark mode */
+  --success: #34d399;
+  --success-foreground: #022c22;
+  --success-weak: #022c22;
+
+  /* Informational - Lighter sky blue for dark mode */
+  --informational: #38bdf8;
+  --informational-foreground: #0c4a6e;
+  --informational-weak: #0c4a6e;
+
+  /* Warning - Lighter amber for dark mode */
+  --warning: #fbbf24;
+  --warning-foreground: #451a03;
+  --warning-weak: #451a03;
+
+  /* Border & Input */
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.15);
+
+  /* Ring */
+  --ring: #60a5fa;
+
+  /* Chart colors for dark mode */
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+
+  /* Sidebar */
+  --sidebar: #27272a;
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: #a78bfa;
+  --sidebar-primary-foreground: #1e1b4b;
+  --sidebar-accent: #3f3f46;
+  --sidebar-accent-foreground: #fafafa;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: #60a5fa;
 }
 
+/* Base layer styles */
 @layer base {
   * {
     @apply border-border outline-ring/50;

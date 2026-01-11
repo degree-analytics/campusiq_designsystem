@@ -13,7 +13,6 @@ import {
   BarChart3,
   MessageSquare,
   Bell,
-  Search,
   Plus,
 } from 'lucide-react'
 import {
@@ -47,16 +46,85 @@ import {
   CollapsibleTrigger,
 } from '@/components/collapsible/collapsible'
 
-const meta: Meta = {
+const meta: Meta<typeof Sidebar> = {
   title: 'Components/Navigation/Sidebar',
+  component: Sidebar,
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
+    docs: {
+      description: {
+        component: `
+## Sidebar
+
+A composable sidebar component for building complex navigation layouts. The Sidebar provides a flexible container for organizing navigation items, branding, user profiles, and actions in a vertical layout.
+
+### When to Use
+
+- For application navigation that requires persistent visibility
+- When you have many navigation items that need hierarchical organization
+- For admin dashboards and complex application interfaces
+- When users need quick access to primary navigation at all times
+- For applications where the sidebar can be collapsed to save space
+- When you need to display user profile, branding, or contextual actions
+
+### When NOT to Use
+
+- For simple websites with few pages (use a header navigation)
+- On mobile-first designs where space is limited (consider bottom navigation)
+- For marketing sites where navigation is minimal
+- When the sidebar would hide important content
+- For single-page applications with minimal navigation needs
+
+### Accessibility
+
+- Semantic navigation structure with proper landmarks
+- Full keyboard navigation support
+- Collapsible groups are announced correctly to screen readers
+- Active states are properly indicated with aria-current
+- Sidebar toggle is keyboard accessible
+- Focus management when collapsing/expanding
+- Tooltips available in collapsed mode for icon-only view
+- Skip links can be added for bypassing navigation
+
+### Sub-components
+
+- **SidebarProvider**: Context provider for sidebar state
+- **SidebarHeader**: Branding and primary content area
+- **SidebarContent**: Main scrollable navigation area
+- **SidebarFooter**: User profile, settings, and secondary actions
+- **SidebarGroup**: Grouping container with optional label
+- **SidebarMenu**: Navigation menu container
+- **SidebarMenuItem**: Individual navigation items
+- **SidebarMenuButton**: Clickable navigation buttons
+- **SidebarMenuSub**: Nested navigation items
+- **SidebarRail**: Vertical rail for resize interaction
+- **SidebarTrigger**: Button to toggle sidebar visibility
+        `,
+      },
+    },
+  },
+  argTypes: {
+    side: {
+      description: 'Which side of the viewport the sidebar appears on',
+      control: 'select',
+      options: ['left', 'right'],
+    },
+    variant: {
+      description: 'The visual style of the sidebar',
+      control: 'select',
+      options: ['sidebar', 'floating', 'inset'],
+    },
+    collapsible: {
+      description: 'The collapsible behavior of the sidebar',
+      control: 'select',
+      options: ['offcanvas', 'icon', 'none'],
+    },
   },
 }
 
 export default meta
-type Story = StoryObj
+type Story = StoryObj<typeof Sidebar>
 
 const mainNavItems = [
   { icon: Home, label: 'Dashboard', href: '#', isActive: true },
@@ -242,6 +310,13 @@ export const CollapsibleIcon: Story = {
       </SidebarInset>
     </SidebarProvider>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'The sidebar can collapse to show only icons, with tooltips appearing on hover for accessibility.',
+      },
+    },
+  },
 }
 
 export const WithSections: Story = {
@@ -413,6 +488,13 @@ export const WithSections: Story = {
       </SidebarInset>
     </SidebarProvider>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A full-featured sidebar with collapsible sections, search input, group actions, and menu item actions.',
+      },
+    },
+  },
 }
 
 export const Floating: Story = {
@@ -486,6 +568,13 @@ export const Floating: Story = {
       </SidebarInset>
     </SidebarProvider>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'The floating variant adds visual separation with rounded corners and a shadow effect.',
+      },
+    },
+  },
 }
 
 export const Inset: Story = {
@@ -559,6 +648,13 @@ export const Inset: Story = {
       </SidebarInset>
     </SidebarProvider>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'The inset variant provides a contained appearance with background color extending to the viewport edge.',
+      },
+    },
+  },
 }
 
 export const RightSide: Story = {
@@ -632,4 +728,11 @@ export const RightSide: Story = {
       </Sidebar>
     </SidebarProvider>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Sidebars can be positioned on either side. Use the right side for secondary navigation or contextual panels.',
+      },
+    },
+  },
 }
