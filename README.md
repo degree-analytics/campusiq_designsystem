@@ -1,24 +1,26 @@
-# CampusIQ
+# CampusIQ Component Library
 
-A modern ShadCN/UI component library built with React 19, TypeScript 5.9, and Tailwind CSS v4, featuring comprehensive Storybook documentation.
+A production-ready React component library built with React 19, TypeScript 5.9, and Tailwind CSS v4. Features 50+ components with comprehensive Storybook documentation, full Figma design system alignment, and semantic color variants.
 
 ## Tech Stack
 
-- **React** 19.2.3
+- **React** 19.2.0
 - **TypeScript** 5.9.3
-- **Vite** 7.0.5
-- **Tailwind CSS** 4.1.11 (CSS-based configuration)
-- **ShadCN/UI** - 46 components (New York style)
-- **Storybook** 10.1.11
+- **Vite** 7.2.4
+- **Tailwind CSS** 4.1.18 (CSS-based configuration with `@theme inline`)
+- **Storybook** 10.1.11 with dark mode toggle
+- **Radix UI** primitives for accessibility
+- **Class Variance Authority (CVA)** for variant management
 
 ## Features
 
-- Complete ShadCN/UI component library with 46 components
-- Modern oklch color space for design tokens
-- Light and dark mode support
-- Comprehensive Storybook documentation with stories for all components
-- Tailwind CSS v4 with `@theme` directive configuration
-- Radix UI primitives for accessibility
+- **50+ Components** - Complete UI component library with New York style variants
+- **Figma Design System Alignment** - 100% parity with CampusIQ Figma design file
+- **Semantic Color System** - Success, warning, destructive, and informational variants
+- **Dark Mode Support** - Full light/dark mode with Storybook toolbar toggle
+- **Interactive Stories** - All stateful components have functional interactive demos
+- **Accessibility First** - WCAG 2.1 AA compliant with Radix UI primitives
+- **Modern CSS** - Tailwind CSS v4 with CSS custom properties
 
 ## Getting Started
 
@@ -60,46 +62,146 @@ pnpm build-storybook
 
 ## Components
 
-The library includes 46 ShadCN/UI components organized by category:
+The library includes 50+ components organized by category:
 
 ### Form Components
-- Button, Input, Textarea, Select, Checkbox, Radio Group
-- Switch, Slider, Toggle, Toggle Group
-- Form, Label, Calendar, Date Picker
+| Component | Features |
+|-----------|----------|
+| Button | 9 variants (default, secondary, destructive, success, warning, informational, outline, ghost, link) |
+| Checkbox | Interactive with indeterminate state |
+| Input | With icons, validation states |
+| Input OTP | One-time password input |
+| Label | Accessible form labels |
+| Radio Group | Single selection groups |
+| Select | Searchable dropdown selection |
+| Slider | Range input with real-time value display |
+| Switch | Toggle switches with settings panel demos |
+| Textarea | Multi-line text input |
+| Toggle | Pressable toggle buttons |
+| Toggle Group | Single and multi-select toggle groups |
+| Calendar | Date selection with react-day-picker |
+| Form | react-hook-form integration with Zod validation |
 
-### Feedback Components
-- Alert, Alert Dialog, Dialog, Toast, Sonner
-- Progress, Skeleton, Tooltip
+### Feedback & Overlay Components
+| Component | Features |
+|-----------|----------|
+| Alert | 5 semantic variants (default, destructive, success, warning, informational) |
+| Alert Dialog | Confirmation dialogs with async support |
+| Dialog | Modal dialogs with form validation examples |
+| Drawer | Bottom sheet with snap points (Vaul) |
+| Sheet | Side panels (top, right, bottom, left) |
+| Toast/Sonner | Notifications with semantic styling |
+| Progress | Semantic variants with animated demos |
+| Skeleton | Loading states with reduced-motion support |
+| Tooltip | Positioned tooltips with arrow |
+| Popover | Floating content panels |
+| Hover Card | Preview cards on hover |
 
 ### Navigation Components
-- Breadcrumb, Command, Context Menu, Dropdown Menu
-- Menubar, Navigation Menu, Pagination
-- Tabs, Sidebar
+| Component | Features |
+|-----------|----------|
+| Accordion | Expandable content sections |
+| AccordionTreeItem | Hierarchical tree navigation |
+| Breadcrumb | Navigation path display |
+| Collapsible | Expand/collapse content |
+| Combobox | Searchable select with Command |
+| Command | Command palette (cmdk) |
+| Context Menu | Right-click menus |
+| Dropdown Menu | Click-triggered menus |
+| Menubar | Application menu bars |
+| Navigation Menu | Site navigation with mega menus |
+| Pagination | Interactive page navigation |
+| Tabs | Tabbed content panels |
+| Sidebar | Collapsible app sidebars |
 
-### Layout & Data Components
-- Accordion, Aspect Ratio, Avatar, Badge, Card
-- Carousel, Collapsible, Drawer, Hover Card
-- Popover, Resizable, Scroll Area, Separator
-- Sheet, Table
+### Data Display & Layout Components
+| Component | Features |
+|-----------|----------|
+| Aspect Ratio | Responsive aspect ratio containers |
+| Avatar | User avatars with fallbacks |
+| Badge | 7 variants including semantic colors |
+| Card | Flexible card layouts with click states |
+| Carousel | Embla carousel with autoplay, loop, pagination |
+| Data Table | Sortable, filterable tables with TanStack Table |
+| Date Picker | Calendar popover for date selection |
+| Resizable | Resizable panel layouts |
+| Scroll Area | Custom scrollbar styling |
+| Separator | Visual dividers |
+| Table | Sortable, responsive data tables |
 
-## Design Tokens
+## Design System
 
-The project uses oklch color space for design tokens:
+### Color Tokens
+
+The project uses a comprehensive semantic color system:
 
 ```css
+/* Light Mode - CampusIQ Brand Colors */
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --secondary: oklch(0.97 0 0);
-  --muted: oklch(0.97 0 0);
-  --accent: oklch(0.97 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  /* ... */
+  /* Core */
+  --primary: #5e4890;        /* CampusIQ Purple */
+  --secondary: #f4f4f5;
+  --background: #ffffff;
+  --foreground: #27272a;
+
+  /* Semantic Colors */
+  --destructive: #be123c;    /* Rose - errors, danger */
+  --success: #047857;        /* Emerald - completion, approval */
+  --warning: #d97706;        /* Amber - caution */
+  --informational: #0284c7;  /* Sky - neutral info */
+
+  /* Weak variants for backgrounds */
+  --destructive-weak: #fff1f2;
+  --success-weak: #ecfdf5;
+  --warning-weak: #fffbeb;
+  --informational-weak: #f0f9ff;
+
+  /* Overlay for modals */
+  --overlay: rgba(0, 0, 0, 0.5);
 }
 ```
+
+### Dark Mode
+
+Full dark mode support with lighter color variants:
+
+```css
+.dark {
+  --primary: #a78bfa;        /* Lighter purple */
+  --background: #18181b;
+  --foreground: #fafafa;
+
+  --destructive: #f43f5e;
+  --success: #34d399;
+  --warning: #fbbf24;
+  --informational: #38bdf8;
+
+  --overlay: rgba(0, 0, 0, 0.6);
+}
+```
+
+## Storybook
+
+### Dark Mode Toggle
+
+Storybook includes a theme toggle in the toolbar (paintbrush icon) to switch between light and dark modes.
+
+### Interactive Stories
+
+All stateful components include interactive stories with proper state management:
+
+- **Form inputs**: Real-time value display, controlled state demos
+- **Overlays**: Open/close functionality, async operations
+- **Navigation**: Expand/collapse, page changes
+- **Data display**: Sorting, filtering, selection
+
+### Running Storybook
+
+```bash
+pnpm storybook
+```
+
+Visit http://localhost:6006 to view the component library.
 
 ## Project Structure
 
@@ -108,17 +210,23 @@ campusiq/
 ├── src/
 │   ├── components/
 │   │   ├── accordion/
+│   │   │   ├── accordion.tsx
+│   │   │   └── accordion.stories.tsx
+│   │   ├── accordion-tree-item/
 │   │   ├── alert/
 │   │   ├── button/
-│   │   │   ├── button.tsx
-│   │   │   └── button.stories.tsx
-│   │   └── ... (46 component folders)
+│   │   └── ... (50+ component folders)
 │   ├── hooks/
+│   │   ├── use-mobile.ts
+│   │   └── use-toast.ts
 │   ├── lib/
-│   └── index.css
+│   │   └── utils.ts
+│   └── index.css          # Design tokens & Tailwind config
 ├── .storybook/
 │   ├── main.ts
-│   └── preview.ts
+│   ├── preview.tsx        # Dark mode decorator
+│   └── manager.ts         # CampusIQ branding
+├── docs/                   # Audit reports
 └── package.json
 ```
 
@@ -131,6 +239,36 @@ campusiq/
 | `pnpm storybook` | Start Storybook on port 6006 |
 | `pnpm build-storybook` | Build Storybook static site |
 | `pnpm lint` | Run ESLint |
+
+## Figma Integration
+
+This component library is aligned with the CampusIQ Figma design file:
+- **FileKey**: `D0uIkeRBoEsW9VCZyJMp4B`
+- All components match Figma specifications for spacing, colors, and typography
+- Design tokens sourced directly from Figma variables
+
+## Deployment
+
+### Railway
+
+```bash
+# Build Storybook
+pnpm build-storybook
+
+# Deploy to Railway
+railway up
+```
+
+## Recent Updates
+
+### January 2026
+- Added semantic color variants (success, warning, informational) to Alert, Badge, Button, Progress
+- Added 4 new components: AccordionTreeItem, Combobox, DatePicker, DataTable
+- Made all component stories interactive with proper state management
+- Added dark mode toggle to Storybook toolbar
+- Aligned all overlay components with `bg-overlay` design token
+- Added comprehensive Figma design system audit
+- Fixed AccordionTreeItem functionality and styling
 
 ## License
 
