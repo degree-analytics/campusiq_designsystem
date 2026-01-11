@@ -22,6 +22,12 @@ echo "⏳ Waiting for Storybook to be ready..."
 MAX_WAIT=120
 WAIT_COUNT=0
 while ! wget -q --spider "http://localhost:$STORYBOOK_PORT" 2>/dev/null; do
+    # Check if Storybook process is still running
+    if ! kill -0 $STORYBOOK_PID 2>/dev/null; then
+        echo "❌ Storybook process exited unexpectedly"
+        exit 1
+    fi
+
     sleep 2
     WAIT_COUNT=$((WAIT_COUNT + 2))
     if [ $WAIT_COUNT -ge $MAX_WAIT ]; then
@@ -40,13 +46,13 @@ export STORYBOOK_PROXY_ENABLED=true
 # Start Story UI MCP server (handles API routes and proxies to Storybook)
 echo "🎨 Starting Story UI MCP server on port $MCP_PORT..."
 
-# Find the story-ui MCP server - check multiple possible locations
-if [ -f "./node_modules/story-ui/dist/mcp-server/index.js" ]; then
-    MCP_SERVER_PATH="./node_modules/story-ui/dist/mcp-server/index.js"
-elif [ -f "./node_modules/story-ui/mcp-server/index.js" ]; then
-    MCP_SERVER_PATH="./node_modules/story-ui/mcp-server/index.js"
-else
-    echo "❌ Could not find Story UI MCP server"
+# The MCP server is from @tpitre/story-ui npm package
+MCP_SERVER_PATH="./node_modules/@tpitre/story-ui/dist/mcp-server/index.js"
+
+if [ ! -f "$MCP_SERVER_PATH" ]; then
+    echo "❌ Could not find Story UI MCP server at: $MCP_SERVER_PATH"
+    echo "   Contents of node_modules/@tpitre/story-ui/dist:"
+    ls -la ./node_modules/@tpitre/story-ui/dist/ 2>/dev/null || echo "   Directory not found"
     kill $STORYBOOK_PID 2>/dev/null || true
     exit 1
 fi
@@ -57,16 +63,35 @@ echo "📍 Using MCP server at: $MCP_SERVER_PATH"
 PORT=$MCP_PORT node "$MCP_SERVER_PATH" &
 MCP_PID=$!
 
-echo "✅ Story UI MCP server started!"
+# Wait a moment for the MCP server to start
+sleep 3
+
+# Check if MCP server is responding
+if ! wget -q --spider "http://localhost:$MCP_PORT/story-ui/providers" 2>/dev/null; then
+    echo "⚠️  MCP server may still be starting..."
+fi
+
 echo ""
-echo "🎉 CampusIQ Storybook with Story UI is now running!"
-echo "   - Storybook: http://localhost:$STORYBOOK_PORT (internal)"
-echo "   - Story UI API: http://localhost:$MCP_PORT/story-ui/providers"
-echo "   - Public URL: http://localhost:$MCP_PORT"
+echo "═══════════════════════════════════════════════════════════"
+echo "✅ CampusIQ Storybook with Story UI is now running!"
+echo "═══════════════════════════════════════════════════════════"
 echo ""
+echo "   📖 Storybook (internal): http://localhost:$STORYBOOK_PORT"
+echo "   🤖 MCP Server (public):  http://localhost:$MCP_PORT"
+echo ""
+echo "   API Endpoints:"
+echo "   - /story-ui/providers    - List available LLM providers"
+echo "   - /story-ui/generate     - Generate stories"
+echo "   - /mcp-remote/mcp        - Claude Desktop MCP endpoint"
+echo ""
+echo "   Storybook UI is proxied through the MCP server."
+echo "   Visit the public URL to access Storybook with Story UI."
+echo ""
+echo "═══════════════════════════════════════════════════════════"
 
 # Handle shutdown gracefully
 cleanup() {
+    echo ""
     echo "🛑 Shutting down..."
     kill $STORYBOOK_PID 2>/dev/null || true
     kill $MCP_PID 2>/dev/null || true
@@ -76,9 +101,4 @@ cleanup() {
 trap cleanup SIGTERM SIGINT
 
 # Wait for either process to exit
-wait -n $STORYBOOK_PID $MCP_PID
-EXIT_CODE=$?
-
-# If one process exits, kill the other
-cleanup
-exit $EXIT_CODE
+wait $STORYBOOK_PID $MCP_PID
