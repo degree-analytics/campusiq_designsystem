@@ -111,7 +111,7 @@ export const WithAction: Story = {
 export const SimpleCard: Story = {
   render: () => (
     <Card className="w-[300px]">
-      <CardContent className="pt-6">
+      <CardContent>
         <p className="text-center text-muted-foreground">
           A simple card with only content.
         </p>

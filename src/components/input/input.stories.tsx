@@ -216,3 +216,37 @@ export const AllTypes: Story = {
     },
   },
 }
+
+export const AllStates: Story = {
+  render: () => (
+    <div className="grid w-full max-w-sm gap-4">
+      <div className="grid gap-1.5">
+        <Label htmlFor="default-state">Default</Label>
+        <Input id="default-state" placeholder="Default state" />
+      </div>
+      <div className="grid gap-1.5">
+        <Label htmlFor="with-value">With Value</Label>
+        <Input id="with-value" defaultValue="Entered text" />
+      </div>
+      <div className="grid gap-1.5">
+        <Label htmlFor="disabled-state">Disabled</Label>
+        <Input id="disabled-state" placeholder="Disabled" disabled />
+      </div>
+      <div className="grid gap-1.5">
+        <Label htmlFor="disabled-value">Disabled with Value</Label>
+        <Input id="disabled-value" defaultValue="Cannot edit" disabled />
+      </div>
+      <div className="grid gap-1.5">
+        <Label htmlFor="invalid-state">Invalid</Label>
+        <Input id="invalid-state" defaultValue="Invalid input" aria-invalid />
+      </div>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'All input states for visual QA: default, with value, disabled, disabled with value, and invalid.',
+      },
+    },
+  },
+}

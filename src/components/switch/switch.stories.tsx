@@ -210,3 +210,33 @@ export const SettingsList: Story = {
     },
   },
 }
+
+export const AllStates: Story = {
+  render: () => (
+    <div className="grid gap-4">
+      <div className="flex items-center space-x-2">
+        <Switch id="state-off" />
+        <Label htmlFor="state-off">Off</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <Switch id="state-on" defaultChecked />
+        <Label htmlFor="state-on">On</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <Switch id="state-disabled-off" disabled />
+        <Label htmlFor="state-disabled-off" className="opacity-50">Disabled Off</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <Switch id="state-disabled-on" disabled defaultChecked />
+        <Label htmlFor="state-disabled-on" className="opacity-50">Disabled On</Label>
+      </div>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'All switch states for visual QA: off, on, disabled off, and disabled on.',
+      },
+    },
+  },
+}

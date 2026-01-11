@@ -402,3 +402,83 @@ export const NestedSubmenus: Story = {
     },
   },
 }
+
+export const WithDisabledItems: Story = {
+  render: () => (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline">
+          Actions
+          <ChevronDown className="ml-2 h-4 w-4" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuLabel>Available Actions</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>
+          <Edit className="mr-2 h-4 w-4" />
+          Edit
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Copy className="mr-2 h-4 w-4" />
+          Duplicate
+        </DropdownMenuItem>
+        <DropdownMenuItem disabled>
+          <Share className="mr-2 h-4 w-4" />
+          Share (Requires permission)
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem disabled>
+          <Download className="mr-2 h-4 w-4" />
+          Download (Not available)
+        </DropdownMenuItem>
+        <DropdownMenuItem variant="destructive" disabled>
+          <Trash2 className="mr-2 h-4 w-4" />
+          Delete (Protected)
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Disabled items are shown with reduced opacity and cannot be interacted with. They are announced as unavailable to screen readers.',
+      },
+    },
+  },
+}
+
+export const InsetItems: Story = {
+  render: () => (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline">
+          View Options
+          <ChevronDown className="ml-2 h-4 w-4" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuLabel>Display</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>
+          <Settings className="mr-2 h-4 w-4" />
+          Settings
+        </DropdownMenuItem>
+        <DropdownMenuItem inset>Grid View</DropdownMenuItem>
+        <DropdownMenuItem inset>List View</DropdownMenuItem>
+        <DropdownMenuItem inset>Compact View</DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuLabel inset>Advanced</DropdownMenuLabel>
+        <DropdownMenuItem inset>Show Hidden</DropdownMenuItem>
+        <DropdownMenuItem inset>Show System Files</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Inset items are indented to align with items that have icons, creating visual consistency.',
+      },
+    },
+  },
+}

@@ -331,3 +331,95 @@ export const CardStyle: Story = {
     },
   },
 }
+
+export const FocusStates: Story = {
+  render: () => (
+    <div className="space-y-4">
+      <p className="text-sm text-muted-foreground mb-4">
+        Tab through to see focus ring indicators. Use Arrow keys to navigate between tabs.
+      </p>
+      <Tabs defaultValue="tab1" className="w-[400px]">
+        <TabsList>
+          <TabsTrigger value="tab1">First Tab</TabsTrigger>
+          <TabsTrigger value="tab2">Second Tab</TabsTrigger>
+          <TabsTrigger value="tab3">Third Tab</TabsTrigger>
+        </TabsList>
+        <TabsContent value="tab1" className="p-4">
+          <p className="text-sm text-muted-foreground">
+            Focus indicators follow the design system with 3px ring and 50% opacity.
+          </p>
+        </TabsContent>
+        <TabsContent value="tab2" className="p-4">
+          <p className="text-sm text-muted-foreground">
+            Arrow keys allow navigation between tabs without leaving the tab list.
+          </p>
+        </TabsContent>
+        <TabsContent value="tab3" className="p-4">
+          <p className="text-sm text-muted-foreground">
+            Tab key moves focus into the active panel content.
+          </p>
+        </TabsContent>
+      </Tabs>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Tab triggers have visible focus indicators for keyboard navigation. Arrow keys navigate between tabs, Tab moves to content.',
+      },
+    },
+  },
+}
+
+export const AllStates: Story = {
+  render: () => (
+    <div className="space-y-8 w-[500px]">
+      <div>
+        <h4 className="text-sm font-medium mb-2">Default State</h4>
+        <Tabs defaultValue="inactive" className="w-full">
+          <TabsList>
+            <TabsTrigger value="inactive">Inactive</TabsTrigger>
+            <TabsTrigger value="active">Active</TabsTrigger>
+            <TabsTrigger value="another">Another</TabsTrigger>
+          </TabsList>
+          <TabsContent value="inactive" className="p-2 text-sm text-muted-foreground">
+            Inactive tab content
+          </TabsContent>
+          <TabsContent value="active" className="p-2 text-sm text-muted-foreground">
+            Active tab has shadow and different background
+          </TabsContent>
+          <TabsContent value="another" className="p-2 text-sm text-muted-foreground">
+            Another tab content
+          </TabsContent>
+        </Tabs>
+      </div>
+
+      <div>
+        <h4 className="text-sm font-medium mb-2">With Disabled Tab</h4>
+        <Tabs defaultValue="enabled1" className="w-full">
+          <TabsList>
+            <TabsTrigger value="enabled1">Enabled</TabsTrigger>
+            <TabsTrigger value="disabled" disabled>Disabled</TabsTrigger>
+            <TabsTrigger value="enabled2">Enabled</TabsTrigger>
+          </TabsList>
+          <TabsContent value="enabled1" className="p-2 text-sm text-muted-foreground">
+            First enabled tab content
+          </TabsContent>
+          <TabsContent value="disabled" className="p-2 text-sm text-muted-foreground">
+            This content is not accessible
+          </TabsContent>
+          <TabsContent value="enabled2" className="p-2 text-sm text-muted-foreground">
+            Second enabled tab content
+          </TabsContent>
+        </Tabs>
+      </div>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Demonstration of all tab states: default, active, hover (on interaction), focus, and disabled.',
+      },
+    },
+  },
+}

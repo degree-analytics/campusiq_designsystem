@@ -326,3 +326,77 @@ export const Scrollable: Story = {
     },
   },
 }
+
+export const AllStates: Story = {
+  render: () => (
+    <div className="grid gap-4">
+      <div className="grid gap-1.5">
+        <Label>Default</Label>
+        <Select>
+          <SelectTrigger className="w-[200px]">
+            <SelectValue placeholder="Select option" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="1">Option 1</SelectItem>
+            <SelectItem value="2">Option 2</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="grid gap-1.5">
+        <Label>With Value</Label>
+        <Select defaultValue="1">
+          <SelectTrigger className="w-[200px]">
+            <SelectValue placeholder="Select option" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="1">Option 1</SelectItem>
+            <SelectItem value="2">Option 2</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="grid gap-1.5">
+        <Label>Small Size</Label>
+        <Select>
+          <SelectTrigger className="w-[200px]" size="sm">
+            <SelectValue placeholder="Select option" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="1">Option 1</SelectItem>
+            <SelectItem value="2">Option 2</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="grid gap-1.5">
+        <Label className="opacity-50">Disabled</Label>
+        <Select disabled>
+          <SelectTrigger className="w-[200px]">
+            <SelectValue placeholder="Select option" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="1">Option 1</SelectItem>
+            <SelectItem value="2">Option 2</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="grid gap-1.5">
+        <Label>Invalid</Label>
+        <Select>
+          <SelectTrigger className="w-[200px]" aria-invalid>
+            <SelectValue placeholder="Select option" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="1">Option 1</SelectItem>
+            <SelectItem value="2">Option 2</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'All select states for visual QA: default, with value, small size, disabled, and invalid.',
+      },
+    },
+  },
+}

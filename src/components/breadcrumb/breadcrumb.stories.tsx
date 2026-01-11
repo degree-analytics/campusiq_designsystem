@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { ChevronRight, Slash } from 'lucide-react'
+import { Slash } from 'lucide-react'
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -224,6 +224,79 @@ export const LongPath: Story = {
     docs: {
       description: {
         story: 'Long paths with many levels. Consider using ellipsis or responsive truncation for very deep hierarchies.',
+      },
+    },
+  },
+}
+
+export const FocusStates: Story = {
+  render: () => (
+    <div className="space-y-4">
+      <p className="text-sm text-muted-foreground mb-4">
+        Tab through the links to see focus ring indicators (3px ring with 50% opacity).
+      </p>
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/products">Products</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/products/electronics">Electronics</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Laptops</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Breadcrumb links have visible focus indicators for keyboard navigation. Tab through to see the focus ring.',
+      },
+    },
+  },
+}
+
+export const ResponsiveWithTruncation: Story = {
+  render: () => (
+    <div className="max-w-[300px] overflow-hidden">
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbEllipsis />
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/category" className="max-w-[100px] truncate">
+              Very Long Category Name
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage className="max-w-[80px] truncate">
+              Current Page Title
+            </BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'On narrow screens, breadcrumb items can be truncated with ellipsis. The component supports text truncation via className.',
       },
     },
   },

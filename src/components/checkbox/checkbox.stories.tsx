@@ -202,3 +202,37 @@ export const WithDescription: Story = {
     },
   },
 }
+
+export const AllStates: Story = {
+  render: () => (
+    <div className="grid gap-4">
+      <div className="flex items-center space-x-2">
+        <Checkbox id="state-unchecked" />
+        <Label htmlFor="state-unchecked">Unchecked</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <Checkbox id="state-checked" defaultChecked />
+        <Label htmlFor="state-checked">Checked</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <Checkbox id="state-disabled" disabled />
+        <Label htmlFor="state-disabled" className="opacity-50">Disabled</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <Checkbox id="state-disabled-checked" disabled defaultChecked />
+        <Label htmlFor="state-disabled-checked" className="opacity-50">Disabled Checked</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <Checkbox id="state-invalid" aria-invalid />
+        <Label htmlFor="state-invalid">Invalid</Label>
+      </div>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'All checkbox states for visual QA: unchecked, checked, disabled, disabled checked, and invalid.',
+      },
+    },
+  },
+}

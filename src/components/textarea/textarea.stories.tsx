@@ -175,3 +175,37 @@ export const WithLabelAndDescription: Story = {
     },
   },
 }
+
+export const AllStates: Story = {
+  render: () => (
+    <div className="grid w-full max-w-sm gap-4">
+      <div className="grid gap-1.5">
+        <Label htmlFor="default-textarea">Default</Label>
+        <Textarea id="default-textarea" placeholder="Default state" />
+      </div>
+      <div className="grid gap-1.5">
+        <Label htmlFor="with-value-textarea">With Value</Label>
+        <Textarea id="with-value-textarea" defaultValue="This textarea contains some text content that was entered by the user." />
+      </div>
+      <div className="grid gap-1.5">
+        <Label htmlFor="disabled-textarea">Disabled</Label>
+        <Textarea id="disabled-textarea" placeholder="Disabled" disabled />
+      </div>
+      <div className="grid gap-1.5">
+        <Label htmlFor="disabled-value-textarea">Disabled with Value</Label>
+        <Textarea id="disabled-value-textarea" defaultValue="Cannot edit this content" disabled />
+      </div>
+      <div className="grid gap-1.5">
+        <Label htmlFor="invalid-textarea">Invalid</Label>
+        <Textarea id="invalid-textarea" defaultValue="Invalid content" aria-invalid />
+      </div>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'All textarea states for visual QA: default, with value, disabled, disabled with value, and invalid.',
+      },
+    },
+  },
+}

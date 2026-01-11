@@ -27,6 +27,13 @@ Displays an indicator showing the completion progress of a task, typically displ
 - For real-time streaming data without a defined endpoint
 - When progress would be misleading or inaccurate
 
+### Variants
+- **default**: Primary color for general progress
+- **success**: Green for successful/completed states
+- **warning**: Amber for cautionary states (approaching limits)
+- **destructive**: Red for error states or critical limits
+- **informational**: Blue for neutral informational progress
+
 ### Accessibility
 - Uses \`role="progressbar"\` with \`aria-valuenow\`, \`aria-valuemin\`, and \`aria-valuemax\`
 - Screen readers announce progress updates when value changes significantly
@@ -40,6 +47,11 @@ Displays an indicator showing the completion progress of a task, typically displ
     value: {
       control: { type: 'range', min: 0, max: 100, step: 1 },
       description: 'The progress value from 0 to 100',
+    },
+    variant: {
+      control: 'select',
+      options: ['default', 'success', 'warning', 'destructive', 'informational'],
+      description: 'The semantic variant of the progress bar',
     },
   },
 }
@@ -171,43 +183,72 @@ export const Animated: Story = {
   },
 }
 
-export const CustomColors: Story = {
+export const SemanticVariants: Story = {
   render: () => (
     <div className="w-[400px] space-y-4">
       <div className="space-y-2">
-        <span className="text-sm">Default</span>
+        <div className="flex justify-between text-sm">
+          <span>Default (Primary)</span>
+          <span>60%</span>
+        </div>
         <Progress value={60} />
       </div>
       <div className="space-y-2">
-        <span className="text-sm">Success (Green)</span>
-        <Progress
-          value={80}
-          className="[&>div]:bg-green-500"
-        />
+        <div className="flex justify-between text-sm">
+          <span className="text-success">Success</span>
+          <span>100%</span>
+        </div>
+        <Progress value={100} variant="success" />
       </div>
       <div className="space-y-2">
-        <span className="text-sm">Warning (Yellow)</span>
-        <Progress
-          value={45}
-          className="[&>div]:bg-yellow-500"
-        />
+        <div className="flex justify-between text-sm">
+          <span className="text-warning">Warning</span>
+          <span>75%</span>
+        </div>
+        <Progress value={75} variant="warning" />
       </div>
       <div className="space-y-2">
-        <span className="text-sm">Error (Red)</span>
-        <Progress
-          value={25}
-          className="[&>div]:bg-red-500"
-        />
+        <div className="flex justify-between text-sm">
+          <span className="text-destructive">Destructive</span>
+          <span>25%</span>
+        </div>
+        <Progress value={25} variant="destructive" />
       </div>
       <div className="space-y-2">
-        <span className="text-sm">Gradient</span>
-        <Progress
-          value={70}
-          className="[&>div]:bg-gradient-to-r [&>div]:from-blue-500 [&>div]:to-purple-500"
-        />
+        <div className="flex justify-between text-sm">
+          <span className="text-informational">Informational</span>
+          <span>50%</span>
+        </div>
+        <Progress value={50} variant="informational" />
       </div>
     </div>
   ),
+}
+
+export const StorageUsage: Story = {
+  render: () => {
+    const usedStorage = 85
+    const getVariant = (value: number) => {
+      if (value >= 90) return 'destructive'
+      if (value >= 75) return 'warning'
+      return 'default'
+    }
+
+    return (
+      <div className="w-[400px] space-y-2 rounded-lg border p-4">
+        <div className="flex justify-between text-sm">
+          <span className="font-medium">Storage Usage</span>
+          <span className="text-muted-foreground">{usedStorage}% of 100GB</span>
+        </div>
+        <Progress value={usedStorage} variant={getVariant(usedStorage)} />
+        <p className="text-xs text-muted-foreground">
+          {usedStorage >= 75
+            ? 'Consider freeing up space or upgrading your plan.'
+            : 'You have plenty of storage available.'}
+        </p>
+      </div>
+    )
+  },
 }
 
 export const Sizes: Story = {

@@ -308,3 +308,135 @@ export const Compact: Story = {
     },
   },
 }
+
+export const FocusStates: Story = {
+  render: () => (
+    <div className="space-y-4">
+      <p className="text-sm text-muted-foreground mb-4">
+        Tab through the pagination links to see focus indicators. Active page uses outline variant.
+      </p>
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious href="#" />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">1</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#" isActive>
+              2
+            </PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">3</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">4</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">5</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationNext href="#" />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Pagination links have visible focus indicators for keyboard navigation. The active page is indicated with aria-current="page".',
+      },
+    },
+  },
+}
+
+export const AllStates: Story = {
+  render: () => (
+    <div className="space-y-8">
+      <div>
+        <h4 className="text-sm font-medium mb-2">Active Page Indicator</h4>
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationLink href="#">1</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#" isActive>
+                2
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">3</PaginationLink>
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+        <p className="text-xs text-muted-foreground mt-2">
+          Active page uses outline variant with aria-current="page"
+        </p>
+      </div>
+
+      <div>
+        <h4 className="text-sm font-medium mb-2">Disabled Navigation</h4>
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious href="#" className="pointer-events-none opacity-50" />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#" isActive>
+                1
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">2</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationNext href="#" />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+        <p className="text-xs text-muted-foreground mt-2">
+          Disabled Previous button on first page
+        </p>
+      </div>
+
+      <div>
+        <h4 className="text-sm font-medium mb-2">With Ellipsis</h4>
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationLink href="#">1</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#" isActive>
+                5
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">10</PaginationLink>
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+        <p className="text-xs text-muted-foreground mt-2">
+          Ellipsis indicates hidden pages with screen reader text "More pages"
+        </p>
+      </div>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Demonstration of all pagination states: default, active, hover (on interaction), focus, and disabled.',
+      },
+    },
+  },
+}

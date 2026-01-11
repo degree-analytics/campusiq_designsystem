@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import * as React from 'react'
+import { ChevronsUpDown } from 'lucide-react'
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from './collapsible'
+import { Button } from '@/components/button/button'
 
 const meta: Meta<typeof Collapsible> = {
   title: 'Components/Layout/Collapsible',
@@ -73,23 +75,26 @@ export const Default: Story = {
         onOpenChange={setIsOpen}
         className="w-[350px] space-y-2"
       >
-        <div className="flex items-center justify-between space-x-4 px-4">
-          <h4 className="text-sm font-semibold">Starred repositories</h4>
+        <div className="flex items-center justify-between px-4">
+          <h4 className="text-sm font-semibold text-foreground">
+            @peduarte starred 3 repositories
+          </h4>
           <CollapsibleTrigger asChild>
-            <button className="rounded border px-2 py-1 text-sm">
-              {isOpen ? 'Hide' : 'Show'}
-            </button>
+            <Button variant="ghost" size="icon" className="size-9">
+              <ChevronsUpDown className="size-4" />
+              <span className="sr-only">Toggle</span>
+            </Button>
           </CollapsibleTrigger>
         </div>
-        <div className="rounded-md border px-4 py-2 text-sm">
+        <div className="rounded-md border border-border bg-background px-4 py-2 text-sm">
           @radix-ui/primitives
         </div>
         <CollapsibleContent className="space-y-2">
-          <div className="rounded-md border px-4 py-2 text-sm">
+          <div className="rounded-md border border-border bg-background px-4 py-2 text-sm">
             @radix-ui/colors
           </div>
-          <div className="rounded-md border px-4 py-2 text-sm">
-            @stitches/react
+          <div className="rounded-md border border-border bg-background px-4 py-2 text-sm">
+            @radix-ui/react
           </div>
         </CollapsibleContent>
       </Collapsible>
@@ -107,36 +112,39 @@ export const OpenByDefault: Story = {
         onOpenChange={setIsOpen}
         className="w-[350px] space-y-2"
       >
-        <div className="flex items-center justify-between space-x-4 px-4">
-          <h4 className="text-sm font-semibold">Team Members</h4>
+        <div className="flex items-center justify-between px-4">
+          <h4 className="text-sm font-semibold text-foreground">
+            Team Members
+          </h4>
           <CollapsibleTrigger asChild>
-            <button className="rounded border px-2 py-1 text-sm">
-              {isOpen ? 'Collapse' : 'Expand'}
-            </button>
+            <Button variant="ghost" size="icon" className="size-9">
+              <ChevronsUpDown className="size-4" />
+              <span className="sr-only">Toggle</span>
+            </Button>
           </CollapsibleTrigger>
         </div>
-        <div className="rounded-md border px-4 py-2 text-sm">
+        <div className="rounded-md border border-border bg-background px-4 py-2 text-sm">
           <div className="flex items-center gap-2">
-            <div className="h-6 w-6 rounded-full bg-muted" />
+            <div className="size-6 rounded-full bg-muted" />
             <span>John Doe (Admin)</span>
           </div>
         </div>
         <CollapsibleContent className="space-y-2">
-          <div className="rounded-md border px-4 py-2 text-sm">
+          <div className="rounded-md border border-border bg-background px-4 py-2 text-sm">
             <div className="flex items-center gap-2">
-              <div className="h-6 w-6 rounded-full bg-muted" />
+              <div className="size-6 rounded-full bg-muted" />
               <span>Jane Smith</span>
             </div>
           </div>
-          <div className="rounded-md border px-4 py-2 text-sm">
+          <div className="rounded-md border border-border bg-background px-4 py-2 text-sm">
             <div className="flex items-center gap-2">
-              <div className="h-6 w-6 rounded-full bg-muted" />
+              <div className="size-6 rounded-full bg-muted" />
               <span>Bob Johnson</span>
             </div>
           </div>
-          <div className="rounded-md border px-4 py-2 text-sm">
+          <div className="rounded-md border border-border bg-background px-4 py-2 text-sm">
             <div className="flex items-center gap-2">
-              <div className="h-6 w-6 rounded-full bg-muted" />
+              <div className="size-6 rounded-full bg-muted" />
               <span>Alice Williams</span>
             </div>
           </div>
@@ -157,10 +165,10 @@ export const WithIcon: Story = {
         className="w-[350px]"
       >
         <CollapsibleTrigger asChild>
-          <button className="flex w-full items-center justify-between rounded-lg border p-4 text-left hover:bg-muted">
+          <button className="flex w-full items-center justify-between rounded-lg border border-border bg-background p-4 text-left hover:bg-muted">
             <span className="font-medium">Advanced Settings</span>
             <svg
-              className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+              className={`size-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -175,7 +183,7 @@ export const WithIcon: Story = {
           </button>
         </CollapsibleTrigger>
         <CollapsibleContent>
-          <div className="mt-2 space-y-2 rounded-lg border p-4">
+          <div className="mt-2 space-y-2 rounded-lg border border-border bg-background p-4">
             <div className="flex items-center justify-between">
               <label className="text-sm">Enable notifications</label>
               <input type="checkbox" />
@@ -229,10 +237,10 @@ export const FAQStyle: Story = {
             onOpenChange={(open) => setOpenItem(open ? faq.id : null)}
           >
             <CollapsibleTrigger asChild>
-              <button className="flex w-full items-center justify-between rounded-lg border p-4 text-left font-medium hover:bg-muted">
+              <button className="flex w-full items-center justify-between rounded-lg border border-border bg-background p-4 text-left font-medium hover:bg-muted">
                 {faq.question}
                 <svg
-                  className={`h-4 w-4 shrink-0 transition-transform ${openItem === faq.id ? 'rotate-180' : ''}`}
+                  className={`size-4 shrink-0 transition-transform ${openItem === faq.id ? 'rotate-180' : ''}`}
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"

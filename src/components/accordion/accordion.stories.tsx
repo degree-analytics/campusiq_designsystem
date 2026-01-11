@@ -187,3 +187,121 @@ export const WithLongContent: Story = {
     </Accordion>
   ),
 }
+
+export const Disabled: Story = {
+  render: () => (
+    <Accordion type="single" collapsible className="w-[400px]">
+      <AccordionItem value="item-1">
+        <AccordionTrigger>Active Section</AccordionTrigger>
+        <AccordionContent>
+          This section is fully interactive and can be expanded/collapsed.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2" disabled>
+        <AccordionTrigger>Disabled Section</AccordionTrigger>
+        <AccordionContent>
+          This content cannot be accessed because the section is disabled.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-3">
+        <AccordionTrigger>Another Active Section</AccordionTrigger>
+        <AccordionContent>
+          This section is also interactive.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Individual accordion items can be disabled using the disabled prop. Disabled items cannot be expanded and are shown with reduced opacity.',
+      },
+    },
+  },
+}
+
+export const FocusStates: Story = {
+  render: () => (
+    <div className="space-y-4">
+      <p className="text-sm text-muted-foreground mb-4">
+        Tab through the triggers to see focus ring indicators. Use Space or Enter to toggle.
+      </p>
+      <Accordion type="single" collapsible className="w-[400px]">
+        <AccordionItem value="item-1">
+          <AccordionTrigger>First Item - Tab to focus</AccordionTrigger>
+          <AccordionContent>
+            Focus indicators are visible when navigating with keyboard.
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-2">
+          <AccordionTrigger>Second Item</AccordionTrigger>
+          <AccordionContent>
+            The focus ring follows the design system specifications.
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-3">
+          <AccordionTrigger>Third Item</AccordionTrigger>
+          <AccordionContent>
+            All interactive elements have proper focus management.
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Accordion triggers have visible focus indicators for keyboard navigation. The focus ring uses a 3px ring with 50% opacity.',
+      },
+    },
+  },
+}
+
+export const FAQExample: Story = {
+  render: () => (
+    <div className="w-[600px]">
+      <h2 className="text-xl font-semibold mb-4">Frequently Asked Questions</h2>
+      <Accordion type="single" collapsible>
+        <AccordionItem value="faq-1">
+          <AccordionTrigger>How do I enroll in a course?</AccordionTrigger>
+          <AccordionContent>
+            To enroll in a course, navigate to the Course Catalog from your dashboard.
+            Find the course you want to join and click the Enroll button. Some courses
+            may require instructor approval before enrollment is confirmed.
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="faq-2">
+          <AccordionTrigger>What payment methods are accepted?</AccordionTrigger>
+          <AccordionContent>
+            We accept all major credit cards (Visa, MasterCard, American Express),
+            PayPal, and bank transfers for institutional accounts. Payment plans
+            are available for courses over $500.
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="faq-3">
+          <AccordionTrigger>Can I get a refund if I am not satisfied?</AccordionTrigger>
+          <AccordionContent>
+            Yes, we offer a 30-day money-back guarantee for all courses. If you are
+            not satisfied with your purchase, contact our support team within 30 days
+            of enrollment for a full refund.
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="faq-4">
+          <AccordionTrigger>How do I contact an instructor?</AccordionTrigger>
+          <AccordionContent>
+            You can message instructors directly through the course page using the
+            Message Instructor button. Instructors typically respond within 24-48
+            hours during business days.
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'A practical FAQ section example showing how accordion can be used for organizing question and answer content.',
+      },
+    },
+  },
+}
