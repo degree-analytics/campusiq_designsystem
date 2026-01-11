@@ -18,18 +18,20 @@ COPY . .
 # Build Storybook
 RUN pnpm build-storybook
 
-# Production stage - serve static files
-FROM node:20-slim
-
-RUN npm install -g serve
-
-WORKDIR /app
+# Production stage - serve static files with nginx
+FROM nginx:alpine
 
 # Copy built Storybook from builder
-COPY --from=builder /app/storybook-static ./storybook-static
+COPY --from=builder /app/storybook-static /usr/share/nginx/html
+
+# Copy nginx config template
+COPY nginx.conf /etc/nginx/nginx.conf.template
 
 # Expose port
-EXPOSE 3000
+EXPOSE 80
 
-# Start serve with proper listen format for newer serve versions
-CMD ["sh", "-c", "serve storybook-static -l tcp://0.0.0.0:${PORT:-3000}"]
+# Set default PORT if not provided
+ENV PORT=80
+
+# Use envsubst to replace PORT variable and start nginx
+CMD ["/bin/sh", "-c", "envsubst '$PORT' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"]
