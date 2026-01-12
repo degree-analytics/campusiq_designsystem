@@ -31,3 +31,7 @@ src/stories/generated/
 src/stories/.story-mappings.json
 .story-ui-history/
 *.png
+
+# Tool directories
+.playwright-mcp/
+.serena/
