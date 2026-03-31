@@ -53,7 +53,7 @@ const buttonVariants = cva("base-classes", {
 - Import path alias: `@/` maps to `src/`
 
 **Semantic Color Tokens:**
-- `--primary`: #5e4890 (CampusIQ purple)
+- `--primary`: #4D339A (CampusIQ purple)
 - `--destructive`, `--success`, `--warning`, `--informational` with `-weak` variants for backgrounds
 
 ### Utility Function
