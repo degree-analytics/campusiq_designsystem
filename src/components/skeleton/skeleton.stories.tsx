@@ -293,7 +293,7 @@ export const LoadingTransition: Story = {
       <div className="w-[300px] space-y-4">
         <button
           onClick={() => setIsLoading(true)}
-          className="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground hover:bg-primary/90"
+          className="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground hover:bg-primary-hover"
         >
           Reload Content
         </button>
@@ -365,7 +365,7 @@ export const InteractiveDemo: Story = {
           </div>
           <button
             onClick={simulateLoad}
-            className="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground hover:bg-primary/90"
+            className="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground hover:bg-primary-hover"
           >
             {isLoading ? 'Loading...' : 'Simulate Load'}
           </button>

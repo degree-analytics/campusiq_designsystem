@@ -262,7 +262,7 @@ export const VerificationExample: Story = {
 export const PhoneVerification: Story = {
   render: () => (
     <div className="w-[300px] space-y-4 rounded-lg border p-6 text-center">
-      <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+      <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary-subtle">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

@@ -3,18 +3,23 @@
  *
  * Import this file in your application's main CSS file after tailwindcss:
  *
- * @import 'tailwindcss';
- * @import '@campusiq/ui/styles.css';
+ *   @import 'tailwindcss';
+ *   @import '@campusiq/ui/styles.css';
+ *
+ * Tailwind v4 consumers: add a @source directive so Tailwind scans the
+ * design system's component source for utility classes:
+ *
+ *   @source "../node_modules/@campusiq/ui/dist";
  *
  * These styles provide:
- * - CSS custom properties for the CampusIQ color palette
- * - Tailwind CSS v4 @theme inline configuration
- * - Light and dark mode color schemes
+ * - CSS custom properties for the CampusIQ color palette (light + dark)
+ * - Tailwind CSS v4 @theme inline with resolved values for utility generation
  */
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Radius scale (0.5rem base) */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -22,40 +27,74 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
+  /* Background & Foreground */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  /* Card */
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
+
+  /* Popover */
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
+
+  /* Primary */
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-active: var(--primary-active);
+  --color-primary-subtle: var(--primary-subtle);
+  --color-primary-muted: var(--primary-muted);
+
+  /* Secondary */
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
+
+  /* Muted */
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+
+  /* Accent */
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+
+  /* Destructive */
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-destructive-weak: var(--destructive-weak);
+
+  /* Success */
   --color-success: var(--success);
   --color-success-foreground: var(--success-foreground);
   --color-success-weak: var(--success-weak);
+
+  /* Informational */
   --color-informational: var(--informational);
   --color-informational-foreground: var(--informational-foreground);
   --color-informational-weak: var(--informational-weak);
+
+  /* Warning */
   --color-warning: var(--warning);
   --color-warning-foreground: var(--warning-foreground);
   --color-warning-weak: var(--warning-weak);
+
+  /* Border & Input */
   --color-border: var(--border);
   --color-input: var(--input);
+
+  /* Ring */
   --color-ring: var(--ring);
+
+  /* Charts */
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+
+  /* Sidebar */
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -64,13 +103,15 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Overlay */
   --color-overlay: var(--overlay);
 }
 
 /*
  * Light mode CSS variables
  * CampusIQ Brand Colors:
- * - Primary: #5e4890 (purple)
+ * - Primary: #4D339A (purple)
  * - Secondary: #f4f4f5 (light gray)
  */
 :root {
@@ -88,9 +129,13 @@
   --popover: #ffffff;
   --popover-foreground: #3f3f46;
 
-  /* Primary - CampusIQ Purple */
-  --primary: #5e4890;
+  /* Primary - CampusIQ Purple ramp anchored at #4D339A */
+  --primary: #4D339A;
+  --primary-hover: #6646AA;
+  --primary-active: #3E2980;
   --primary-foreground: #ffffff;
+  --primary-subtle: #F3F0F9;
+  --primary-muted: #C4ADE0;
 
   /* Secondary */
   --secondary: #f4f4f5;
@@ -128,10 +173,10 @@
   --border: #e4e4e7;
   --input: #e4e4e7;
 
-  /* Ring */
-  --ring: #2563eb;
+  /* Ring - Purple focus ring (#8259BF) */
+  --ring: #8259BF;
 
-  /* Overlay */
+  /* Overlay - for modals, dialogs, sheets */
   --overlay: rgba(0, 0, 0, 0.5);
 
   /* Chart colors */
@@ -141,15 +186,15 @@
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
 
-  /* Sidebar */
+  /* Sidebar - Uses primary purple */
   --sidebar: #faf9fc;
   --sidebar-foreground: #27272a;
-  --sidebar-primary: #5e4890;
+  --sidebar-primary: #4D339A;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #f4f4f5;
   --sidebar-accent-foreground: #27272a;
   --sidebar-border: #e4e4e7;
-  --sidebar-ring: #2563eb;
+  --sidebar-ring: #8259BF;
 }
 
 /* Dark mode CSS variables */
@@ -166,9 +211,13 @@
   --popover: #27272a;
   --popover-foreground: #fafafa;
 
-  /* Primary - Lighter purple for dark mode */
-  --primary: #a78bfa;
-  --primary-foreground: #1e1b4b;
+  /* Primary - Purple 300 for dark mode */
+  --primary: #A683D0;
+  --primary-hover: #C4ADE0;
+  --primary-active: #8259BF;
+  --primary-foreground: #21164D;
+  --primary-subtle: #2F1F66;
+  --primary-muted: #4D339A;
 
   /* Secondary */
   --secondary: #3f3f46;
@@ -207,9 +256,9 @@
   --input: rgba(255, 255, 255, 0.15);
 
   /* Ring */
-  --ring: #60a5fa;
+  --ring: #A683D0;
 
-  /* Overlay */
+  /* Overlay - for modals, dialogs, sheets */
   --overlay: rgba(0, 0, 0, 0.6);
 
   /* Chart colors for dark mode */
@@ -222,12 +271,12 @@
   /* Sidebar */
   --sidebar: #27272a;
   --sidebar-foreground: #fafafa;
-  --sidebar-primary: #a78bfa;
-  --sidebar-primary-foreground: #1e1b4b;
+  --sidebar-primary: #A683D0;
+  --sidebar-primary-foreground: #21164D;
   --sidebar-accent: #3f3f46;
   --sidebar-accent-foreground: #fafafa;
   --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-ring: #60a5fa;
+  --sidebar-ring: #A683D0;
 }
 
 /* Base layer styles */

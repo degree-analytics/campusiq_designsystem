@@ -25,6 +25,10 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-active: var(--primary-active);
+  --color-primary-subtle: var(--primary-subtle);
+  --color-primary-muted: var(--primary-muted);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -65,7 +69,7 @@
 /*
  * Light mode CSS variables
  * CampusIQ Brand Colors from Figma:
- * - Primary: #5e4890 (purple)
+ * - Primary: #4D339A (purple)
  * - Secondary: #f4f4f5 (light gray)
  * - Destructive: #be123c (rose)
  * - Foreground: #27272a (dark gray)
@@ -86,9 +90,13 @@
   --popover: #ffffff;
   --popover-foreground: #3f3f46;
 
-  /* Primary - Figma: #5e4890 (CampusIQ Purple) */
-  --primary: #5e4890;
+  /* Primary - CampusIQ Purple ramp anchored at #4D339A */
+  --primary: #4D339A;
+  --primary-hover: #6646AA;
+  --primary-active: #3E2980;
   --primary-foreground: #ffffff;
+  --primary-subtle: #F3F0F9;
+  --primary-muted: #C4ADE0;
 
   /* Secondary - Figma: #f4f4f5, #3f3f46 */
   --secondary: #f4f4f5;
@@ -126,8 +134,8 @@
   --border: #e4e4e7;
   --input: #e4e4e7;
 
-  /* Ring - Figma: #2563eb (focus blue) */
-  --ring: #2563eb;
+  /* Ring - Purple focus ring (#8259BF) */
+  --ring: #8259BF;
 
   /* Overlay - for modals, dialogs, sheets */
   --overlay: rgba(0, 0, 0, 0.5);
@@ -142,12 +150,12 @@
   /* Sidebar - Uses primary purple */
   --sidebar: #faf9fc;
   --sidebar-foreground: #27272a;
-  --sidebar-primary: #5e4890;
+  --sidebar-primary: #4D339A;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #f4f4f5;
   --sidebar-accent-foreground: #27272a;
   --sidebar-border: #e4e4e7;
-  --sidebar-ring: #2563eb;
+  --sidebar-ring: #8259BF;
 }
 
 /* Dark mode CSS variables */
@@ -164,9 +172,13 @@
   --popover: #27272a;
   --popover-foreground: #fafafa;
 
-  /* Primary - Lighter purple for dark mode */
-  --primary: #a78bfa;
-  --primary-foreground: #1e1b4b;
+  /* Primary - Purple 300 for dark mode */
+  --primary: #A683D0;
+  --primary-hover: #C4ADE0;
+  --primary-active: #8259BF;
+  --primary-foreground: #21164D;
+  --primary-subtle: #2F1F66;
+  --primary-muted: #4D339A;
 
   /* Secondary */
   --secondary: #3f3f46;
@@ -205,7 +217,7 @@
   --input: rgba(255, 255, 255, 0.15);
 
   /* Ring */
-  --ring: #60a5fa;
+  --ring: #A683D0;
 
   /* Overlay - for modals, dialogs, sheets */
   --overlay: rgba(0, 0, 0, 0.6);
@@ -220,12 +232,12 @@
   /* Sidebar */
   --sidebar: #27272a;
   --sidebar-foreground: #fafafa;
-  --sidebar-primary: #a78bfa;
-  --sidebar-primary-foreground: #1e1b4b;
+  --sidebar-primary: #A683D0;
+  --sidebar-primary-foreground: #21164D;
   --sidebar-accent: #3f3f46;
   --sidebar-accent-foreground: #fafafa;
   --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-ring: #60a5fa;
+  --sidebar-ring: #A683D0;
 }
 
 /* Base layer styles */

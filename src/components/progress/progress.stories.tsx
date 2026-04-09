@@ -335,7 +335,7 @@ export const FileUpload: Story = {
         <button
           onClick={startUpload}
           disabled={status === 'uploading'}
-          className="w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
+          className="w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary-hover disabled:opacity-50"
         >
           {status === 'idle' ? 'Start Upload' : status === 'uploading' ? 'Uploading...' : 'Upload Again'}
         </button>
@@ -412,7 +412,7 @@ export const MultiStep: Story = {
           <button
             onClick={() => setStep(Math.min(totalSteps, step + 1))}
             disabled={step === totalSteps}
-            className="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
+            className="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground hover:bg-primary-hover disabled:opacity-50"
           >
             {step === totalSteps ? 'Complete' : 'Next'}
           </button>
