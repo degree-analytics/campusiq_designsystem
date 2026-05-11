@@ -87,11 +87,11 @@ const barChartData = [
 const barChartConfig: ChartConfig = {
   revenue: {
     label: 'Revenue',
-    color: 'hsl(var(--chart-1))',
+    color: 'var(--chart-1)',
   },
   expenses: {
     label: 'Expenses',
-    color: 'hsl(var(--chart-2))',
+    color: 'var(--chart-2)',
   },
 }
 
@@ -124,11 +124,11 @@ const lineChartData = [
 const lineChartConfig: ChartConfig = {
   users: {
     label: 'Users',
-    color: 'hsl(var(--chart-1))',
+    color: 'var(--chart-1)',
   },
   sessions: {
     label: 'Sessions',
-    color: 'hsl(var(--chart-2))',
+    color: 'var(--chart-2)',
   },
 }
 
@@ -159,28 +159,28 @@ export const LineChartExample: Story = {
 }
 
 const pieChartData = [
-  { name: 'Chrome', value: 400, fill: 'hsl(var(--chart-1))' },
-  { name: 'Firefox', value: 300, fill: 'hsl(var(--chart-2))' },
-  { name: 'Safari', value: 200, fill: 'hsl(var(--chart-3))' },
-  { name: 'Edge', value: 100, fill: 'hsl(var(--chart-4))' },
+  { name: 'Chrome', value: 400, fill: 'var(--chart-1)' },
+  { name: 'Firefox', value: 300, fill: 'var(--chart-2)' },
+  { name: 'Safari', value: 200, fill: 'var(--chart-3)' },
+  { name: 'Edge', value: 100, fill: 'var(--chart-4)' },
 ]
 
 const pieChartConfig: ChartConfig = {
   Chrome: {
     label: 'Chrome',
-    color: 'hsl(var(--chart-1))',
+    color: 'var(--chart-1)',
   },
   Firefox: {
     label: 'Firefox',
-    color: 'hsl(var(--chart-2))',
+    color: 'var(--chart-2)',
   },
   Safari: {
     label: 'Safari',
-    color: 'hsl(var(--chart-3))',
+    color: 'var(--chart-3)',
   },
   Edge: {
     label: 'Edge',
-    color: 'hsl(var(--chart-4))',
+    color: 'var(--chart-4)',
   },
 }
 
@@ -220,7 +220,7 @@ const singleBarData = [
 const singleBarConfig: ChartConfig = {
   value: {
     label: 'Visitors',
-    color: 'hsl(var(--chart-1))',
+    color: 'var(--chart-1)',
   },
 }
 
@@ -249,7 +249,7 @@ const areaLineData = [
 const areaLineConfig: ChartConfig = {
   value: {
     label: 'Growth',
-    color: 'hsl(var(--chart-1))',
+    color: 'var(--chart-1)',
   },
 }
 
@@ -274,23 +274,23 @@ export const SimpleLineChart: Story = {
 }
 
 const donutData = [
-  { name: 'Desktop', value: 60, fill: 'hsl(var(--chart-1))' },
-  { name: 'Mobile', value: 30, fill: 'hsl(var(--chart-2))' },
-  { name: 'Tablet', value: 10, fill: 'hsl(var(--chart-3))' },
+  { name: 'Desktop', value: 60, fill: 'var(--chart-1)' },
+  { name: 'Mobile', value: 30, fill: 'var(--chart-2)' },
+  { name: 'Tablet', value: 10, fill: 'var(--chart-3)' },
 ]
 
 const donutConfig: ChartConfig = {
   Desktop: {
     label: 'Desktop',
-    color: 'hsl(var(--chart-1))',
+    color: 'var(--chart-1)',
   },
   Mobile: {
     label: 'Mobile',
-    color: 'hsl(var(--chart-2))',
+    color: 'var(--chart-2)',
   },
   Tablet: {
     label: 'Tablet',
-    color: 'hsl(var(--chart-3))',
+    color: 'var(--chart-3)',
   },
 }
 
