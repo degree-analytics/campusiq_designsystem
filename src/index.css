@@ -55,6 +55,35 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+  --color-severity-high: var(--severity-high);
+  --color-severity-high-bg: var(--severity-high-bg);
+  --color-severity-high-fg: var(--severity-high-fg);
+  --color-severity-medium: var(--severity-medium);
+  --color-severity-medium-bg: var(--severity-medium-bg);
+  --color-severity-medium-text: var(--severity-medium-text);
+  --color-severity-medium-fg: var(--severity-medium-fg);
+  --color-severity-low: var(--severity-low);
+  --color-severity-low-bg: var(--severity-low-bg);
+  --color-severity-low-fg: var(--severity-low-fg);
+  --color-seq-zero: var(--seq-zero);
+  --color-seq-1: var(--seq-1);
+  --color-seq-2: var(--seq-2);
+  --color-seq-3: var(--seq-3);
+  --color-seq-4: var(--seq-4);
+  --color-seq-5: var(--seq-5);
+  --color-seq-6: var(--seq-6);
+  --color-seq-7: var(--seq-7);
+  --color-seq-8: var(--seq-8);
+  --color-util-1: var(--util-1);
+  --color-util-2: var(--util-2);
+  --color-util-3: var(--util-3);
+  --color-util-4: var(--util-4);
+  --color-util-5: var(--util-5);
+  --color-util-6: var(--util-6);
+  --color-util-7: var(--util-7);
+  --color-change-favorable: var(--change-favorable);
+  --color-change-unfavorable: var(--change-unfavorable);
+  --color-accent-data: var(--accent-data);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -71,7 +100,7 @@
  * CampusIQ Brand Colors from Figma:
  * - Primary: #4D339A (purple)
  * - Secondary: #f4f4f5 (light gray)
- * - Destructive: #be123c (rose)
+ * - Destructive: #D4421E (burnt orange)
  * - Foreground: #27272a (dark gray)
  * - Background: #ffffff (white)
  */
@@ -110,25 +139,25 @@
   --accent: #f4f4f5;
   --accent-foreground: #27272a;
 
-  /* Destructive - Figma: #be123c (rose) */
-  --destructive: #be123c;
-  --destructive-foreground: #fef2f2;
-  --destructive-weak: #fff1f2;
+  /* Destructive - Burnt orange (unified with severity-high) */
+  --destructive: #D4421E;
+  --destructive-foreground: #ffffff;
+  --destructive-weak: #FDEAE4;
 
-  /* Success - Figma: #047857 (emerald) */
-  --success: #047857;
+  /* Success - Teal (unified with severity-low) */
+  --success: #008579;
   --success-foreground: #ffffff;
-  --success-weak: #ecfdf5;
+  --success-weak: #E0F5F3;
 
-  /* Informational - Figma: #0284c7 (sky blue) */
-  --informational: #0284c7;
+  /* Informational - Blue (unified with cat-1) */
+  --informational: #0369A1;
   --informational-foreground: #ffffff;
-  --informational-weak: #f0f9ff;
+  --informational-weak: #EFF6FF;
 
-  /* Warning - Figma: #d97706 (amber) */
-  --warning: #d97706;
+  /* Warning - Marigold (unified with severity-medium) */
+  --warning: #D48C08;
   --warning-foreground: #ffffff;
-  --warning-weak: #fffbeb;
+  --warning-weak: #FEF3D6;
 
   /* Border & Input - Figma: #e4e4e7 */
   --border: #e4e4e7;
@@ -140,12 +169,12 @@
   /* Overlay - for modals, dialogs, sheets */
   --overlay: rgba(0, 0, 0, 0.5);
 
-  /* Chart colors */
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  /* Chart colors — categorical palette */
+  --chart-1: #0369A1;
+  --chart-2: #D4421E;
+  --chart-3: #008579;
+  --chart-4: #D48C08;
+  --chart-5: #6B52B5;
 
   /* Sidebar - Uses primary purple */
   --sidebar: #faf9fc;
@@ -156,6 +185,45 @@
   --sidebar-accent-foreground: #27272a;
   --sidebar-border: #e4e4e7;
   --sidebar-ring: #8259BF;
+
+  /* Severity — alias status tokens for dataviz context */
+  --severity-high: var(--destructive);
+  --severity-high-bg: var(--destructive-weak);
+  --severity-high-fg: #ffffff;
+  --severity-medium: var(--warning);
+  --severity-medium-bg: var(--warning-weak);
+  --severity-medium-text: #946200;
+  --severity-medium-fg: #ffffff;
+  --severity-low: var(--success);
+  --severity-low-bg: var(--success-weak);
+  --severity-low-fg: #ffffff;
+
+  /* Sequential — purple, darker = more */
+  --seq-zero: #F3F0F9;
+  --seq-1: #E4DBEF;
+  --seq-2: #C4ADE0;
+  --seq-3: #A896D6;
+  --seq-4: #8259BF;
+  --seq-5: #6B52B5;
+  --seq-6: #4D339A;
+  --seq-7: #3E2980;
+  --seq-8: #2A1B5C;
+
+  /* Diverging — teal (underused) ↔ purple (overused) */
+  --util-1: #008579;
+  --util-2: #4DB8B0;
+  --util-3: #99D6D2;
+  --util-4: #D9D9D9;
+  --util-5: #A896D6;
+  --util-6: #4D339A;
+  --util-7: #2A1B5C;
+
+  /* Change indicators */
+  --change-favorable: var(--success);
+  --change-unfavorable: var(--destructive);
+
+  /* Data accent — single-metric bars */
+  --accent-data: var(--primary);
 }
 
 /* Dark mode CSS variables */
@@ -192,25 +260,25 @@
   --accent: #3f3f46;
   --accent-foreground: #fafafa;
 
-  /* Destructive - Lighter rose for dark mode */
-  --destructive: #f43f5e;
-  --destructive-foreground: #fef2f2;
-  --destructive-weak: #4c0519;
+  /* Destructive */
+  --destructive: #D4421E;
+  --destructive-foreground: #ffffff;
+  --destructive-weak: #431407;
 
-  /* Success - Lighter emerald for dark mode */
-  --success: #34d399;
-  --success-foreground: #022c22;
-  --success-weak: #022c22;
+  /* Success */
+  --success: #008579;
+  --success-foreground: #ffffff;
+  --success-weak: #042F2E;
 
-  /* Informational - Lighter sky blue for dark mode */
-  --informational: #38bdf8;
-  --informational-foreground: #0c4a6e;
-  --informational-weak: #0c4a6e;
+  /* Informational */
+  --informational: #0369A1;
+  --informational-foreground: #ffffff;
+  --informational-weak: #0C2D48;
 
-  /* Warning - Lighter amber for dark mode */
-  --warning: #fbbf24;
-  --warning-foreground: #451a03;
-  --warning-weak: #451a03;
+  /* Warning */
+  --warning: #D48C08;
+  --warning-foreground: #ffffff;
+  --warning-weak: #422006;
 
   /* Border & Input */
   --border: rgba(255, 255, 255, 0.1);
@@ -222,12 +290,12 @@
   /* Overlay - for modals, dialogs, sheets */
   --overlay: rgba(0, 0, 0, 0.6);
 
-  /* Chart colors for dark mode */
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
+  /* Chart colors for dark mode — same as light */
+  --chart-1: #0369A1;
+  --chart-2: #D4421E;
+  --chart-3: #008579;
+  --chart-4: #D48C08;
+  --chart-5: #6B52B5;
 
   /* Sidebar */
   --sidebar: #27272a;
@@ -238,6 +306,29 @@
   --sidebar-accent-foreground: #fafafa;
   --sidebar-border: rgba(255, 255, 255, 0.1);
   --sidebar-ring: #A683D0;
+
+  /* Severity — only medium-text needs explicit dark override */
+  --severity-medium-text: #FBBF24;
+
+  /* Sequential — full remap, lightness inverted */
+  --seq-zero: #2A1B5C;
+  --seq-1: #3E2980;
+  --seq-2: #4D339A;
+  --seq-3: #6B52B5;
+  --seq-4: #8259BF;
+  --seq-5: #A896D6;
+  --seq-6: #B9A3E0;
+  --seq-7: #C4ADE0;
+  --seq-8: #DDD3EE;
+
+  /* Diverging — full remap, extremes brighten, midpoint recedes */
+  --util-1: #2DD4BF;
+  --util-2: #14B8A6;
+  --util-3: #0D7C73;
+  --util-4: #52525B;
+  --util-5: #6B52B5;
+  --util-6: #A896D6;
+  --util-7: #C4ADE0;
 }
 
 /* Base layer styles */
