@@ -24,7 +24,7 @@ Integrate the CampusIQ data visualization color guide into the design system. Ad
 | `--destructive-weak` | #fff1f2 | #FDEAE4 |
 | `--warning` | #d97706 | #D48C08 |
 | `--warning-weak` | #fffbeb | #FEF3D6 |
-| `--success` | #047857 | #009689 |
+| `--success` | #047857 | #008579 |
 | `--success-foreground` | #ffffff | #ffffff |
 | `--success-weak` | #ecfdf5 | #E0F5F3 |
 | `--warning-foreground` | #ffffff | #ffffff |
@@ -38,7 +38,7 @@ Integrate the CampusIQ data visualization color guide into the design system. Ad
 |---|---|---|
 | `--chart-1` | oklch(0.646 0.222 41.116) | #0369A1 |
 | `--chart-2` | oklch(0.6 0.118 184.704) | #D4421E |
-| `--chart-3` | oklch(0.398 0.07 227.392) | #009689 |
+| `--chart-3` | oklch(0.398 0.07 227.392) | #008579 |
 | `--chart-4` | oklch(0.828 0.189 84.429) | #D48C08 |
 | `--chart-5` | oklch(0.769 0.188 70.08) | #6B52B5 |
 
@@ -54,7 +54,7 @@ Integrate the CampusIQ data visualization color guide into the design system. Ad
 | `--warning` | #fbbf24 | #D48C08 |
 | `--warning-foreground` | #451a03 | #ffffff |
 | `--warning-weak` | #451a03 | #422006 |
-| `--success` | #34d399 | #009689 |
+| `--success` | #34d399 | #008579 |
 | `--success-foreground` | #022c22 | #ffffff |
 | `--success-weak` | #022c22 | #042F2E |
 | `--informational` | #38bdf8 | #0369A1 |
@@ -67,7 +67,7 @@ Integrate the CampusIQ data visualization color guide into the design system. Ad
 |---|---|
 | `--chart-1` | #0369A1 |
 | `--chart-2` | #D4421E |
-| `--chart-3` | #009689 |
+| `--chart-3` | #008579 |
 | `--chart-4` | #D48C08 |
 | `--chart-5` | #6B52B5 |
 
@@ -105,7 +105,7 @@ Integrate the CampusIQ data visualization color guide into the design system. Ad
 ### Diverging (teal↔purple, 7 stops)
 
 ```css
---util-1: #009689;   /* severely underused */
+--util-1: #008579;   /* severely underused */
 --util-2: #4DB8B0;   /* underused */
 --util-3: #99D6D2;   /* slightly under */
 --util-4: #D9D9D9;   /* healthy midpoint */
@@ -174,7 +174,7 @@ Light mode uses #946200 (dark text on pale bg). Dark mode needs #FBBF24 (bright 
 ### Change + Accent
 
 Follow their aliased tokens automatically:
-- `--change-favorable: var(--success)` → #009689 in both modes
+- `--change-favorable: var(--success)` → #008579 in both modes
 - `--change-unfavorable: var(--destructive)` → #D4421E in both modes
 - `--accent-data: var(--primary)` → #4D339A (light), #A683D0 (dark) — follows existing primary dark mode treatment
 
@@ -233,7 +233,7 @@ Update these existing color variables to their new hex values (both light and da
 - destructive-weak → #FDEAE4 (light), #431407 (dark)
 - warning → #D48C08 (light), #D48C08 (dark)
 - warning-weak → #FEF3D6 (light), #422006 (dark)
-- success → #009689 (light), #009689 (dark)
+- success → #008579 (light), #008579 (dark)
 - success-weak → #E0F5F3 (light), #042F2E (dark)
 - informational → #0369A1 (light), #0369A1 (dark)
 - informational-weak → #EFF6FF (light), #0C2D48 (dark)

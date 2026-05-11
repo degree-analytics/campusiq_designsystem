@@ -34,7 +34,7 @@ Replace the success block inside `:root`:
 
 ```css
 /* Success - Teal (unified with severity-low) */
---success: #009689;
+--success: #008579;
 --success-foreground: #ffffff;
 --success-weak: #E0F5F3;
 ```
@@ -69,7 +69,7 @@ Replace the chart colors block inside `:root`:
 /* Chart colors — categorical palette */
 --chart-1: #0369A1;
 --chart-2: #D4421E;
---chart-3: #009689;
+--chart-3: #008579;
 --chart-4: #D48C08;
 --chart-5: #6B52B5;
 ```
@@ -108,7 +108,7 @@ In `src/index.css`, replace the destructive block inside `.dark`:
 
 ```css
 /* Success */
---success: #009689;
+--success: #008579;
 --success-foreground: #ffffff;
 --success-weak: #042F2E;
 ```
@@ -137,7 +137,7 @@ In `src/index.css`, replace the destructive block inside `.dark`:
 /* Chart colors for dark mode — same as light */
 --chart-1: #0369A1;
 --chart-2: #D4421E;
---chart-3: #009689;
+--chart-3: #008579;
 --chart-4: #D48C08;
 --chart-5: #6B52B5;
 ```
@@ -198,7 +198,7 @@ Add after the sidebar block inside `:root`:
 
 ```css
 /* Diverging — teal (underused) ↔ purple (overused) */
---util-1: #009689;
+--util-1: #008579;
 --util-2: #4DB8B0;
 --util-3: #99D6D2;
 --util-4: #D9D9D9;
@@ -376,7 +376,7 @@ In `packages/ui/src/styles.css`, update the `:root` block. Replace the destructi
 --destructive-weak: #FDEAE4;
 
 /* Success - Teal (unified with severity-low) */
---success: #009689;
+--success: #008579;
 --success-foreground: #ffffff;
 --success-weak: #E0F5F3;
 
@@ -397,7 +397,7 @@ In `packages/ui/src/styles.css`, update the `:root` block. Replace the destructi
 /* Chart colors — categorical palette */
 --chart-1: #0369A1;
 --chart-2: #D4421E;
---chart-3: #009689;
+--chart-3: #008579;
 --chart-4: #D48C08;
 --chart-5: #6B52B5;
 ```
@@ -431,7 +431,7 @@ Add after the sidebar block inside `:root`:
 --seq-8: #2A1B5C;
 
 /* Diverging — teal (underused) ↔ purple (overused) */
---util-1: #009689;
+--util-1: #008579;
 --util-2: #4DB8B0;
 --util-3: #99D6D2;
 --util-4: #D9D9D9;
@@ -458,7 +458,7 @@ In the `.dark` block, replace destructive, success, informational, and warning w
 --destructive-weak: #431407;
 
 /* Success */
---success: #009689;
+--success: #008579;
 --success-foreground: #ffffff;
 --success-weak: #042F2E;
 
@@ -479,7 +479,7 @@ In the `.dark` block, replace destructive, success, informational, and warning w
 /* Chart colors for dark mode — same as light */
 --chart-1: #0369A1;
 --chart-2: #D4421E;
---chart-3: #009689;
+--chart-3: #008579;
 --chart-4: #D48C08;
 --chart-5: #6B52B5;
 ```
@@ -610,7 +610,7 @@ Use `figma_batch_update_variables` to update:
 - destructive-weak → #FDEAE4
 - warning → #D48C08
 - warning-weak → #FEF3D6
-- success → #009689
+- success → #008579
 - success-weak → #E0F5F3
 - informational → #0369A1
 - informational-weak → #EFF6FF
@@ -622,7 +622,7 @@ Update the dark mode values for the same variables:
 - destructive-weak → #431407
 - warning → #D48C08
 - warning-weak → #422006
-- success → #009689
+- success → #008579
 - success-weak → #042F2E
 - informational → #0369A1
 - informational-weak → #0C2D48
@@ -632,7 +632,7 @@ Update the dark mode values for the same variables:
 Update chart-1 through chart-5 to the new categorical hex values (same for light and dark):
 - chart-1 → #0369A1
 - chart-2 → #D4421E
-- chart-3 → #009689
+- chart-3 → #008579
 - chart-4 → #D48C08
 - chart-5 → #6B52B5
 
@@ -659,7 +659,7 @@ Use `figma_create_variable_collection` to create a "Severity" collection with Li
 | severity-medium-bg | #FEF3D6 | #422006 |
 | severity-medium-text | #946200 | #FBBF24 |
 | severity-medium-fg | #ffffff | #ffffff |
-| severity-low | #009689 | #009689 |
+| severity-low | #008579 | #008579 |
 | severity-low-bg | #E0F5F3 | #042F2E |
 | severity-low-fg | #ffffff | #ffffff |
 
@@ -685,7 +685,7 @@ Create "Diverging" collection with Light and Dark modes:
 
 | Variable | Light | Dark |
 |---|---|---|
-| util-1 | #009689 | #2DD4BF |
+| util-1 | #008579 | #2DD4BF |
 | util-2 | #4DB8B0 | #14B8A6 |
 | util-3 | #99D6D2 | #0D7C73 |
 | util-4 | #D9D9D9 | #52525B |
@@ -699,7 +699,7 @@ Create "Change & Accent" collection with Light and Dark modes:
 
 | Variable | Light | Dark |
 |---|---|---|
-| change-favorable | #009689 | #009689 |
+| change-favorable | #008579 | #008579 |
 | change-unfavorable | #D4421E | #D4421E |
 | accent-data | #4D339A | #A683D0 |
 

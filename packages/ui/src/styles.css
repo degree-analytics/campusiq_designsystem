@@ -184,7 +184,7 @@
   --destructive-weak: #FDEAE4;
 
   /* Success - Teal (unified with severity-low) */
-  --success: #009689;
+  --success: #008579;
   --success-foreground: #ffffff;
   --success-weak: #E0F5F3;
 
@@ -211,7 +211,7 @@
   /* Chart colors — categorical palette */
   --chart-1: #0369A1;
   --chart-2: #D4421E;
-  --chart-3: #009689;
+  --chart-3: #008579;
   --chart-4: #D48C08;
   --chart-5: #6B52B5;
 
@@ -249,7 +249,7 @@
   --seq-8: #2A1B5C;
 
   /* Diverging — teal (underused) ↔ purple (overused) */
-  --util-1: #009689;
+  --util-1: #008579;
   --util-2: #4DB8B0;
   --util-3: #99D6D2;
   --util-4: #D9D9D9;
@@ -305,7 +305,7 @@
   --destructive-weak: #431407;
 
   /* Success */
-  --success: #009689;
+  --success: #008579;
   --success-foreground: #ffffff;
   --success-weak: #042F2E;
 
@@ -332,7 +332,7 @@
   /* Chart colors for dark mode — same as light */
   --chart-1: #0369A1;
   --chart-2: #D4421E;
-  --chart-3: #009689;
+  --chart-3: #008579;
   --chart-4: #D48C08;
   --chart-5: #6B52B5;
 
