@@ -54,7 +54,12 @@ const buttonVariants = cva("base-classes", {
 
 **Semantic Color Tokens:**
 - `--primary`: #4D339A (CampusIQ purple)
-- `--destructive`, `--success`, `--warning`, `--informational` with `-weak` variants for backgrounds
+- `--destructive` (#D4421E), `--success` (#009689), `--warning` (#D48C08), `--informational` (#0369A1) with `-weak` variants for backgrounds
+- `--severity-high/medium/low` with `-bg`, `-fg`, `-text` variants (alias status tokens)
+- `--seq-zero` through `--seq-8`: 9-stop purple sequential scale
+- `--util-1` through `--util-7`: 7-stop teal↔purple diverging scale
+- `--change-favorable`, `--change-unfavorable`: change indicator aliases
+- `--accent-data`: single-metric data accent (aliases `--primary`)
 
 ### Utility Function
 
