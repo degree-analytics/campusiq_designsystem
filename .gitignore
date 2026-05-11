@@ -35,3 +35,4 @@ src/stories/.story-mappings.json
 # Tool directories
 .playwright-mcp/
 .serena/
+.worktrees/
