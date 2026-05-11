@@ -27,10 +27,12 @@ Integrate the CampusIQ data visualization color guide into the design system. Ad
 | `--success` | #047857 | #009689 |
 | `--success-foreground` | #ffffff | #ffffff |
 | `--success-weak` | #ecfdf5 | #E0F5F3 |
+| `--warning-foreground` | #ffffff | #ffffff |
 | `--informational` | #0284c7 | #0369A1 |
+| `--informational-foreground` | #ffffff | #ffffff |
 | `--informational-weak` | #f0f9ff | #EFF6FF |
 
-### Chart Colors (replaced by categorical)
+### Chart Colors (values replaced by categorical — token names `chart-*` preserved, no separate `cat-*` CSS variables)
 
 | Token | Old Value (OKLCH) | New Value (hex) |
 |---|---|---|
