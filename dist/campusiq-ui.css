@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* CampusIQ Design System — campusiq-ui.css */
+/* Auto-generated tokens from campusiq_designsystem/src/index.css */
+/* Do not edit token blocks directly — run scripts/build-vanilla.mjs to regenerate */
+
+:root {
+  /* Font families (not in index.css — defined by brand guide) */
+  --ciq-font-display: 'Onest', system-ui, sans-serif;
+  --ciq-font-body: 'Inter', system-ui, sans-serif;
+
+
+  --ciq-radius: 0.5rem;
+
+  /* Background & Foreground - Figma: #ffffff, #27272a */
+  --ciq-background: #ffffff;
+  --ciq-foreground: #27272a;
+
+  /* Card - Figma: #ffffff, #3f3f46 */
+  --ciq-card: #ffffff;
+  --ciq-card-foreground: #3f3f46;
+
+  /* Popover - Figma: #ffffff, #3f3f46 (matches card) */
+  --ciq-popover: #ffffff;
+  --ciq-popover-foreground: #3f3f46;
+
+  /* Primary - CampusIQ Purple ramp anchored at #4D339A */
+  --ciq-primary: #4D339A;
+  --ciq-primary-hover: #6646AA;
+  --ciq-primary-active: #3E2980;
+  --ciq-primary-foreground: #ffffff;
+  --ciq-primary-subtle: #F3F0F9;
+  --ciq-primary-muted: #C4ADE0;
+
+  /* Secondary - Figma: #f4f4f5, #3f3f46 */
+  --ciq-secondary: #f4f4f5;
+  --ciq-secondary-foreground: #3f3f46;
+
+  /* Muted - Figma: #e4e4e7, #71717a */
+  --ciq-muted: #e4e4e7;
+  --ciq-muted-foreground: #71717a;
+
+  /* Accent - Light purple tint for hover states */
+  --ciq-accent: #f4f4f5;
+  --ciq-accent-foreground: #27272a;
+
+  /* Destructive - Burnt orange (unified with severity-high) */
+  --ciq-destructive: #D4421E;
+  --ciq-destructive-foreground: #ffffff;
+  --ciq-destructive-weak: #FDEAE4;
+
+  /* Success - Teal (unified with severity-low) */
+  --ciq-success: #008579;
+  --ciq-success-foreground: #ffffff;
+  --ciq-success-weak: #E0F5F3;
+
+  /* Informational - Blue (unified with cat-1) */
+  --ciq-informational: #0369A1;
+  --ciq-informational-foreground: #ffffff;
+  --ciq-informational-weak: #EFF6FF;
+
+  /* Warning - Marigold (unified with severity-medium) */
+  --ciq-warning: #D48C08;
+  --ciq-warning-foreground: #ffffff;
+  --ciq-warning-weak: #FEF3D6;
+
+  /* Border & Input - Figma: #e4e4e7 */
+  --ciq-border: #e4e4e7;
+  --ciq-input: #e4e4e7;
+
+  /* Ring - Purple focus ring (#8259BF) */
+  --ciq-ring: #8259BF;
+
+  /* Overlay - for modals, dialogs, sheets */
+  --ciq-overlay: rgba(0, 0, 0, 0.5);
+
+  /* Chart colors — categorical palette */
+  --ciq-chart-1: #0369A1;
+  --ciq-chart-2: #D4421E;
+  --ciq-chart-3: #008579;
+  --ciq-chart-4: #D48C08;
+  --ciq-chart-5: #6B52B5;
+
+  /* Sidebar - Uses primary purple */
+
+  /* Severity — alias status tokens for dataviz context */
+  --ciq-severity-high: var(--ciq-destructive);
+  --ciq-severity-high-bg: var(--ciq-destructive-weak);
+  --ciq-severity-high-fg: #ffffff;
+  --ciq-severity-medium: var(--ciq-warning);
+  --ciq-severity-medium-bg: var(--ciq-warning-weak);
+  --ciq-severity-medium-text: #946200;
+  --ciq-severity-medium-fg: #ffffff;
+  --ciq-severity-low: var(--ciq-success);
+  --ciq-severity-low-bg: var(--ciq-success-weak);
+  --ciq-severity-low-fg: #ffffff;
+
+  /* Sequential — purple, darker = more */
+  --ciq-seq-zero: #F3F0F9;
+  --ciq-seq-1: #E4DBEF;
+  --ciq-seq-2: #C4ADE0;
+  --ciq-seq-3: #A896D6;
+  --ciq-seq-4: #8259BF;
+  --ciq-seq-5: #6B52B5;
+  --ciq-seq-6: #4D339A;
+  --ciq-seq-7: #3E2980;
+  --ciq-seq-8: #2A1B5C;
+
+  /* Diverging — teal (underused) ↔ purple (overused) */
+  --ciq-util-1: #008579;
+  --ciq-util-2: #4DB8B0;
+  --ciq-util-3: #99D6D2;
+  --ciq-util-4: #D9D9D9;
+  --ciq-util-5: #A896D6;
+  --ciq-util-6: #4D339A;
+  --ciq-util-7: #2A1B5C;
+
+  /* Change indicators */
+  --ciq-change-favorable: var(--ciq-success);
+  --ciq-change-unfavorable: var(--ciq-destructive);
+
+  /* Data accent — single-metric bars */
+  --ciq-accent-data: var(--ciq-primary);
+
+}
+
+.ciq-dark {
+
+  /* Background & Foreground */
+  --ciq-background: #18181b;
+  --ciq-foreground: #fafafa;
+
+  /* Card */
+  --ciq-card: #27272a;
+  --ciq-card-foreground: #fafafa;
+
+  /* Popover */
+  --ciq-popover: #27272a;
+  --ciq-popover-foreground: #fafafa;
+
+  /* Primary - Purple 300 for dark mode */
+  --ciq-primary: #A683D0;
+  --ciq-primary-hover: #C4ADE0;
+  --ciq-primary-active: #8259BF;
+  --ciq-primary-foreground: #21164D;
+  --ciq-primary-subtle: #2F1F66;
+  --ciq-primary-muted: #4D339A;
+
+  /* Secondary */
+  --ciq-secondary: #3f3f46;
+  --ciq-secondary-foreground: #fafafa;
+
+  /* Muted */
+  --ciq-muted: #3f3f46;
+  --ciq-muted-foreground: #a1a1aa;
+
+  /* Accent */
+  --ciq-accent: #3f3f46;
+  --ciq-accent-foreground: #fafafa;
+
+  /* Destructive */
+  --ciq-destructive: #D4421E;
+  --ciq-destructive-foreground: #ffffff;
+  --ciq-destructive-weak: #431407;
+
+  /* Success */
+  --ciq-success: #008579;
+  --ciq-success-foreground: #ffffff;
+  --ciq-success-weak: #042F2E;
+
+  /* Informational */
+  --ciq-informational: #0369A1;
+  --ciq-informational-foreground: #ffffff;
+  --ciq-informational-weak: #0C2D48;
+
+  /* Warning */
+  --ciq-warning: #D48C08;
+  --ciq-warning-foreground: #ffffff;
+  --ciq-warning-weak: #422006;
+
+  /* Border & Input */
+  --ciq-border: rgba(255, 255, 255, 0.1);
+  --ciq-input: rgba(255, 255, 255, 0.15);
+
+  /* Ring */
+  --ciq-ring: #A683D0;
+
+  /* Overlay - for modals, dialogs, sheets */
+  --ciq-overlay: rgba(0, 0, 0, 0.6);
+
+  /* Chart colors for dark mode — same as light */
+  --ciq-chart-1: #0369A1;
+  --ciq-chart-2: #D4421E;
+  --ciq-chart-3: #008579;
+  --ciq-chart-4: #D48C08;
+  --ciq-chart-5: #6B52B5;
+
+  /* Sidebar */
+
+  /* Severity — only medium-text needs explicit dark override */
+  --ciq-severity-medium-text: #FBBF24;
+
+  /* Sequential — full remap, lightness inverted */
+  --ciq-seq-zero: #2A1B5C;
+  --ciq-seq-1: #3E2980;
+  --ciq-seq-2: #4D339A;
+  --ciq-seq-3: #6B52B5;
+  --ciq-seq-4: #8259BF;
+  --ciq-seq-5: #A896D6;
+  --ciq-seq-6: #B9A3E0;
+  --ciq-seq-7: #C4ADE0;
+  --ciq-seq-8: #DDD3EE;
+
+  /* Diverging — full remap, extremes brighten, midpoint recedes */
+  --ciq-util-1: #2DD4BF;
+  --ciq-util-2: #14B8A6;
+  --ciq-util-3: #0D7C73;
+  --ciq-util-4: #52525B;
+  --ciq-util-5: #6B52B5;
+  --ciq-util-6: #A896D6;
+  --ciq-util-7: #C4ADE0;
+
+}
+
+/* ===== Component Classes ===== */
+
