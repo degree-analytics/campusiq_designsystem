@@ -73,6 +73,13 @@ describe('buildCss', () => {
     assert.ok(!css.includes('\n.dark {'));
   });
 
+  it('includes radius scale from @theme inline', () => {
+    const css = buildCss(indexCss, '/* components */');
+    assert.ok(css.includes('--ciq-radius-lg: var(--ciq-radius)'));
+    assert.ok(css.includes('--ciq-radius-xl: calc(var(--ciq-radius) + 4px)'));
+    assert.ok(css.includes('--ciq-radius-sm: calc(var(--ciq-radius) - 4px)'));
+  });
+
   it('appends component CSS after tokens', () => {
     const css = buildCss(indexCss, '.ciq-card { border: 1px solid var(--ciq-border); }');
     assert.ok(css.includes('.ciq-card'));

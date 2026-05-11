@@ -9,6 +9,15 @@
   --ciq-font-display: 'Onest', system-ui, sans-serif;
   --ciq-font-body: 'Inter', system-ui, sans-serif;
 
+  /* Radius scale (from @theme inline — not in :root) */
+  --ciq-radius-sm: calc(var(--ciq-radius) - 4px);
+  --ciq-radius-md: calc(var(--ciq-radius) - 2px);
+  --ciq-radius-lg: var(--ciq-radius);
+  --ciq-radius-xl: calc(var(--ciq-radius) + 4px);
+  --ciq-radius-2xl: calc(var(--ciq-radius) + 8px);
+  --ciq-radius-3xl: calc(var(--ciq-radius) + 12px);
+  --ciq-radius-4xl: calc(var(--ciq-radius) + 16px);
+
 
   --ciq-radius: 0.5rem;
 
