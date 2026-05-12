@@ -73,7 +73,7 @@ The CSS file provides classes for these component categories. Use the `.ciq-` pr
 
 **Badges & Status** — `.ciq-badge`, with variants `.ciq-badge-success`, `.ciq-badge-destructive`, `.ciq-badge-warning`, `.ciq-badge-informational`, `.ciq-badge-outline`. Use for stage indicators, categories, severity levels.
 
-**Data Tables** — `.ciq-table`, `.ciq-th`, `.ciq-td`, `.ciq-tr`. Use for structured row data. Add `.ciq-tr-hover` for interactive rows.
+**Data Tables** — `.ciq-table`, `.ciq-th`, `.ciq-td`, `.ciq-tr`. Use for structured row data. Hover highlighting is built in.
 
 **Form Controls** — `.ciq-input`, `.ciq-select`, `.ciq-checkbox`. Buttons: `.ciq-btn-primary`, `.ciq-btn-secondary`, `.ciq-btn-ghost`. Search: `.ciq-input` with search icon.
 

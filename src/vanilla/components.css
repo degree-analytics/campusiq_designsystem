@@ -32,6 +32,11 @@
   padding: 24px 40px 60px;
 }
 
+.ciq-header .ciq-h1,
+.ciq-header .ciq-h2,
+.ciq-header .ciq-h3,
+.ciq-header .ciq-h4 { color: inherit; }
+
 /* --- Typography --- */
 .ciq-h1, .ciq-h2, .ciq-h3, .ciq-h4 {
   font-family: var(--ciq-font-display);
