@@ -1,0 +1,316 @@
+/* ===== CampusIQ Component Classes — Phase 1 ===== */
+/* Visual reference: CampusIQ_Onboarding_Tracker.html */
+/* All classes prefixed with ciq- to avoid collisions */
+/* All values reference --ciq-* tokens — never hardcode */
+
+/* --- Reset --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* --- Page Layout --- */
+.ciq-page {
+  font-family: var(--ciq-font-body);
+  background: var(--ciq-background);
+  color: var(--ciq-foreground);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ciq-header {
+  background: linear-gradient(135deg, var(--ciq-primary) 0%, var(--ciq-primary-hover) 100%);
+  color: var(--ciq-primary-foreground);
+  padding: 32px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.ciq-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 40px 60px;
+}
+
+.ciq-header .ciq-h1,
+.ciq-header .ciq-h2,
+.ciq-header .ciq-h3,
+.ciq-header .ciq-h4 { color: inherit; }
+
+/* --- Typography --- */
+.ciq-h1, .ciq-h2, .ciq-h3, .ciq-h4 {
+  font-family: var(--ciq-font-display);
+  color: var(--ciq-foreground);
+}
+
+.ciq-h1 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.ciq-h2 {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.ciq-h3 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.ciq-h4 {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.ciq-body {
+  font-family: var(--ciq-font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ciq-foreground);
+}
+
+.ciq-caption {
+  font-family: var(--ciq-font-body);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--ciq-muted-foreground);
+}
+
+.ciq-label {
+  font-family: var(--ciq-font-display);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ciq-muted-foreground);
+}
+
+.ciq-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* --- Cards --- */
+.ciq-card {
+  background: var(--ciq-card);
+  color: var(--ciq-card-foreground);
+  border: 1px solid var(--ciq-border);
+  border-radius: var(--ciq-radius-xl);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: box-shadow 0.15s ease;
+}
+
+.ciq-card:hover {
+  box-shadow: 0 4px 16px rgba(77, 51, 154, 0.08);
+}
+
+.ciq-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.ciq-card-body {
+  flex: 1;
+}
+
+.ciq-card-footer {
+  padding-top: 12px;
+  border-top: 1px solid var(--ciq-border);
+}
+
+.ciq-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 20px;
+}
+
+/* --- Badges & Status --- */
+.ciq-badge {
+  font-family: var(--ciq-font-display);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  background: var(--ciq-primary);
+  color: var(--ciq-primary-foreground);
+}
+
+.ciq-badge-outline {
+  background: transparent;
+  color: var(--ciq-primary);
+  border: 1.5px solid var(--ciq-primary);
+}
+
+.ciq-badge-success {
+  background: var(--ciq-success);
+  color: var(--ciq-success-foreground);
+}
+
+.ciq-badge-destructive {
+  background: var(--ciq-destructive);
+  color: var(--ciq-destructive-foreground);
+}
+
+.ciq-badge-warning {
+  background: var(--ciq-warning);
+  color: var(--ciq-warning-foreground);
+}
+
+.ciq-badge-informational {
+  background: var(--ciq-informational);
+  color: var(--ciq-informational-foreground);
+}
+
+/* --- Data Tables --- */
+.ciq-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.ciq-th {
+  font-family: var(--ciq-font-display);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  padding: 10px 16px;
+  color: var(--ciq-muted-foreground);
+  border-bottom: 2px solid var(--ciq-border);
+  white-space: nowrap;
+}
+
+.ciq-td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--ciq-border);
+  vertical-align: middle;
+}
+
+.ciq-tr {
+  transition: background-color 0.1s ease;
+}
+
+.ciq-tr:hover {
+  background: var(--ciq-primary-subtle);
+}
+
+/* --- Form Controls --- */
+.ciq-input,
+.ciq-select {
+  font-family: var(--ciq-font-body);
+  font-size: 14px;
+  padding: 10px 14px;
+  border: 1px solid var(--ciq-border);
+  border-radius: var(--ciq-radius-lg);
+  background: var(--ciq-background);
+  color: var(--ciq-foreground);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  width: 100%;
+}
+
+.ciq-input:focus,
+.ciq-select:focus {
+  border-color: var(--ciq-ring);
+  box-shadow: 0 0 0 3px rgba(130, 89, 191, 0.15);
+}
+
+.ciq-input:disabled,
+.ciq-select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ciq-input::placeholder {
+  color: var(--ciq-muted-foreground);
+}
+
+.ciq-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--ciq-primary);
+  cursor: pointer;
+}
+
+/* --- Buttons --- */
+.ciq-btn-primary,
+.ciq-btn-secondary,
+.ciq-btn-ghost {
+  font-family: var(--ciq-font-display);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: var(--ciq-radius-lg);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  border: 1px solid transparent;
+  outline: none;
+}
+
+.ciq-btn-primary:focus-visible,
+.ciq-btn-secondary:focus-visible,
+.ciq-btn-ghost:focus-visible {
+  box-shadow: 0 0 0 3px rgba(130, 89, 191, 0.25);
+}
+
+.ciq-btn-primary:disabled,
+.ciq-btn-secondary:disabled,
+.ciq-btn-ghost:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ciq-btn-primary {
+  background: var(--ciq-primary);
+  color: var(--ciq-primary-foreground);
+}
+
+.ciq-btn-primary:hover:not(:disabled) {
+  background: var(--ciq-primary-hover);
+}
+
+.ciq-btn-primary:active:not(:disabled) {
+  background: var(--ciq-primary-active);
+}
+
+.ciq-btn-secondary {
+  background: var(--ciq-background);
+  color: var(--ciq-foreground);
+  border-color: var(--ciq-border);
+}
+
+.ciq-btn-secondary:hover:not(:disabled) {
+  background: var(--ciq-primary-subtle);
+}
+
+.ciq-btn-ghost {
+  background: transparent;
+  color: var(--ciq-foreground);
+}
+
+.ciq-btn-ghost:hover:not(:disabled) {
+  background: var(--ciq-primary-subtle);
+}

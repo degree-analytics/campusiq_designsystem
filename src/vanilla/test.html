@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusIQ UI — Component Test Page</title>
+  <link rel="stylesheet" href="../../dist/campusiq-ui.css">
+</head>
+<body class="ciq-page">
+  <header class="ciq-header">
+    <h1 class="ciq-h1">CampusIQ Component Test</h1>
+    <span>Phase 1 — Visual Validation</span>
+  </header>
+
+  <main class="ciq-container">
+    <!-- Typography -->
+    <section style="margin-bottom:36px">
+      <h2 class="ciq-h2">Typography</h2>
+      <h1 class="ciq-h1">Heading 1 — Onest 28px</h1>
+      <h2 class="ciq-h2">Heading 2 — Onest 22px</h2>
+      <h3 class="ciq-h3">Heading 3 — Onest 18px</h3>
+      <h4 class="ciq-h4">Heading 4 — Onest 15px</h4>
+      <p class="ciq-body">Body text — Inter 14px. The quick brown fox jumps over the lazy dog.</p>
+      <p class="ciq-caption">Caption text — Inter 12px muted</p>
+      <span class="ciq-label">Label text</span>
+    </section>
+
+    <!-- Buttons -->
+    <section style="margin-bottom:36px">
+      <h2 class="ciq-h2">Buttons</h2>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+        <button class="ciq-btn-primary">Primary Button</button>
+        <button class="ciq-btn-secondary">Secondary Button</button>
+        <button class="ciq-btn-ghost">Ghost Button</button>
+        <button class="ciq-btn-primary" disabled>Disabled</button>
+      </div>
+    </section>
+
+    <!-- Badges -->
+    <section style="margin-bottom:36px">
+      <h2 class="ciq-h2">Badges</h2>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+        <span class="ciq-badge">Default</span>
+        <span class="ciq-badge ciq-badge-success">Success</span>
+        <span class="ciq-badge ciq-badge-destructive">Destructive</span>
+        <span class="ciq-badge ciq-badge-warning">Warning</span>
+        <span class="ciq-badge ciq-badge-informational">Informational</span>
+        <span class="ciq-badge ciq-badge-outline">Outline</span>
+      </div>
+    </section>
+
+    <!-- Form Controls -->
+    <section style="margin-bottom:36px">
+      <h2 class="ciq-h2">Form Controls</h2>
+      <div style="display:flex;flex-direction:column;gap:12px;max-width:400px;margin-top:12px">
+        <input class="ciq-input" placeholder="Text input...">
+        <input class="ciq-input" type="search" placeholder="Search...">
+        <select class="ciq-select">
+          <option>Select an option</option>
+          <option>Option A</option>
+          <option>Option B</option>
+        </select>
+        <label style="display:flex;align-items:center;gap:8px">
+          <input type="checkbox" class="ciq-checkbox"> Checkbox label
+        </label>
+      </div>
+    </section>
+
+    <!-- Cards -->
+    <section style="margin-bottom:36px">
+      <h2 class="ciq-h2">Cards</h2>
+      <div class="ciq-card-grid" style="margin-top:12px">
+        <div class="ciq-card">
+          <div class="ciq-card-header">
+            <h3 class="ciq-h4">Card Title</h3>
+            <span class="ciq-badge ciq-badge-success">Active</span>
+          </div>
+          <div class="ciq-card-body">
+            <p class="ciq-body">Card body content goes here.</p>
+          </div>
+          <div class="ciq-card-footer">
+            <span class="ciq-caption">Updated 2 hours ago</span>
+          </div>
+        </div>
+        <div class="ciq-card">
+          <div class="ciq-card-header">
+            <h3 class="ciq-h4">Another Card</h3>
+            <span class="ciq-badge ciq-badge-warning">Pending</span>
+          </div>
+          <div class="ciq-card-body">
+            <p class="ciq-body">More content here with a longer description to show wrapping behavior.</p>
+          </div>
+        </div>
+        <div class="ciq-card">
+          <div class="ciq-card-header">
+            <h3 class="ciq-h4">Third Card</h3>
+            <span class="ciq-badge ciq-badge-outline">Draft</span>
+          </div>
+          <div class="ciq-card-body">
+            <p class="ciq-body">Short content.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Data Table -->
+    <section style="margin-bottom:36px">
+      <h2 class="ciq-h2">Data Table</h2>
+      <div style="overflow-x:auto;margin-top:12px">
+        <table class="ciq-table">
+          <thead>
+            <tr>
+              <th class="ciq-th">Name</th>
+              <th class="ciq-th">Status</th>
+              <th class="ciq-th">Updated</th>
+              <th class="ciq-th">Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="ciq-tr">
+              <td class="ciq-td">University of Texas</td>
+              <td class="ciq-td"><span class="ciq-badge ciq-badge-success">Complete</span></td>
+              <td class="ciq-td">May 10, 2026</td>
+              <td class="ciq-td">94%</td>
+            </tr>
+            <tr class="ciq-tr">
+              <td class="ciq-td">Ohio State University</td>
+              <td class="ciq-td"><span class="ciq-badge ciq-badge-warning">In Progress</span></td>
+              <td class="ciq-td">May 9, 2026</td>
+              <td class="ciq-td">67%</td>
+            </tr>
+            <tr class="ciq-tr">
+              <td class="ciq-td">Stanford University</td>
+              <td class="ciq-td"><span class="ciq-badge ciq-badge-destructive">Blocked</span></td>
+              <td class="ciq-td">May 8, 2026</td>
+              <td class="ciq-td">23%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
